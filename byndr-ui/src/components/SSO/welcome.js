@@ -6,6 +6,8 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
+import { useHistory } from "react-router-dom";
+
 
 const styles = (theme) => ({
   title:{
@@ -50,7 +52,8 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 export default function Welcome() {
-  const [open, setOpen] = React.useState(true);
+  const [open] = React.useState(true);
+  const history = useHistory();
 
   // const handleClickOpen = () => {
   //   setOpen(true);
@@ -75,7 +78,7 @@ export default function Welcome() {
         </DialogContent>
 
         <DialogActions>
-          <Button  style ={{width : '65%'}} variant="contained" size="large" color="primary">
+          <Button  style ={{width : '65%'}} variant="contained" size="large" color="primary" onClick={() => { history.push("/signup"); }}>
             Sign Up
           </Button>
         </DialogActions>
