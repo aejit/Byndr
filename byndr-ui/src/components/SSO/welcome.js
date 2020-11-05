@@ -6,6 +6,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import Typography from '@material-ui/core/Typography';
+import Link from '@material-ui/core/Link';
 
 const styles = (theme) => ({
   title:{
@@ -51,7 +52,7 @@ const DialogActions = withStyles((theme) => ({
 
 export default function Welcome() {
   const [open, setOpen] = React.useState(true);
-
+  const preventDefault = (event) => event.preventDefault();
   // const handleClickOpen = () => {
   //   setOpen(true);
   // };
@@ -80,9 +81,12 @@ export default function Welcome() {
           </Button>
         </DialogActions>
         <DialogActions style={{marginBottom: '2rem'}}>
-          <Button  style ={{width : '65%'}} variant="outlined" size="large" color="primary">
+          {/* <Button  style ={{width : '65%'}} variant="outlined" size="large" color="primary">
             Log In
-          </Button>
+          </Button> */}
+          <Link href="/profile/settings">
+          Log In
+          </Link>
         </DialogActions>
       </Dialog>
     </div>
