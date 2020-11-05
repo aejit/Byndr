@@ -82,13 +82,50 @@ export default function Signup() {
         confirmPassword: "",
         showPassword: false,
         showConfirmPassword: false,
-        checked: false
+        checked: false,
     });
+
+    const [errors, setErrors] = React.useState({
+        message: "",
+    });
+
+    let [isValid, setIsValid] = React.useState(true);
 
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
+
+  function validate(_callback)  {
+        // validate email
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if(!pattern.test(values.email))
+         {
+            setIsValid(!isValid);
+            setErrors({ ...errors, message: "Please enter valid email address."});
+
+         }
+         else if(pattern.test(values.email)){
+            setErrors({ ...errors, message: ""});
+         }
+
+         _callback();
+        //  return isValid;
+
+    }
+    console.log(isValid, "i am outside");
+
+ function handleSubmit() {
+         validate(()=> console.log('huzzah, I\'m done!'));
+
+        console.log(isValid, "i am inside");
+        if(isValid){
+            console.log("valid");
+        }
+        // validate();
+
+    }
+
 
     const handleClickShowPassword = (prop) => () => {
         console.log(prop);
@@ -154,6 +191,7 @@ export default function Signup() {
                         />
 
                     </FormControl>
+                    <div style={{color: 'red'}}>{errors.message}</div>
                 </DialogContent>
 
                 <DialogContent>
@@ -244,7 +282,7 @@ export default function Signup() {
                 </DialogCheckBox>
 
                 <DialogActions>
-                    <Button style={{ width: '65%' }} variant="contained" size="large" color="primary">
+                    <Button style={{ width: '65%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
                         Sign Up
           </Button>
                 </DialogActions>
