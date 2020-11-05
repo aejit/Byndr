@@ -15,6 +15,8 @@ import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 
 const styles = (theme) => ({
@@ -22,6 +24,7 @@ const styles = (theme) => ({
         display: 'flex',
         justifyContent: 'center',
         paddingTop: theme.spacing(5),
+        paddingBottom: theme.spacing(5)
     },
     root: {
         margin: 0,
@@ -39,10 +42,18 @@ const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
     return (
         <MuiDialogTitle disableTypography className={classes.title} {...other}>
-            <Typography variant="h3">{children}</Typography>
+            <Typography variant="h4">{children}</Typography>
         </MuiDialogTitle>
     );
 });
+
+const DialogCheckBox = withStyles((theme) => ({
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+        paddingTop: theme.spacing(0.5),
+    },
+}))(MuiDialogContent);
 
 const DialogContent = withStyles((theme) => ({
     root: {
@@ -55,7 +66,9 @@ const DialogActions = withStyles((theme) => ({
     root: {
         display: 'flex',
         justifyContent: 'center',
-        padding: theme.spacing(1.5),
+        padding: '0.5rem 4rem',
+
+        // padding: theme.spacing(0.5),
     },
 }))(MuiDialogActions);
 
@@ -68,7 +81,8 @@ export default function Signup() {
         email: "",
         confirmPassword: "",
         showPassword: false,
-        showConfirmPassword: false
+        showConfirmPassword: false,
+        checked: false
     });
 
 
@@ -76,12 +90,14 @@ export default function Signup() {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-    const handleClickShowPassword = () => {
-        setValues({ ...values, showPassword: !values.showPassword });
-    };
-
-    const handleClickShowConfirmPassword = () => {
-        setValues({ ...values, showConfirmPassword: !values.showConfirmPassword });
+    const handleClickShowPassword = (prop) => () => {
+        console.log(prop);
+        if (values.password && prop === 'showPassword')
+            setValues({ ...values, [prop]: !values.showPassword });
+        else if (values.confirmPassword && prop === 'showConfirmPassword')
+            setValues({ ...values, [prop]: !values.showConfirmPassword });
+        else
+            setValues({ ...values, [prop]: !values.checked });
     };
 
 
@@ -95,12 +111,17 @@ export default function Signup() {
             <Dialog aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title">
                     Sign Up
-        </DialogTitle>
+                </DialogTitle>
                 <DialogContent >
 
-                    <FormControl variant="outlined">
-                        <InputLabel htmlFor="component-outlined">Mobile Number</InputLabel>
+                    <FormControl variant="outlined" style={{ width: '23rem' }}>
+                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Mobile Number</InputLabel>
                         <OutlinedInput
+                            inputProps={{
+                                style: {
+                                    height: "0.5rem"
+                                }
+                            }}
                             value={values.phoneNumber}
                             onChange={handleChange('phoneNumber')}
                             label="Mobile Number"
@@ -112,14 +133,17 @@ export default function Signup() {
                         />
                         <FormHelperText id="component-error-text">10 digits</FormHelperText>
                     </FormControl>
-
-
                 </DialogContent>
 
                 <DialogContent>
-                    <FormControl variant="outlined">
-                        <InputLabel htmlFor="component-outlined">Email Address</InputLabel>
+                    <FormControl variant="outlined" style={{ width: '23rem' }}>
+                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Email Address</InputLabel>
                         <OutlinedInput
+                            inputProps={{
+                                style: {
+                                    height: "0.5rem"
+                                }
+                            }}
                             value={values.email}
                             onChange={handleChange('email')}
                             label="Email Address"
@@ -133,9 +157,14 @@ export default function Signup() {
                 </DialogContent>
 
                 <DialogContent>
-                    <FormControl variant="outlined" style={{width: "14rem"}}>
-                        <InputLabel htmlFor="component-outlined">Create Password</InputLabel>
+                    <FormControl variant="outlined" style={{ width: "23rem" }}>
+                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Create Password</InputLabel>
                         <OutlinedInput
+                            inputProps={{
+                                style: {
+                                    height: "0.5rem"
+                                }
+                            }}
                             value={values.password}
                             onChange={handleChange('password')}
                             label="Create Password"
@@ -146,9 +175,10 @@ export default function Signup() {
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
+                                        onClick={handleClickShowPassword('showPassword')}
                                         onMouseDown={handleMouseDownPassword}
                                         edge="end"
+                                        size="small"
                                     >
                                         {values.showPassword ? <Visibility /> : <VisibilityOff />}
                                     </IconButton>
@@ -161,9 +191,14 @@ export default function Signup() {
                 </DialogContent>
 
                 <DialogContent>
-                    <FormControl variant="outlined" style={{width: "14rem"}}>
-                        <InputLabel htmlFor="component-outlined">Confirm Password</InputLabel>
+                    <FormControl variant="outlined" style={{ width: "23rem" }}>
+                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Confirm Password</InputLabel>
                         <OutlinedInput
+                            inputProps={{
+                                style: {
+                                    height: "0.5rem"
+                                }
+                            }}
                             value={values.confirmPassword}
                             onChange={handleChange('confirmPassword')}
                             type={values.showConfirmPassword ? 'text' : 'password'}
@@ -174,9 +209,10 @@ export default function Signup() {
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label="toggle password visibility"
-                                        onClick={handleClickShowConfirmPassword}
+                                        onClick={handleClickShowPassword('showConfirmPassword')}
                                         onMouseDown={handleMouseDownPassword}
                                         edge="end"
+                                        size="small"
                                     >
                                         {values.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
                                     </IconButton>
@@ -187,13 +223,33 @@ export default function Signup() {
                     </FormControl>
                 </DialogContent>
 
+                <DialogCheckBox>
+                    <FormControl style={{ width: '2rem' }}>
+                        <Checkbox
+                            // defaultChecked
+                            // color="primary"
+                            color="default"
+                            inputProps={{ 'aria-label': 'secondary checkbox' }}
+                        />
+                    </FormControl>
+                    <FormControl >
+                        <Typography
+                            variant="subtitle2"
+                            gutterBottom={true}
+                            style={{ marginTop: '0.7rem' }}
+                            align="right"
+
+                        >I accept all the <a href="xyz">Terms & conditions</a> and <a href="xyz">Privacy ploicy</a></Typography>
+                    </FormControl>
+                </DialogCheckBox>
+
                 <DialogActions>
                     <Button style={{ width: '65%' }} variant="contained" size="large" color="primary">
                         Sign Up
           </Button>
                 </DialogActions>
                 <DialogActions style={{ marginBottom: '2rem' }}>
-                    <a href="xyz">Log In instead</a>
+                    <a href="/">Log In instead</a>
                 </DialogActions>
             </Dialog>
         </div>
