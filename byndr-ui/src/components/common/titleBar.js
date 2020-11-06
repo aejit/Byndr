@@ -10,6 +10,12 @@ import clsx from 'clsx';
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
+  menuButton: {
+    marginRight: 36,
+  },
+  hide: {
+    display: 'none',
+  },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
@@ -27,15 +33,15 @@ const useStyles = makeStyles((theme) => ({
       },
 }));
 
-export default function TitleBar() {
-    const [open, setOpen] = React.useState(true);
+export default function TitleBar(props) {
+    const open = props.open != null ? props.open : false;
     const classes = useStyles();
     const handleDrawerOpen = () => {
-        setOpen(true);
+        props.setOpenDrawer(true);
       };
     
       const handleDrawerClose = () => {
-        setOpen(false);
+        props.setOpenDrawer(false);
       };
 
     return (

@@ -43,19 +43,24 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
           width: theme.spacing(9) + 1,
         },
+      },
+      toolbar: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
       }
 }));
 
-export default function SideBar() {
+export default function SideBar(props) {
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
-    const classes = useStyles();
-    const handleDrawerOpen = () => {
-      setOpen(true);
-    };
+    const open = props.open != null ? props.open : false;
+    const classes = useStyles();   
   
     const handleDrawerClose = () => {
-      setOpen(false);
+      props.setOpenDrawer(false);
     };
 
     return <div className={classes.root}>
@@ -74,7 +79,7 @@ export default function SideBar() {
       >
         <div className={classes.toolbar}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {open === false ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
         <Divider />
