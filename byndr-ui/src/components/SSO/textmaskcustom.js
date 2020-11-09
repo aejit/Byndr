@@ -19,8 +19,7 @@ export default function TextMaskCustom(props) {
         ref={(ref) => {
           inputRef(ref ? ref.inputElement : null);
         }}
-        mask={[ '+' ,'9', '1', ' ', '-', ' ',/\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/,/\d/, /\d/,' ', ' ']}
-        //  mask={[ /\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/,/\d/, /\d/]}
+        mask={[ '+' ,'9', '1', ' ', '-', ' ',/\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/,/\d/, /\d/,/\d/, /\d/,/\d/, /\d/,/\d/, /\d/,/\d/, /\d/,/\d/, /\d/,/\d/, /\d/,/\d/,/\d/, /\d/,/\d/, /\d/,/\d/, /\d/]}
         placeholderChar={'\u2000'}
         showMask
       />

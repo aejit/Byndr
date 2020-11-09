@@ -10,13 +10,12 @@ import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import TextMaskCustom from './textmaskcustom';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 import Checkbox from '@material-ui/core/Checkbox';
-
 
 
 const styles = (theme) => ({
@@ -86,44 +85,78 @@ export default function Signup() {
     });
 
     const [errors, setErrors] = React.useState({
-        message: "",
+        messageEmail: "",
     });
 
-    let [isValid, setIsValid] = React.useState(true);
+    const [messagePassword, setMessagePassword] = React.useState("");
+
+    const [messagePhone, setMessagePhone] = React.useState("");
+
+    const [messageTnC, setMessageTnC] = React.useState("");
+
+    let isValid = true;
 
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
     };
 
-  function validate(_callback)  {
+    function validate() {
+
+        //validate phone
+
+        if (values.phoneNumber) {
+            let mobilenumber = values.phoneNumber.trim().split(/\s*-\s*/);
+            let numberarray = mobilenumber[0].concat(mobilenumber[1]);
+            numberarray.split();
+            console.log(numberarray);
+            console.log(numberarray.length);
+
+            if (numberarray.length !== 13) {
+                isValid = false;
+                setMessagePhone("Mobile number must contain 10 digits only.");
+            }
+
+            else {
+                setMessagePhone("");
+
+            }
+        }
+
         // validate email
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if(!pattern.test(values.email))
-         {
-            setIsValid(!isValid);
-            setErrors({ ...errors, message: "Please enter valid email address."});
 
-         }
-         else if(pattern.test(values.email)){
-            setErrors({ ...errors, message: ""});
-         }
+        if (values.email) {
+            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if (!pattern.test(values.email)) {
+                isValid = false;
+                setErrors({ ...errors, messageEmail: "Please enter valid email address." });
 
-         _callback();
-        //  return isValid;
+            }
+            else if (pattern.test(values.email)) {
+                setErrors({ ...errors, messageEmail: "" });
+            }
+        }
 
+        // validate password
+        if (values.password && values.confirmPassword) {
+            (values.password !== values.confirmPassword) ? setMessagePassword("password doesnot match") : setMessagePassword("");
+        }
+
+        //  validate TnC
+        // if(values.checked)
+        console.log(values.checked);
+        (values.checked) ? setMessageTnC("") : setMessageTnC("Please accept our T & C");
     }
-    console.log(isValid, "i am outside");
 
- function handleSubmit() {
-         validate(()=> console.log('huzzah, I\'m done!'));
+
+    function handleSubmit() {
+        validate();
+        if (isValid) {
+            console.log(isValid, "i am inside callback !!! hurray");
+
+        }
 
         console.log(isValid, "i am inside");
-        if(isValid){
-            console.log("valid");
-        }
-        // validate();
-
     }
 
 
@@ -151,8 +184,8 @@ export default function Signup() {
                 </DialogTitle>
                 <DialogContent >
 
-                    <FormControl variant="outlined" style={{ width: '23rem' }}>
-                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Mobile Number</InputLabel>
+                    <FormControl variant="outlined" style={{ width: '23rem' }} required>
+                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Mobile Number</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
@@ -167,14 +200,15 @@ export default function Signup() {
                             inputComponent={TextMaskCustom}
                             size="small"
                             autoFocus
+                            margin="dense"
                         />
-                        <FormHelperText id="component-error-text">10 digits</FormHelperText>
+                        <Typography style={{ color: 'red', fontSize: "x-small" }}>{messagePhone}</Typography>
                     </FormControl>
                 </DialogContent>
 
                 <DialogContent>
                     <FormControl variant="outlined" style={{ width: '23rem' }}>
-                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Email Address</InputLabel>
+                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Email Address</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
@@ -187,16 +221,17 @@ export default function Signup() {
                             type="email"
                             id="outlined-margin-none"
                             variant="outlined"
+                            margin="dense"
 
                         />
 
                     </FormControl>
-                    <div style={{color: 'red'}}>{errors.message}</div>
+                    <Typography style={{ color: 'red', fontSize: "x-small" }}>{errors.messageEmail}</Typography>
                 </DialogContent>
 
                 <DialogContent>
                     <FormControl variant="outlined" style={{ width: "23rem" }}>
-                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Create Password</InputLabel>
+                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Create Password</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
@@ -209,6 +244,7 @@ export default function Signup() {
                             type={values.showPassword ? 'text' : 'password'}
                             id="outlined-adornment-password"
                             variant="outlined"
+                            margin="dense"
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -230,7 +266,7 @@ export default function Signup() {
 
                 <DialogContent>
                     <FormControl variant="outlined" style={{ width: "23rem" }}>
-                        <InputLabel htmlFor="component-outlined" style={{ fontSize: 'small' }}>Confirm Password</InputLabel>
+                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Confirm Password</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
@@ -243,6 +279,7 @@ export default function Signup() {
                             label="Confirm Password"
                             id="outlined-adornment-confirm-password"
                             variant="outlined"
+                            margin="dense"
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
@@ -259,6 +296,7 @@ export default function Signup() {
                             labelWidth={70}
                         />
                     </FormControl>
+                    <Typography style={{ color: 'red', fontSize: "x-small" }}>{messagePassword}</Typography>
                 </DialogContent>
 
                 <DialogCheckBox>
@@ -268,6 +306,7 @@ export default function Signup() {
                             // color="primary"
                             color="default"
                             inputProps={{ 'aria-label': 'secondary checkbox' }}
+                            onClick={() => setValues({ ...values, checked: !values.checked })}
                         />
                     </FormControl>
                     <FormControl >
@@ -276,11 +315,12 @@ export default function Signup() {
                             gutterBottom={true}
                             style={{ marginTop: '0.7rem' }}
                             align="right"
-
                         >I accept all the <a href="xyz">Terms & conditions</a> and <a href="xyz">Privacy ploicy</a></Typography>
                     </FormControl>
                 </DialogCheckBox>
 
+                <Typography style={{ color: 'red', fontSize: "x-small", display: "flex", justifyContent: "center" }}>{messageTnC}</Typography>
+                
                 <DialogActions>
                     <Button style={{ width: '65%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
                         Sign Up
