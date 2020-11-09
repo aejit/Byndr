@@ -1,5 +1,6 @@
 import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+// import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SideBar(props) {
-    const theme = useTheme();
+    // const theme = useTheme();
     const open = props.open != null ? props.open : false;
     const classes = useStyles();   
   

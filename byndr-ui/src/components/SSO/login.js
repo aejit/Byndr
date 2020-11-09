@@ -49,14 +49,15 @@ const DialogTitle = withStyles(styles)((props) => {
 const DialogCheckBox = withStyles((theme) => ({
     root: {
         display: 'flex',
-        justifyContent: 'center',
-        paddingTop: theme.spacing(0.5),
+        justifyContent: 'start',
+        // paddingTop: theme.spacing(0.5),
+        padding: '0.5rem 3.7rem'
     },
 }))(MuiDialogContent);
 
 const DialogContent = withStyles((theme) => ({
     root: {
-        padding: '0.5rem 4rem',
+        padding: '0.15rem 4rem',
         textAlign: 'center'
     },
 }))(MuiDialogContent);
@@ -71,16 +72,15 @@ const DialogActions = withStyles((theme) => ({
     },
 }))(MuiDialogActions);
 
-export default function Signup() {
+export default function Login() {
+
     const [open] = React.useState(true);
 
     const [values, setValues] = React.useState({
         phoneNumber: "",
         password: "",
         email: "",
-        confirmPassword: "",
         showPassword: false,
-        showConfirmPassword: false,
         checked: false,
     });
 
@@ -88,7 +88,7 @@ export default function Signup() {
         messageEmail: "",
     });
 
-    const [messagePassword, setMessagePassword] = React.useState("");
+    // const [messagePassword, setMessagePassword] = React.useState("");
 
     const [messagePhone, setMessagePhone] = React.useState("");
 
@@ -138,9 +138,9 @@ export default function Signup() {
         }
 
         // validate password
-        if (values.password && values.confirmPassword) {
-            (values.password !== values.confirmPassword) ? setMessagePassword("password doesnot match") : setMessagePassword("");
-        }
+        // if (values.password && values.confirmPassword) {
+        //     (values.password !== values.confirmPassword) ? setMessagePassword("password doesnot match") : setMessagePassword("");
+        // }
 
         //  validate TnC
         // if(values.checked)
@@ -156,7 +156,7 @@ export default function Signup() {
 
         }
 
-        console.log(isValid, "i am inside");
+        console.log(isValid, "i am outside");
     }
 
 
@@ -180,7 +180,7 @@ export default function Signup() {
         <div style={{ filter: `blur(5px)` }}>
             <Dialog aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title">
-                    Sign Up
+                    Log In
                 </DialogTitle>
                 <DialogContent >
 
@@ -204,6 +204,12 @@ export default function Signup() {
                         />
                         <Typography style={{ color: 'red', fontSize: "x-small" }}>{messagePhone}</Typography>
                     </FormControl>
+                </DialogContent>
+
+                <DialogContent>
+                    <Typography variant="h6" style={{color: "lightgray"}}>
+                            Or
+                    </Typography>
                 </DialogContent>
 
                 <DialogContent>
@@ -231,7 +237,7 @@ export default function Signup() {
 
                 <DialogContent>
                     <FormControl variant="outlined" style={{ width: "23rem" }}>
-                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Create Password</InputLabel>
+                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Password</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
@@ -240,7 +246,7 @@ export default function Signup() {
                             }}
                             value={values.password}
                             onChange={handleChange('password')}
-                            label="Create Password"
+                            label="Password"
                             type={values.showPassword ? 'text' : 'password'}
                             id="outlined-adornment-password"
                             variant="outlined"
@@ -264,41 +270,6 @@ export default function Signup() {
                     </FormControl>
                 </DialogContent>
 
-                <DialogContent>
-                    <FormControl variant="outlined" style={{ width: "23rem" }}>
-                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Confirm Password</InputLabel>
-                        <OutlinedInput
-                            inputProps={{
-                                style: {
-                                    height: "0.5rem"
-                                }
-                            }}
-                            value={values.confirmPassword}
-                            onChange={handleChange('confirmPassword')}
-                            type={values.showConfirmPassword ? 'text' : 'password'}
-                            label="Confirm Password"
-                            id="outlined-adornment-confirm-password"
-                            variant="outlined"
-                            margin="dense"
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword('showConfirmPassword')}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                        size="small"
-                                    >
-                                        {values.showConfirmPassword ? <Visibility /> : <VisibilityOff />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            labelWidth={70}
-                        />
-                    </FormControl>
-                    <Typography style={{ color: 'red', fontSize: "x-small" }}>{messagePassword}</Typography>
-                </DialogContent>
-
                 <DialogCheckBox>
                     <FormControl style={{ width: '2rem' }}>
                         <Checkbox
@@ -315,7 +286,7 @@ export default function Signup() {
                             gutterBottom={true}
                             style={{ marginTop: '0.7rem' }}
                             align="right"
-                        >I accept all the <a href="xyz">Terms & conditions</a> and <a href="xyz">Privacy ploicy</a></Typography>
+                        ><span>Remember me </span> <a style={{marginLeft: '8rem'}} href="/">Forgot Password? </a></Typography>
                     </FormControl>
                 </DialogCheckBox>
 
@@ -323,11 +294,11 @@ export default function Signup() {
                 
                 <DialogActions>
                     <Button style={{ width: '65%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
-                        Sign Up
+                        Enter
           </Button>
                 </DialogActions>
                 <DialogActions style={{ marginBottom: '2rem' }}>
-                    <a href="/login">Log In instead</a>
+                    <a href="/signup">Sign Up</a>
                 </DialogActions>
             </Dialog>
         </div>
