@@ -143,8 +143,6 @@ export default function Signup() {
         }
 
         //  validate TnC
-        // if(values.checked)
-        console.log(values.checked);
         (values.checked) ? setMessageTnC("") : setMessageTnC("Please accept our T & C");
     }
 

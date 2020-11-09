@@ -57,7 +57,7 @@ const DialogCheckBox = withStyles((theme) => ({
 
 const DialogContent = withStyles((theme) => ({
     root: {
-        padding: '0.15rem 4rem',
+        padding: '0.5rem 4rem',
         textAlign: 'center'
     },
 }))(MuiDialogContent);
@@ -92,7 +92,6 @@ export default function Login() {
 
     const [messagePhone, setMessagePhone] = React.useState("");
 
-    const [messageTnC, setMessageTnC] = React.useState("");
 
     let isValid = true;
 
@@ -142,10 +141,6 @@ export default function Login() {
         //     (values.password !== values.confirmPassword) ? setMessagePassword("password doesnot match") : setMessagePassword("");
         // }
 
-        //  validate TnC
-        // if(values.checked)
-        console.log(values.checked);
-        (values.checked) ? setMessageTnC("") : setMessageTnC("Please accept our T & C");
     }
 
 
@@ -184,12 +179,12 @@ export default function Login() {
                 </DialogTitle>
                 <DialogContent >
 
-                    <FormControl variant="outlined" style={{ width: '23rem' }} required>
+                    <FormControl variant="outlined" style={{ width: '23rem' }} >
                         <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Mobile Number</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
-                                    height: "0.5rem"
+                                    height: "1rem"
                                 }
                             }}
                             value={values.phoneNumber}
@@ -206,9 +201,9 @@ export default function Login() {
                     </FormControl>
                 </DialogContent>
 
-                <DialogContent>
-                    <Typography variant="h6" style={{color: "lightgray"}}>
-                            Or
+                <DialogContent style={{ width: '23rem' }}>
+                    <Typography variant="h6" style={{ color: "lightgray",height: "1.5rem" }} >
+                        Or
                     </Typography>
                 </DialogContent>
 
@@ -218,7 +213,7 @@ export default function Login() {
                         <OutlinedInput
                             inputProps={{
                                 style: {
-                                    height: "0.5rem"
+                                    height: "1rem"
                                 }
                             }}
                             value={values.email}
@@ -241,7 +236,7 @@ export default function Login() {
                         <OutlinedInput
                             inputProps={{
                                 style: {
-                                    height: "0.5rem"
+                                    height: "1rem"
                                 }
                             }}
                             value={values.password}
@@ -286,12 +281,11 @@ export default function Login() {
                             gutterBottom={true}
                             style={{ marginTop: '0.7rem' }}
                             align="right"
-                        ><span>Remember me </span> <a style={{marginLeft: '8rem'}} href="/">Forgot Password? </a></Typography>
+                        ><span>Remember me </span> <a style={{ marginLeft: '8rem' }} href="/">Forgot Password? </a></Typography>
                     </FormControl>
                 </DialogCheckBox>
 
-                <Typography style={{ color: 'red', fontSize: "x-small", display: "flex", justifyContent: "center" }}>{messageTnC}</Typography>
-                
+
                 <DialogActions>
                     <Button style={{ width: '65%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
                         Enter
