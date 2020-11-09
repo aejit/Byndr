@@ -9,12 +9,11 @@ import Typography from '@material-ui/core/Typography';
 import OutlinedInput from '@material-ui/core/OutlinedInput'
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
-import TextMaskCustom from './textmaskcustom';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-import Checkbox from '@material-ui/core/Checkbox';
+import { useHistory } from "react-router-dom";
 
 
 const styles = (theme) => ({
@@ -22,7 +21,7 @@ const styles = (theme) => ({
         display: 'flex',
         justifyContent: 'center',
         paddingTop: theme.spacing(5),
-        paddingBottom: theme.spacing(5)
+        paddingBottom: theme.spacing(2)
     },
     root: {
         margin: 0,
@@ -45,13 +44,6 @@ const DialogTitle = withStyles(styles)((props) => {
     );
 });
 
-const DialogCheckBox = withStyles((theme) => ({
-    root: {
-        display: 'flex',
-        justifyContent: 'center',
-        paddingTop: theme.spacing(0.5),
-    },
-}))(MuiDialogContent);
 
 const DialogContent = withStyles((theme) => ({
     root: {
@@ -66,32 +58,23 @@ const DialogActions = withStyles((theme) => ({
         justifyContent: 'center',
         padding: '0.5rem 4rem',
 
-        // padding: theme.spacing(0.5),
     },
 }))(MuiDialogActions);
 
-export default function Signup() {
+export default function Passwordreset() {
+    const history = useHistory();
     const [open] = React.useState(true);
 
     const [values, setValues] = React.useState({
-        phoneNumber: "",
         password: "",
-        email: "",
         confirmPassword: "",
         showPassword: false,
         showConfirmPassword: false,
-        checked: false,
     });
 
-    const [errors, setErrors] = React.useState({
-        messageEmail: "",
-    });
+
 
     const [messagePassword, setMessagePassword] = React.useState("");
-
-    const [messagePhone, setMessagePhone] = React.useState("");
-
-    const [messageTnC, setMessageTnC] = React.useState("");
 
     let isValid = true;
 
@@ -102,68 +85,21 @@ export default function Signup() {
 
     function validate() {
 
-        //validate phone
-
-        if (values.phoneNumber) {
-            let mobilenumber = values.phoneNumber.trim().split(/\s*-\s*/);
-            let numberarray = mobilenumber[0].concat(mobilenumber[1]);
-            numberarray.split();
-            // console.log(numberarray);
-            // console.log(numberarray.length);
-
-            if (numberarray.length !== 13) {
-                isValid = false;
-                setMessagePhone("Mobile number must contain 10 digits only.");
-            }
-
-            else {
-                setMessagePhone("");
-
-            }
-        }
-
-        else if (!values.phoneNumber) {
-            isValid = false;
-            setMessagePhone("please enter a valid mobile number");
-        }
-
-        // validate email
-
-        if (values.email) {
-            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-            if (!pattern.test(values.email)) {
-                isValid = false;
-                setErrors({ ...errors, messageEmail: "Please enter valid email address." });
-
-            }
-            else if (pattern.test(values.email)) {
-                setErrors({ ...errors, messageEmail: "" });
-            }
-        }
-
-        else if (!values.email) {
-            isValid = false;
-            setErrors({ ...errors, messageEmail: "Please enter valid email address." });
-        }
-
         // validate password
         if (values.password && values.confirmPassword) {
-            (values.password !== values.confirmPassword) ? setMessagePassword("password doesnot match") : setMessagePassword("");
+            if (values.password !== values.confirmPassword){
+                setMessagePassword("password doesnot match");
+                isValid = false;
+            }
+            else{
+                setMessagePassword("");
+            }
         }
 
         else if (!values.password || !values.confirmPassword) {
+            isValid = false;
             setMessagePassword("password and confirm password field cannot be left empty");
         }
-
-        //  validate TnC
-        if (values.checked) {
-            setMessageTnC("");
-        }
-        else {
-            setMessageTnC("Please accept our T & C");
-            isValid= false;
-        }
-        // (values.checked) ? setMessageTnC("") : setMessageTnC("Please accept our T & C");
     }
 
 
@@ -171,7 +107,7 @@ export default function Signup() {
         validate();
         if (isValid) {
             console.log(isValid, "i am inside callback !!! hurray");
-
+             history.push("/confirmpasswordchange");
         }
 
         console.log(isValid, "i am inside");
@@ -197,62 +133,16 @@ export default function Signup() {
         <div style={{ filter: `blur(5px)` }}>
             <Dialog aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title">
-                    Sign Up
+                    Password Reset
                 </DialogTitle>
-                <DialogContent >
-
-                    <FormControl variant="outlined" style={{ width: '23rem' }} required>
-                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Mobile Number</InputLabel>
-                        <OutlinedInput
-                            inputProps={{
-                                style: {
-                                    height: "0.5rem"
-                                }
-                            }}
-                            value={values.phoneNumber}
-                            onChange={handleChange('phoneNumber')}
-                            label="Mobile Number"
-                            name="textmask"
-                            id="formatted-text-mask-input"
-                            inputComponent={TextMaskCustom}
-                            size="small"
-                            autoFocus
-                            margin="dense"
-                        />
-                        <Typography style={{ color: 'red', fontSize: "x-small" }}>{messagePhone}</Typography>
-                    </FormControl>
-                </DialogContent>
 
                 <DialogContent>
-                    <FormControl variant="outlined" style={{ width: '23rem' }}>
-                        <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Email Address</InputLabel>
-                        <OutlinedInput
-                            inputProps={{
-                                style: {
-                                    height: "0.5rem"
-                                }
-                            }}
-                            value={values.email}
-                            onChange={handleChange('email')}
-                            label="Email Address"
-                            type="email"
-                            id="outlined-margin-none"
-                            variant="outlined"
-                            margin="dense"
-
-                        />
-
-                    </FormControl>
-                    <Typography style={{ color: 'red', fontSize: "x-small" }}>{errors.messageEmail}</Typography>
-                </DialogContent>
-
-                <DialogContent>
-                    <FormControl variant="outlined" style={{ width: "23rem" }}>
+                    <FormControl variant="outlined" style={{ width: "20rem" }}>
                         <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Create Password</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
-                                    height: "0.5rem"
+                                    height: "1rem"
                                 }
                             }}
                             value={values.password}
@@ -282,12 +172,12 @@ export default function Signup() {
                 </DialogContent>
 
                 <DialogContent>
-                    <FormControl variant="outlined" style={{ width: "23rem" }}>
+                    <FormControl variant="outlined" style={{ width: "20rem" }}>
                         <InputLabel margin="dense" htmlFor="component-outlined" style={{ fontSize: 'small' }}>Confirm Password</InputLabel>
                         <OutlinedInput
                             inputProps={{
                                 style: {
-                                    height: "0.5rem"
+                                    height: "1rem"
                                 }
                             }}
                             value={values.confirmPassword}
@@ -313,38 +203,18 @@ export default function Signup() {
                             labelWidth={70}
                         />
                     </FormControl>
-                    <Typography style={{ color: 'red', fontSize: "x-small" }}>{messagePassword}</Typography>
+                    <Typography style={{ color: 'red', fontSize: "small" }}>{messagePassword}</Typography>
                 </DialogContent>
 
-                <DialogCheckBox>
-                    <FormControl style={{ width: '2rem' }}>
-                        <Checkbox
-                            // defaultChecked
-                            // color="primary"
-                            color="default"
-                            inputProps={{ 'aria-label': 'secondary checkbox' }}
-                            onClick={() => setValues({ ...values, checked: !values.checked })}
-                        />
-                    </FormControl>
-                    <FormControl >
-                        <Typography
-                            variant="subtitle2"
-                            gutterBottom={true}
-                            style={{ marginTop: '0.7rem' }}
-                            align="right"
-                        >I accept all the <a href="xyz">Terms & conditions</a> and <a href="xyz">Privacy ploicy</a></Typography>
-                    </FormControl>
-                </DialogCheckBox>
 
-                <Typography style={{ color: 'red', fontSize: "x-small", display: "flex", justifyContent: "center" }}>{messageTnC}</Typography>
 
                 <DialogActions>
-                    <Button style={{ width: '65%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
-                        Sign Up
+                    <Button style={{ width: '75%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
+                        Set New Password
           </Button>
                 </DialogActions>
                 <DialogActions style={{ marginBottom: '2rem' }}>
-                    <a href="/login">Log In instead</a>
+                    <a href="/login">back</a>
                 </DialogActions>
             </Dialog>
         </div>

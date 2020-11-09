@@ -93,7 +93,8 @@ export default function Login() {
     const [messagePhone, setMessagePhone] = React.useState("");
 
 
-    let isValid = true;
+    let isValidMobileNumber = true;
+    let isValidEmail = true;
 
 
     const handleChange = (prop) => (event) => {
@@ -103,16 +104,15 @@ export default function Login() {
     function validate() {
 
         //validate phone
-
         if (values.phoneNumber) {
             let mobilenumber = values.phoneNumber.trim().split(/\s*-\s*/);
             let numberarray = mobilenumber[0].concat(mobilenumber[1]);
             numberarray.split();
-            console.log(numberarray);
-            console.log(numberarray.length);
+            // console.log(numberarray);
+            // console.log(numberarray.length);
 
             if (numberarray.length !== 13) {
-                isValid = false;
+                isValidMobileNumber = false;
                 setMessagePhone("Mobile number must contain 10 digits only.");
             }
 
@@ -122,18 +122,37 @@ export default function Login() {
             }
         }
 
+        else if (!values.phoneNumber && values.email === "") {
+            isValidMobileNumber = false;
+            setMessagePhone("please enter a valid mobile number");
+        }
+
+        else if(!values.phoneNumber && values.email !== ""){
+            setMessagePhone("");
+
+        }
+
         // validate email
 
         if (values.email) {
             var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
             if (!pattern.test(values.email)) {
-                isValid = false;
+                isValidEmail = false;
                 setErrors({ ...errors, messageEmail: "Please enter valid email address." });
 
             }
             else if (pattern.test(values.email)) {
                 setErrors({ ...errors, messageEmail: "" });
             }
+        }
+
+        else if (!values.email && values.phoneNumber === "") {
+            isValidEmail = false;
+            setErrors({ ...errors, messageEmail: "Please enter valid email address." });
+        }
+
+        else if (!values.email && values.phoneNumber !== ""){
+            setErrors({ ...errors, messageEmail: "" });
         }
 
         // validate password
@@ -146,17 +165,16 @@ export default function Login() {
 
     function handleSubmit() {
         validate();
-        if (isValid) {
-            console.log(isValid, "i am inside callback !!! hurray");
+        if (isValidEmail || isValidMobileNumber) {
+            console.log( "i am inside callback !!! hurray");
 
         }
 
-        console.log(isValid, "i am outside");
+        console.log( "i am outside");
     }
 
 
     const handleClickShowPassword = (prop) => () => {
-        console.log(prop);
         if (values.password && prop === 'showPassword')
             setValues({ ...values, [prop]: !values.showPassword });
         else if (values.confirmPassword && prop === 'showConfirmPassword')
@@ -281,7 +299,7 @@ export default function Login() {
                             gutterBottom={true}
                             style={{ marginTop: '0.7rem' }}
                             align="right"
-                        ><span>Remember me </span> <a style={{ marginLeft: '8rem' }} href="/">Forgot Password? </a></Typography>
+                        ><span>Remember me </span> <a style={{ marginLeft: '8rem' }} href="/forgotpassword">Forgot Password? </a></Typography>
                     </FormControl>
                 </DialogCheckBox>
 

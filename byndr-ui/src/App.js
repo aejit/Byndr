@@ -8,6 +8,10 @@ import NotificationSettings from './components/Profile/NotificationSettings/noti
 import Privacy from './components/Profile/Privacy/privacy';
 import Security from './components/Profile/Security/security';
 import Login from './components/SSO/login';
+import Forgotpassword from './components/SSO/forgotpassword';
+import Passwordreset from './components/SSO/passwordreset';
+import Checkemail from './components/SSO/checkemail';
+import Passwordchangeconfirm from './components/SSO/passwordchangeconfirm';
 
 function App() {
   return (
@@ -16,6 +20,10 @@ function App() {
     <Route exact path="/" component={Welcome} />
     <Route exact path="/signup" component= {Signup} />
     <Route exact path="/login" component={Login} />
+    <Route exact path="/forgotpassword" component={Forgotpassword} />
+    <Route exact path="/passwordreset" component={Passwordreset} />
+    <Route exact path="/checkemail" component={Checkemail} />
+    <Route exact path="/confirmpasswordchange" component={Passwordchangeconfirm} />
     <Route exact path="/profile/settings" component={Settings} />
     <Route exact path="/profile/notification" component={NotificationSettings} />
     <Route exact path="/profile/privacy" component={Privacy} />
