@@ -56,7 +56,7 @@ export default function Settings() {
               justify="start"
               alignItems="center"
               spacing={2}
-              style={{ paddingTop: 50 }}
+              style={{ paddingTop: 40 }}
             >
               <Grid item>
                 <Badge
