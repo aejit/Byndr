@@ -12,6 +12,7 @@ import Forgotpassword from './components/SSO/forgotpassword';
 import Passwordreset from './components/SSO/passwordreset';
 import Checkemail from './components/SSO/checkemail';
 import Passwordchangeconfirm from './components/SSO/passwordchangeconfirm';
+import Header from './components/common/header';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
     <Route exact path="/forgotpassword" component={Forgotpassword} />
     <Route exact path="/passwordreset" component={Passwordreset} />
     <Route exact path="/checkemail" component={Checkemail} />
+    <Route exact path="/header" component={Header} />
     <Route exact path="/confirmpasswordchange" component={Passwordchangeconfirm} />
     <Route exact path="/profile/settings" component={Settings} />
     <Route exact path="/profile/notification" component={NotificationSettings} />
