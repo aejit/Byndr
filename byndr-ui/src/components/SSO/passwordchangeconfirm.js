@@ -45,7 +45,7 @@ export default function Passwordchangeconfirm() {
                 <DialogContent>
 
                     <Typography style={{ color: "gray", display: 'flex', justifyContent: 'center' }} >
-                        {`Check your email for password change`}
+                        {`Check your email for confirmation link`}
                     </Typography>
                 </DialogContent>
 

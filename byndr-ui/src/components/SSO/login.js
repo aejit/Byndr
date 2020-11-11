@@ -104,14 +104,15 @@ export default function Login() {
     function validate() {
 
         //validate phone
+        console.log(values.phoneNumber);
         if (values.phoneNumber) {
             let mobilenumber = values.phoneNumber.trim().split(/\s*-\s*/);
             let numberarray = mobilenumber[0].concat(mobilenumber[1]);
             numberarray.split();
-            // console.log(numberarray);
-            // console.log(numberarray.length);
+            console.log(numberarray);
+            console.log(numberarray.length);
 
-            if (numberarray.length !== 13) {
+            if (numberarray.length !== 13 && values.email === "") {
                 isValidMobileNumber = false;
                 setMessagePhone("Mobile number must contain 10 digits only.");
             }
@@ -122,15 +123,14 @@ export default function Login() {
             }
         }
 
-        else if (!values.phoneNumber && values.email === "") {
+        else if (values.phoneNumber === "" && values.email === "") {
             isValidMobileNumber = false;
             setMessagePhone("please enter a valid mobile number");
-        }
-
-        else if(!values.phoneNumber && values.email !== ""){
-            setMessagePhone("");
+            setErrors({ ...errors, messageEmail: "Please enter valid email address." });
 
         }
+
+       
 
         // validate email
 
@@ -146,13 +146,17 @@ export default function Login() {
             }
         }
 
-        else if (!values.email && values.phoneNumber === "") {
-            isValidEmail = false;
-            setErrors({ ...errors, messageEmail: "Please enter valid email address." });
+        // else if (values.email && values.phoneNumber === "") {
+        //     isValidEmail = false;
+        //     setErrors({ ...errors, messageEmail: "Please enter valid email address." });
+        // }
+
+        else if (values.email === "" && values.phoneNumber !== ""){
+            setErrors({ ...errors, messageEmail: "" });
         }
 
-        else if (!values.email && values.phoneNumber !== ""){
-            setErrors({ ...errors, messageEmail: "" });
+        else if(values.phoneNumber === "" && values.email !== ""){
+            setMessagePhone("");
         }
 
         // validate password
@@ -202,7 +206,8 @@ export default function Login() {
                         <OutlinedInput
                             inputProps={{
                                 style: {
-                                    height: "1rem"
+                                    height: "1rem",
+                                    direction: 'ltr'
                                 }
                             }}
                             value={values.phoneNumber}
