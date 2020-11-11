@@ -1,5 +1,6 @@
 import React from "react";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+// import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import Divider from "@material-ui/core/Divider";
@@ -12,7 +13,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import clsx from "clsx";
-import { Toolbar } from "@material-ui/core";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SideBar(props) {
-  const theme = useTheme();
+  // const theme = useTheme();
   const open = props.open != null ? props.open : false;
   const classes = useStyles();
 
