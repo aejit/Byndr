@@ -68,8 +68,12 @@ export default function TitleBar(props) {
           <Button component={Link} to="/profile/security" color="inherit">
             Sign In & Security
           </Button>
-          <Button color="inherit">Privacy</Button>
-          <Button color="inherit">Notification Settings</Button>
+          <Button component={Link} to="/profile/privacy" color="inherit">
+            Privacy
+          </Button>
+          <Button component={Link} to="/profile/notifications" color="inherit">
+            Notification Settings
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
