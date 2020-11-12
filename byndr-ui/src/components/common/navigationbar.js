@@ -1,20 +1,17 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { fade, makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-// import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-// import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Button } from '@material-ui/core';
+import { Button, FormControl } from '@material-ui/core';
+import Select from "react-select";
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -28,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
-        color: 'blue',
-        marginLeft: '5rem'
+        color: 'black',
+        marginLeft: '7rem'
     },
     search: {
         position: 'relative',
@@ -82,8 +79,53 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
+const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+];
 
-export default function Header() {
+const customStyles = {
+    option: (base, state) => ({
+        ...base,
+        color: state.isSelected ? 'black' : 'black',
+        ':active': {
+          color: state.isSelected ? 'black' : 'black'
+        }
+      }),
+    control: (base, state) => ({
+      ...base,
+      background: "#F8F8F8",
+      // match with the menu
+      borderRadius: state.isFocused ? "3px 3px 0 0" : 3,
+      // Overwrittes the different states of border
+      borderColor: state.isFocused ? "blue" : "#F8F8F8",
+      // Removes weird border around container
+      boxShadow: state.isFocused ? null : null,
+
+      "&:hover": {
+        // Overwrittes the different states of border
+        borderColor: state.isFocused ? "red" : "blue"
+      }
+    }),
+    menu: base => ({
+      ...base,
+      // override border radius to match the box
+      borderRadius: 0,
+      // kill the gap
+      marginTop: 0
+    }),
+    menuList: base => ({
+      ...base,
+      // kill the white space on first and last option
+      padding: 0
+    }),
+    
+  };
+
+
+export default function Navigationbar() {
+
     const classes = useStyles();
     // const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -107,22 +149,6 @@ export default function Header() {
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
-
-    // const menuId = 'primary-search-account-menu';
-    // const renderMenu = (
-    //     <Menu
-    //         anchorEl={anchorEl}
-    //         anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-    //         id={menuId}
-    //         keepMounted
-    //         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-    //         open={isMenuOpen}
-    //         onClose={handleMenuClose}
-    //     >
-    //         <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-    //         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    //     </Menu>
-    // );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
@@ -151,17 +177,7 @@ export default function Header() {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            {/* <MenuItem onClick={handleProfileMenuOpen}>
-                <IconButton
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton>
-                <p>Profile</p>
-            </MenuItem> */}
+            
         </Menu>
     );
 
@@ -169,62 +185,87 @@ export default function Header() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar style={{ backgroundColor: 'white', color: 'grey' }}>
-                    {/* <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        color="inherit"
-                        aria-label="open drawer"
-                    >
-                        <MenuIcon />
-                    </IconButton> */}
-
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Home
+                        Latest Uploads
           </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
-                            <SearchIcon />
+                            Show
                         </div>
-                        <InputBase
-                            placeholder="Search for anything"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
+
+                        <FormControl  style={{ marginLeft: '4rem', width: '10rem' }}>
+                            <Select
+                                defaultValue={options[0]}
+                                options={options}
+                                styles={customStyles}
+                                theme={theme => ({
+                                    ...theme,
+                                    borderRadius: 0,
+                                    colors: {
+                                      ...theme.colors,
+                                      primary: 'lightgrey',
+                                      primary25: '#F8F8F8',
+
+                                    },
+                                  })}
+                                  components={{
+                                    IndicatorSeparator: () => null
+                                  }}
+                                  
+                            />
+                        </FormControl>
                     </div>
+
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            Sort By
+                        </div>
+
+                        <FormControl  style={{ marginLeft: '5rem', width: '10rem' }}>
+                            <Select
+                                defaultValue={options[0]}
+                                options={options}
+                                styles={customStyles}
+                                theme={theme => ({
+                                    ...theme,
+                                    borderRadius: 0,
+                                    colors: {
+                                      ...theme.colors,
+                                      primary: 'lightgrey',
+                                      primary25: '#F8F8F8',
+
+                                    },
+                                  })}
+                                  components={{
+                                    IndicatorSeparator: () => null
+                                  }}
+                                  
+                            />
+                        </FormControl>
+                    </div>
+
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
                         <Button style={{ textTransform: 'none', color: 'lightgrey' }} >+ Invite People</Button>
                         <IconButton aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="secondary">
-                                <MailIcon style={{ color: 'lightgrey' }} 
-                                onMouseOver={(e)=>e.target.style.color='blue'} 
-                                onMouseOut={(e)=>e.target.style.color='lightgrey'} 
+                                <MailIcon style={{ color: 'lightgrey' }}
+                                    onMouseOver={(e) => e.target.style.color = 'blue'}
+                                    onMouseOut={(e) => e.target.style.color = 'lightgrey'}
                                 />
                             </Badge>
                         </IconButton>
 
                         <IconButton aria-label="show 17 new notifications" color="inherit" >
                             <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon 
-                                style={{ color: 'lightgrey' }}
-                                onMouseOver={(e)=>e.target.style.color='blue'} 
-                                onMouseOut={(e)=>e.target.style.color='lightgrey'} 
+                                <NotificationsIcon
+                                    style={{ color: 'lightgrey' }}
+                                    onMouseOver={(e) => e.target.style.color = 'blue'}
+                                    onMouseOut={(e) => e.target.style.color = 'lightgrey'}
                                 />
                             </Badge>
-            </IconButton>
-            {/* <IconButton
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <AccountCircle />
-                        </IconButton> */}
+                        </IconButton>
+                       
                     </div>
                     <div className={classes.sectionMobile}>
                         <IconButton
@@ -240,7 +281,6 @@ export default function Header() {
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
-            {/* {renderMenu} */}
         </div>
     );
 }
