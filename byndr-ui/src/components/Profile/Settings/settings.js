@@ -12,6 +12,7 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  Toolbar,
 } from "@material-ui/core";
 import React from "react";
 import Shell from "../../common/shell";
@@ -37,9 +38,19 @@ const useStyles = makeStyles((theme) => ({
   b_tp: {
     borderTop: "1px solid lightgray",
     marginTop: 20,
+    paddingLeft: 25,
   },
   b_bm: {
     borderBottom: "1px solid lightgray",
+  },
+  title: {
+    marginRight: theme.spacing(2),
+  },
+  accountType: {
+    flexGrow: 1,
+  },
+  accountTypeWidth: {
+    width: 200,
   },
 }));
 
@@ -49,11 +60,11 @@ export default function Settings() {
     return (
       <div className={classes.root}>
         <Grid container spacing={4}>
-          <Grid container xs={12} sm={4} className={classes.b_rt}>
+          <Grid item xs={12} sm={3} className={classes.b_rt}>
             <Grid
               container
               direction="column"
-              justify="start"
+              justify="flex-start"
               alignItems="center"
               spacing={2}
               style={{ paddingTop: 40 }}
@@ -79,7 +90,7 @@ export default function Settings() {
                   Edit Profile Image
                 </Typography>
               </Grid>
-              <Grid item direction="row" className={classes.v_mar}>
+              <Grid item className={classes.v_mar}>
                 <Button
                   style={{ marginRight: 15 }}
                   variant="contained"
@@ -194,47 +205,31 @@ export default function Settings() {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={8} direction="column">
-            <Grid
-              xs={12}
-              sm={12}
-              container
-              direction="row"
-              justify="space-between"
-              alignItems="center"
-            >
-              <Grid item direction="row">
-                <span style={{ marginRight: 20 }}>Account Privacy</span>
-                <FormControl variant="outlined" className={classes.formControl}>
-                  <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"
-                    value={10}
-                    onChange={() => {}}
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Private Account</MenuItem>
-                    <MenuItem value={20}>Public Account</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item>
-                <Typography>Changes Saved</Typography>
-              </Grid>
-            </Grid>
+          <Grid item xs={12} sm={9}>
+            <Toolbar variant="dense">
+              <Typography className={classes.title}>Account Privacy</Typography>
+              <FormControl variant="outlined" className={classes.accountType}>
+                <Select
+                  labelId="demo-simple-select-outlined-label"
+                  id="demo-simple-select-outlined"
+                  value={10}
+                  className={classes.accountTypeWidth}
+                  onChange={() => {}}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={10}>Private Account</MenuItem>
+                  <MenuItem value={20}>Public Account</MenuItem>
+                </Select>
+              </FormControl>
+              <Typography>Changes Saved</Typography>
+            </Toolbar>
 
-            <Grid
-              container
-              xs={12}
-              sm={12}
-              spacing={4}
-              className={classes.b_tp}
-            >
+            <Grid container spacing={4} className={classes.b_tp}>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     First Name
                   </Typography>
                   <TextField
@@ -249,7 +244,7 @@ export default function Settings() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     Last Name
                   </Typography>
                   <TextField
@@ -262,11 +257,9 @@ export default function Settings() {
                   />
                 </div>
               </Grid>
-            </Grid>
-            <Grid container xs={12} sm={12} spacing={4}>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     My Status
                   </Typography>
                   <TextField
@@ -281,7 +274,7 @@ export default function Settings() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     Location
                   </Typography>
                   <OutlinedInput
@@ -299,11 +292,9 @@ export default function Settings() {
                   />
                 </div>
               </Grid>
-            </Grid>
-            <Grid container xs={12} sm={12} spacing={4}>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     About
                   </Typography>
                   <TextField
@@ -320,7 +311,7 @@ export default function Settings() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     Date of Birth
                   </Typography>
                   <TextField
@@ -333,11 +324,9 @@ export default function Settings() {
                   />
                 </div>
               </Grid>
-            </Grid>
-            <Grid container xs={12} sm={12} spacing={4}>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     Organisation
                   </Typography>
                   <TextField
@@ -352,7 +341,7 @@ export default function Settings() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     Designation
                   </Typography>
                   <TextField
@@ -368,14 +357,12 @@ export default function Settings() {
             </Grid>
             <Grid
               container
-              xs={12}
-              sm={12}
               spacing={4}
               className={`${classes.b_tp} ${classes.b_bm}`}
             >
               <Grid item xs={12} sm={8}>
                 <div>
-                  <Typography color="default" gutterBottom variant="body1">
+                  <Typography color="inherit" gutterBottom variant="body1">
                     Social Links
                   </Typography>
                   <TextField

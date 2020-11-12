@@ -9,6 +9,7 @@ import {
   OutlinedInput,
   Select,
   TextField,
+  Toolbar,
   Typography,
 } from "@material-ui/core";
 import { Visibility } from "@material-ui/icons";
@@ -22,10 +23,20 @@ const useStyles = makeStyles((theme) => ({
   input_grid: {
     borderTop: "1px solid lightgray",
     marginTop: 20,
+    paddingLeft: 25,
   },
   txtFields: {
     width: 350,
     marginRight: 15,
+  },
+  title: {
+    marginRight: theme.spacing(2),
+  },
+  accountType: {
+    flexGrow: 1,
+  },
+  accountTypeWidth: {
+    width: 200,
   },
 }));
 
@@ -34,45 +45,29 @@ export default function Security(props) {
   const securityContent = () => {
     return (
       <div className={classes.root}>
-        <Grid
-          xs={12}
-          sm={12}
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center"
-        >
-          <Grid item direction="row" alignContent="center">
-            <span variant="subtitle1" style={{ marginRight: 20 }}>
-              Account Privacy
-            </span>
-            <FormControl variant="outlined">
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={10}
-                onChange={() => {}}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Private Account</MenuItem>
-                <MenuItem value={20}>Public Account</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
+        <Toolbar variant="dense">
+          <Typography className={classes.title}>Account Privacy</Typography>
+          <FormControl variant="outlined" className={classes.accountType}>
+            <Select
+              labelId="demo-simple-select-outlined-label"
+              id="demo-simple-select-outlined"
+              value={10}
+              className={classes.accountTypeWidth}
+              onChange={() => {}}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Private Account</MenuItem>
+              <MenuItem value={20}>Public Account</MenuItem>
+            </Select>
+          </FormControl>
           <Typography>Changes Saved</Typography>
-        </Grid>
-        <Grid container xs={12} sm={12} direction="column">
-          <Grid
-            container
-            xs={12}
-            sm={12}
-            direction="column"
-            className={classes.input_grid}
-          >
+        </Toolbar>
+        <Grid container direction="column">
+          <Grid container direction="column" className={classes.input_grid}>
             <div style={{ marginTop: 20 }}>
-              <Typography color="default" gutterBottom variant="body1">
+              <Typography color="inherit" gutterBottom variant="body1">
                 Email
               </Typography>
               <div
@@ -96,7 +91,7 @@ export default function Security(props) {
               </div>
             </div>
             <div style={{ marginTop: 20 }}>
-              <Typography color="default" gutterBottom variant="body1">
+              <Typography color="inherit" gutterBottom variant="body1">
                 Phone
               </Typography>
               <div
@@ -120,7 +115,7 @@ export default function Security(props) {
               </div>
             </div>
             <div style={{ marginTop: 20 }}>
-              <Typography color="default" gutterBottom variant="body1">
+              <Typography color="inherit" gutterBottom variant="body1">
                 Change Password
               </Typography>
               <OutlinedInput
@@ -171,18 +166,12 @@ export default function Security(props) {
                   }
                 />
                 <Button color="primary" variant="outlined">
-                  Update
+                  Save Changes
                 </Button>
               </div>
             </div>
           </Grid>
-          <Grid
-            xs={12}
-            sm={12}
-            container
-            className={classes.input_grid}
-            direction="column"
-          >
+          <Grid container className={classes.input_grid} direction="column">
             <Grid
               style={{ marginTop: 20 }}
               container
@@ -247,14 +236,12 @@ export default function Security(props) {
           </Grid>
           <Grid
             container
-            xs={12}
-            sm={12}
             direction="column"
             className={classes.input_grid}
             style={{ paddingTop: 20 }}
           >
             <Typography>Two-Step Verification</Typography>
-            <Grid direction="row" style={{ paddingTop: 15 }}>
+            <Grid container direction="row" style={{ paddingTop: 15 }}>
               <Button
                 style={{ marginRight: 20 }}
                 variant="contained"
@@ -270,8 +257,6 @@ export default function Security(props) {
           <Grid
             container
             className={classes.input_grid}
-            xs={12}
-            sm={12}
             direction="row"
             alignItems="center"
             style={{ paddingTop: 20 }}
