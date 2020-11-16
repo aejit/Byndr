@@ -12,12 +12,14 @@ import Forgotpassword from "./components/SSO/forgotpassword";
 import Passwordreset from "./components/SSO/passwordreset";
 import Checkemail from "./components/SSO/checkemail";
 import Passwordchangeconfirm from "./components/SSO/passwordchangeconfirm";
+import Home from "./components/Home/home";
 
 function App() {
   return (
     <div>
       <Router>
         <Route exact path="/" component={Welcome} />
+        <Route exact path="/home" component={Home} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/forgotpassword" component={Forgotpassword} />
