@@ -1,7 +1,13 @@
 import React from "react";
 import SideBar from "./sidebar";
 import { makeStyles } from "@material-ui/core/styles";
-import TitleBar from "./titleBar";
+import TitleBar from "./TitleBar/titleBar";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import Home from "../Home/home";
+import NotificationSettings from "../Profile/NotificationSettings/notificationSettings";
+import Settings from "../Profile/Settings/settings";
+import Privacy from "../Profile/Privacy/privacy";
+import Security from "../Profile/Security/security";
 
 const useStyles = makeStyles((theme) => ({
   marginSmall: {
@@ -35,6 +41,17 @@ export default function Shell(props) {
       >
         <div className={classes.content_mTop} />
         {props.content}
+        <Router>
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/profile/settings" component={Settings} />
+          <Route
+            exact
+            path="/profile/notifications"
+            component={NotificationSettings}
+          />
+          <Route exact path="/profile/privacy" component={Privacy} />
+          <Route exact path="/profile/security" component={Security} />
+        </Router>
       </main>
     </div>
   );
