@@ -1,4 +1,10 @@
-import { Button, IconButton, TextField, Toolbar } from "@material-ui/core";
+import {
+  Button,
+  IconButton,
+  makeStyles,
+  TextField,
+  Toolbar,
+} from "@material-ui/core";
 import React from "react";
 
 import AppBar from "@material-ui/core/AppBar";
@@ -7,7 +13,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 
+const useClasses = makeStyles((theme) => ({
+  rightSpace: {
+    marginRight: theme.spacing(2),
+  },
+}));
+
 export default function HomeTitleBar(props) {
+  const classes = useClasses();
   return (
     <AppBar
       position="fixed"
@@ -27,12 +40,18 @@ export default function HomeTitleBar(props) {
         >
           <MenuIcon />
         </IconButton>
-        <Button component={Link} to="/Home" color="inherit">
+        <Button
+          component={Link}
+          to="/Home"
+          color="inherit"
+          className={classes.rightSpace}
+        >
           Home
         </Button>
         <TextField
           placeholder="Search for Anything"
           variant="standard"
+          color="primary"
         ></TextField>
       </Toolbar>
     </AppBar>

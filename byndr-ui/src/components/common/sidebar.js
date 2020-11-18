@@ -10,15 +10,30 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import clsx from "clsx";
-import { Toolbar } from "@material-ui/core";
+import { Grid, Toolbar } from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBookmark,
+  faCertificate,
+  faCog,
+  faLayerGroup,
+  faNewspaper,
+  faPaperPlane,
+  faUserCircle,
+  faUsers,
+  faVideo,
+} from "@fortawesome/free-solid-svg-icons";
+import { faGalacticRepublic } from "@fortawesome/free-brands-svg-icons";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+  },
+  parentGrid: {
+    flex: 1,
   },
   hide: {
     display: "none",
@@ -80,44 +95,104 @@ export default function SideBar(props) {
           }),
         }}
       >
-        <Toolbar
-          variant="dense"
-          style={{ display: "flex", justifyContent: "flex-end" }}
+        <Grid
+          className={classes.parentGrid}
+          container
+          direction="column"
+          justify="space-between"
         >
-          <IconButton onClick={handleDrawerClose}>
-            {open === false ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </Toolbar>
-        <Divider />
-        <List>
-          {[
-            "Discover",
-            "Feed",
-            "Library",
-            "Spaces",
-            "Paths",
-            "Broadcasts",
-            "Learning Groups",
-          ].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["My Account", "Settings"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
+          <Grid item>
+            <Toolbar
+              variant="dense"
+              style={{ display: "flex", justifyContent: "flex-end" }}
+            >
+              <IconButton onClick={handleDrawerClose}>
+                {open === false ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+              </IconButton>
+            </Toolbar>
+            <Divider />
+            <List>
+              <ListItem button key={"Home"} component={Link} to="/home">
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faCertificate} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Home"} />
+              </ListItem>
+            </List>
+          </Grid>
+          <Grid item>
+            <List>
+              <ListItem button key={"Discover"}>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faGalacticRepublic} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Discover"} />
+              </ListItem>
+              <ListItem button key={"Feed"}>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faLayerGroup} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Feed"} />
+              </ListItem>
+              <ListItem button key={"Library"}>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faBookmark} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Library"} />
+              </ListItem>
+              <ListItem button key={"Spaces"}>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faNewspaper} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Spaces"} />
+              </ListItem>
+              <ListItem button key={"Paths"}>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faPaperPlane} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Paths"} />
+              </ListItem>
+              <ListItem button key={"Broadcasts"}>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faVideo} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Broadcasts"} />
+              </ListItem>
+              <ListItem button key={"Learning Groups"}>
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faUsers} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary={"Learning Groups"} />
+              </ListItem>
+            </List>
+          </Grid>
+          <Grid item>
+            <List>
+              <ListItem
+                button
+                key={"Profile"}
+                component={Link}
+                to="/profile/settings"
+              >
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faUserCircle} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary="My Account"></ListItemText>
+              </ListItem>
+              <ListItem
+                button
+                key={"Settings"}
+                component={Link}
+                to="/profile/settings"
+              >
+                <ListItemIcon>
+                  <FontAwesomeIcon icon={faCog} size={"lg"} />
+                </ListItemIcon>
+                <ListItemText primary="Settings"></ListItemText>
+              </ListItem>
+            </List>
+          </Grid>
+        </Grid>
       </Drawer>
     </div>
   );
