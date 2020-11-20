@@ -19,13 +19,14 @@ import ShareIcon from '@material-ui/icons/Share';
 import ChatBubbleSharpIcon from '@material-ui/icons/ChatBubbleSharp';
 import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import StarIcon from '@material-ui/icons/Star';
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 170,
         // width: '13rem',
         // height: '15rem',
-        padding: '1vw',
+        // padding: '1vw',
         margin: '1.5vw 8vw ',
         display: 'flex',
         flexFlow: 'column',
@@ -85,7 +86,7 @@ export default function Home() {
                 <Navigationbar></Navigationbar>
 
             </div>
-            {/* <Sidebar></Sidebar> */}
+            <Sidebar></Sidebar>
 
             <Card className={classes.root} >
                 <CardActionArea>
@@ -95,8 +96,9 @@ export default function Home() {
                         height="100"
                         image="/static/images/cards/contemplative-reptile.jpg"
                         title="Contemplative Reptile"
+                        style={{margin: "0.5vw"}}
                     />
-                    <CardContent style={{ display: 'flex', padding: 0 }}>
+                    <CardContent style={{ display: 'flex', padding: 0, margin: "0.75vw" }}>
                         {/* <Typography gutterBottom variant="h5" component="h5">
                             Lizard
           </Typography> */}
@@ -112,12 +114,12 @@ export default function Home() {
 
                     </CardContent>
 
-                    <CardContent style={{ display: 'flex', padding: "5px 0px 1px 0px " }}>
+                    <CardContent style={{ display: 'flex', padding: "5px 0px 1px 0px " , margin: "0px 0.5vw"}}>
                         <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0 }}> By</Typography>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "1em" }}> Time</Typography>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "1em" }}> eye</Typography>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "1em" }}> Views</Typography>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: "0px 2px", marginLeft: "1em" }}> icon</Typography>
+                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "0.5em" }}> Time</Typography>
+                         <VisibilityOutlinedIcon fontSize="small" style={{  padding: 0, marginLeft: "0.5em" }}/>
+                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "0.5em" }}> Views</Typography>
+                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: "0px 2px", marginLeft: "0.5em" }}> icon</Typography>
                     </CardContent>
 
                     <Divider style={{ margin: "3px 0px" }}></Divider>
@@ -125,7 +127,7 @@ export default function Home() {
 
 
                 </CardActionArea>
-                <CardActions style={{ padding: 0 }}>
+                <CardActions style={{ padding: 0, margin: "0px 0.25vw" }}>
                     <IconButton aria-label="add to favorites" size="small" onClick={Toggle('like')}>
                         {
                             (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
