@@ -51,7 +51,7 @@ const useStyles = makeStyles({
 //     },
 // }))(MuiDialogActions);
 
-export default function Home() {
+export default function HomeScreen() {
 
     const classes = useStyles();
 
