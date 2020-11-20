@@ -10,7 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { Button, FormControl } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import Select from "react-select";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +26,9 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
         color: 'black',
-        marginLeft: '7rem'
+        marginLeft: `calc(1.5em + ${theme.spacing(4)}px)`,
+        marginRight: `calc(7em + ${theme.spacing(4)}px)`
+        
     },
     search: {
         position: 'relative',
@@ -35,9 +37,9 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(0),
         marginLeft: 0,
-        width: '100%',
+        width: 'auto',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(3),
             width: 'auto',
@@ -65,6 +67,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('md')]: {
             width: '20ch',
         },
+        
     },
     sectionDesktop: {
         display: 'none',
@@ -78,6 +81,17 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
+    select:{
+ 
+    padding: theme.spacing(0, 0, 0, 0),
+        // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
+    transition: theme.transitions.create('width'),
+    width: 'auto',
+        [theme.breakpoints.up('md')]: {
+            width: '20ch',
+        },
+    }
 }));
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -102,6 +116,8 @@ const customStyles = {
       borderColor: state.isFocused ? "blue" : "#F8F8F8",
       // Removes weird border around container
       boxShadow: state.isFocused ? null : null,
+        // width 
+      width: "auto !important",
 
       "&:hover": {
         // Overwrittes the different states of border
@@ -187,17 +203,19 @@ export default function Navigationbar() {
                 <Toolbar style={{ backgroundColor: 'white', color: 'grey' }}>
                     <Typography className={classes.title} variant="h6" noWrap>
                         Latest Uploads
-          </Typography>
-                    <div className={classes.search}>
+                    </Typography>
+                    <div className={classes.search} >
+
                         <div className={classes.searchIcon}>
                             Show
                         </div>
 
-                        <FormControl  style={{ marginLeft: '4rem', width: '10rem' }}>
+                        <div  className={classes.select} >
                             <Select
                                 defaultValue={options[0]}
                                 options={options}
                                 styles={customStyles}
+                                autosize={true}
                                 theme={theme => ({
                                     ...theme,
                                     borderRadius: 0,
@@ -213,19 +231,20 @@ export default function Navigationbar() {
                                   }}
                                   
                             />
-                        </FormControl>
+                        </div>
                     </div>
 
-                    <div className={classes.search}>
+                    <div className={classes.search} >
                         <div className={classes.searchIcon}>
                             Sort By
                         </div>
 
-                        <FormControl  style={{ marginLeft: '5rem', width: '10rem' }}>
+                        <div  className={classes.select}>
                             <Select
                                 defaultValue={options[0]}
                                 options={options}
                                 styles={customStyles}
+                                autosize={true}
                                 theme={theme => ({
                                     ...theme,
                                     borderRadius: 0,
@@ -241,7 +260,7 @@ export default function Navigationbar() {
                                   }}
                                   
                             />
-                        </FormControl>
+                        </div>
                     </div>
 
                     <div className={classes.grow} />

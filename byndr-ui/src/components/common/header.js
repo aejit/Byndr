@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
         color: 'blue',
-        marginLeft: '5rem'
+        marginLeft: `calc(1.5em + ${theme.spacing(4)}px)`
     },
     search: {
         position: 'relative',
