@@ -1,13 +1,14 @@
 import "./App.css";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Welcome from "./components/SSO/welcome";
-import Signup from "./components/SSO/signup";
-import Login from "./components/SSO/login";
-import Forgotpassword from "./components/SSO/forgotpassword";
-import Passwordreset from "./components/SSO/passwordreset";
-import Checkemail from "./components/SSO/checkemail";
-import Passwordchangeconfirm from "./components/SSO/passwordchangeconfirm";
+import Welcome from './components/SSO/welcome';
+import Signup from './components/SSO/signup';
+import Login from './components/SSO/login';
+import Forgotpassword from './components/SSO/forgotpassword';
+import Passwordreset from './components/SSO/passwordreset';
+import Checkemail from './components/SSO/checkemail';
+import Passwordchangeconfirm from './components/SSO/passwordchangeconfirm';
+import HomeScreen from './components/Home/homescreen';
 import Shell from "./components/common/shell";
 
 function App() {
@@ -20,19 +21,18 @@ function App() {
         <Route exact path="/forgotpassword" component={Forgotpassword} />
         <Route exact path="/passwordreset" component={Passwordreset} />
         <Route exact path="/checkemail" component={Checkemail} />
-        <Route
-          exact
-          path="/confirmpasswordchange"
-          component={Passwordchangeconfirm}
-        />
+        <Route exact path="/homescreen" component={HomeScreen} />
+        <Route exact path="/confirmpasswordchange" component={Passwordchangeconfirm} />
         <Route exact path="/home" component={Shell} />
+
         <Route exact path="/profile/settings" component={Shell} />
         <Route exact path="/profile/notifications" component={Shell} />
         <Route exact path="/profile/privacy" component={Shell} />
         <Route exact path="/profile/security" component={Shell} />
       </Router>
     </div>
-  );
-}
 
-export default App;
+    );
+  }
+
+  export default App;
