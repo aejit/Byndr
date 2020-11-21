@@ -41,13 +41,13 @@ export default function TitleBar(props) {
   console.log(location.pathname);
 
   const currentTitleBar =
-    location.pathname.indexOf("/profile") !== -1 ? (
+    location.pathname.toLowerCase().indexOf("/profile") !== -1 ? (
       <ProfileTitleBar
         open={open}
         classes={classes}
         handleDrawerOpen={handleDrawerOpen}
       />
-    ) : location.pathname.indexOf("/home") !== -1 ? (
+    ) : location.pathname.toLowerCase().indexOf("/home") !== -1 ? (
       <HomeTitleBar
         open={open}
         classes={classes}

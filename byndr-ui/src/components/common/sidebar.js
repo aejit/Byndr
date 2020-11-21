@@ -11,7 +11,20 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import clsx from "clsx";
-import { Grid, Toolbar } from "@material-ui/core";
+import {
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Fade,
+  Grid,
+  Paper,
+  Popover,
+  Popper,
+  Toolbar,
+  Typography,
+} from "@material-ui/core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBookmark,
@@ -69,19 +82,129 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
+  popper: {
+    zIndex: 1000,
+    '&[x-placement*="bottom"] $arrow': {
+      top: 0,
+      left: 0,
+      marginTop: "-0.9em",
+      width: "3em",
+      height: "1em",
+      "&::before": {
+        borderWidth: "0 1em 1em 1em",
+        borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
+      },
+    },
+    '&[x-placement*="top"] $arrow': {
+      bottom: 0,
+      left: 0,
+      marginBottom: "-0.9em",
+      width: "3em",
+      height: "1em",
+      "&::before": {
+        borderWidth: "1em 1em 0 1em",
+        borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
+      },
+    },
+    '&[x-placement*="right"] $arrow': {
+      left: 0,
+      marginLeft: "-0.9em",
+      height: "3em",
+      width: "1em",
+      "&::before": {
+        borderWidth: "1em 1em 1em 0",
+        borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
+      },
+    },
+    '&[x-placement*="left"] $arrow': {
+      right: 0,
+      marginRight: "-0.9em",
+      height: "3em",
+      width: "1em",
+      "&::before": {
+        borderWidth: "1em 0 1em 1em",
+        borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
+      },
+    },
+  },
+  arrow: {
+    position: "absolute",
+    fontSize: 7,
+    width: "3em",
+    height: "3em",
+    "&::before": {
+      content: '""',
+      margin: "auto",
+      display: "block",
+      width: 0,
+      height: 0,
+      borderStyle: "solid",
+    },
+    paper: {
+      maxWidth: 400,
+      overflow: "auto",
+    },
+  },
 }));
 
 export default function SideBar(props) {
   // const theme = useTheme();
+  const anchorRef = React.useRef(null);
   const open = props.open != null ? props.open : false;
+  const [popoverOpen, setPopoverOpen] = React.useState(false);
   const classes = useStyles();
+  const [arrowRef, setArrowRef] = React.useState(null);
+  const [arrow, setArrow] = React.useState(true);
 
   const handleDrawerClose = () => {
     props.setOpenDrawer(false);
   };
 
+  const handleClick = (event) => {
+    setPopoverOpen((popoverOpen) => !popoverOpen);
+  };
+
   return (
     <div className={classes.root}>
+      <Popper
+        id={"scroll-playground"}
+        open={popoverOpen}
+        anchorEl={anchorRef.current}
+        placement={"right"}
+        disablePortal={true}
+        className={classes.popper}
+        modifiers={{
+          flip: {
+            enabled: true,
+          },
+          preventOverflow: {
+            enabled: false,
+            boundariesElement: "scrollParent",
+          },
+          arrow: {
+            enabled: true,
+            element: arrowRef,
+          },
+        }}
+      >
+        {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
+        <Paper className={classes.paper}>
+          <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Let Google help apps determine location.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClick} color="primary">
+              Disagree
+            </Button>
+            <Button onClick={handleClick} color="primary">
+              Agree
+            </Button>
+          </DialogActions>
+        </Paper>
+      </Popper>
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -124,10 +247,16 @@ export default function SideBar(props) {
             <List>
               <ListItem button key={"Discover"}>
                 <ListItemIcon>
-                  <FontAwesomeIcon icon={faGalacticRepublic} size={"lg"} />
+                  <FontAwesomeIcon
+                    onClick={handleClick}
+                    ref={anchorRef}
+                    icon={faGalacticRepublic}
+                    size={"lg"}
+                  />
                 </ListItemIcon>
                 <ListItemText primary={"Discover"} />
               </ListItem>
+
               <ListItem button key={"Feed"}>
                 <ListItemIcon>
                   <FontAwesomeIcon icon={faLayerGroup} size={"lg"} />
