@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
         },
         color: 'black',
         marginLeft: `calc(1.5em + ${theme.spacing(4)}px)`,
-        marginRight: `calc(7em + ${theme.spacing(4)}px)`
+        marginRight: `calc(7em + ${theme.spacing(2)}px)`
         
     },
     search: {
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 0,
         width: 'auto',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
+            marginLeft: theme.spacing(1.5),
             width: 'auto',
         },
     },

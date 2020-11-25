@@ -21,18 +21,54 @@ import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
 import StarIcon from '@material-ui/icons/Star';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
-        maxWidth: 170,
-        // width: '13rem',
-        // height: '15rem',
-        // padding: '1vw',
-        margin: '1.5vw 8vw ',
-        display: 'flex',
-        flexFlow: 'column',
-        WebkitFlexFlow: 'column'
+        maxWidth: 235,
+        margin: '0.5vw 0.15vw ',
+        WebkitFlexFlow: 'column',
+        [theme.breakpoints.up('xs')]: {
+            marginTop: theme.spacing(3),
+            marginLeft: theme.spacing(3),
+            width: 'auto',
+        },
     },
-});
+    Cardlayer: {
+        display: "flex",
+        flexFlow: "wrap",
+      
+        [theme.breakpoints.up('xs')]: {
+            marginTop: theme.spacing(1.5),
+            marginLeft: theme.spacing(10),
+            width: '60%',
+        },
+    },
+    rightCard: {
+        padding: 0,
+        maxWidth: 235,
+        marginLeft: theme.spacing(0),
+        [theme.breakpoints.down('xs')]: {
+            marginTop: theme.spacing(0.2),
+            marginRight: theme.spacing(0),
+            marginLeft: theme.spacing(13),
+            width: "auto",
+            padding: 0
+        },
+    },
+    outerDiv: {
+        display: "flex", 
+        // flexFlow: "row",
+
+        [theme.breakpoints.down('xl')]: {
+            marginTop: theme.spacing(0),
+            marginLeft: theme.spacing(0),
+            width: '100%',
+            padding: 0,
+            flexFlow: 'wrap'
+        },
+        // padding: `calc(1em + ${theme.spacing(4)}px)`
+    }
+})
+);
 
 // const DialogContent = withStyles((theme) => ({
 //     root: {
@@ -50,6 +86,20 @@ const useStyles = makeStyles({
 //         margin: '0 0 1rem 0'
 //     },
 // }))(MuiDialogActions);
+
+
+let dataDummy = [
+    { 1: "1" },
+    { 1: "2" },
+    { 1: "3" },
+    { 1: "4" },
+    { 1: "5" },
+    { 1: "6" },
+    { 1: "7" },
+    { 1: "8" }
+]
+
+// console.log(dataDummy.length);
 
 export default function HomeScreen() {
 
@@ -80,7 +130,7 @@ export default function HomeScreen() {
 
 
     return (
-        <div style={{}}>
+        <div >
             <Header></Header>
             <div style={{ marginTop: '0.15rem' }}>
                 <Navigationbar></Navigationbar>
@@ -88,103 +138,120 @@ export default function HomeScreen() {
             </div>
             <Sidebar></Sidebar>
 
-            <Card className={classes.root} >
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Contemplative Reptile"
-                        height="100"
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Contemplative Reptile"
-                        style={{margin: "0.5vw"}}
-                    />
-                    <CardContent style={{ display: 'flex', padding: 0, margin: "0.75vw" }}>
-                        {/* <Typography gutterBottom variant="h5" component="h5">
+<div className={classes.outerDiv}>
+
+            <div className={classes.Cardlayer}>
+                {
+                    dataDummy.map((data) =>
+                        <Card className={classes.root} >
+                            <Typography component="span">Card no: {data[1]}</Typography>
+                            <CardActionArea>
+                                <CardMedia
+                                    component="img"
+                                    alt="Contemplative Reptile"
+                                    height="100"
+                                    image="/static/images/cards/contemplative-reptile.jpg"
+                                    title="Contemplative Reptile"
+                                    style={{ margin: "0.5vw" }}
+                                />
+                                <CardContent style={{ display: 'flex', padding: 0, margin: "0.75vw" }}>
+                                    {/* <Typography gutterBottom variant="h5" component="h5">
                             Lizard
           </Typography> */}
-                        <Typography variant="body2" color="textSecondary" component="p" style={{ padding: 0, }}>
-                            Lizards are a widespread group of squamate reptiles, with over 6,000 species,
+                                    <Typography variant="body2" color="textSecondary" component="p" style={{ padding: 0, }}>
+                                        Lizards are a widespread group of squamate reptiles, with over 6,000 species,
                             {/* ranging */}
-                            {/* across all continents except Antarctica */}
-                        </Typography>
+                                        {/* across all continents except Antarctica */}
+                                    </Typography>
 
-                        <IconButton aria-label="settings" style={{ padding: 0, display: "flex", alignItems: "baseline" }} size="small">
-                            <MoreVertIcon fontSize="small" style={{ color: "lightgrey" }} />
-                        </IconButton>
+                                    <IconButton aria-label="settings" style={{ padding: 0, display: "flex", alignItems: "baseline" }} size="small">
+                                        <MoreVertIcon fontSize="small" style={{ color: "lightgrey" }} />
+                                    </IconButton>
 
-                    </CardContent>
+                                </CardContent>
 
-                    <CardContent style={{ display: 'flex', padding: "5px 0px 1px 0px " , margin: "0px 0.5vw"}}>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0 }}> By</Typography>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "0.5em" }}> Time</Typography>
-                         <VisibilityOutlinedIcon fontSize="small" style={{  padding: 0, marginLeft: "0.5em" }}/>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "0.5em" }}> Views</Typography>
-                        <Typography component="span" color="primary" style={{ fontSize: 'small', padding: "0px 2px", marginLeft: "0.5em" }}> icon</Typography>
-                    </CardContent>
+                                <CardContent style={{ display: 'flex', padding: "5px 0px 1px 0px ", margin: "0px 0.5vw" }}>
+                                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0 }}> By</Typography>
+                                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "1.5em" }}> Time</Typography>
+                                    <VisibilityOutlinedIcon fontSize="small" style={{ padding: 0, marginLeft: "1.5em" }} />
+                                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "1.5em" }}> Views</Typography>
+                                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: "0px 2px", marginLeft: "1.5em" }}> icon</Typography>
+                                </CardContent>
 
-                    <Divider style={{ margin: "3px 0px" }}></Divider>
-
-
-
-                </CardActionArea>
-                <CardActions style={{ padding: 0, margin: "0px 0.25vw" }}>
-                    <IconButton aria-label="add to favorites" size="small" onClick={Toggle('like')}>
-                        {
-                            (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
-                            />
-                                : <FavoriteBorderIcon style={{ color: 'lightgrey' }} fontSize="small"
-                                />)
-                        }
-
-                    </IconButton>
-
-                    <IconButton aria-label="start chat" size="small" onClick={Toggle('chat')}>
-                        {
-                            (chat ? <ChatBubbleSharpIcon style={{ color: 'blue' }} fontSize="small"
-                            />
-                                : <ChatBubbleOutlineSharpIcon fontSize="small"
-                                />)
-                        }
-
-                    </IconButton>
-
-                    <IconButton aria-label="share" size="small" style={{ marginLeft: '2.5em' }}>
-                        <ShareIcon fontSize="small"
-                            style={{ color: 'lightgrey' }}
-                            onMouseOver={(e) => e.target.style.color = 'blue'}
-                            onMouseOut={(e) => e.target.style.color = 'lightgrey'}
-                        />
-                    </IconButton>
-
-                    <IconButton aria-label="add to started" size="small" onClick={Toggle('star')}>
-                        {
-                            (star ? <StarIcon style={{ color: "gold" }} fontSize="small"
-                            />
-                                : <StarBorderOutlinedIcon style={{ color: 'lightgrey' }} fontSize="small"
-                                />)
-                        }
-
-                    </IconButton>
-
-                </CardActions>
-            </Card>
-            {/* <Dialog aria-labelledby="customized-dialog-title" open={open}>
-
-                <DialogContent>
-
-                    <Typography style={{ color: "gray", display: 'flex', justifyContent: 'center' }} >
-                        {`Check your email for changing password`}
-                    </Typography>
-                </DialogContent>
+                                <Divider style={{ margin: "3px 0px" }}></Divider>
 
 
-                <DialogActions>
-                    <Button style={{ width: '45%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
-                        Okay
-          </Button>
-                </DialogActions>
 
-            </Dialog> */}
+                            </CardActionArea>
+                            <CardActions style={{ padding: 0, margin: "0px 0.25vw" }}>
+                                <IconButton aria-label="add to favorites" size="small" onClick={Toggle('like')}>
+                                    {
+                                        (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
+                                        />
+                                            : <FavoriteBorderIcon style={{ color: 'lightgrey' }} fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                                <IconButton aria-label="start chat" size="small" onClick={Toggle('chat')} style={{marginLeft: "1.0em"}}>
+                                    {
+                                        (chat ? <ChatBubbleSharpIcon style={{ color: 'blue' }} fontSize="small"
+                                        />
+                                            : <ChatBubbleOutlineSharpIcon fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                                <IconButton aria-label="share" size="small" style={{ marginLeft: '4em' }}>
+                                    <ShareIcon fontSize="small"
+                                        style={{ color: 'lightgrey' }}
+                                        onMouseOver={(e) => e.target.style.color = 'blue'}
+                                        onMouseOut={(e) => e.target.style.color = 'lightgrey'}
+                                    />
+                                </IconButton>
+
+                                <IconButton aria-label="add to started" size="small" onClick={Toggle('star')}>
+                                    {
+                                        (star ? <StarIcon style={{ color: "gold" }} fontSize="small"
+                                        />
+                                            : <StarBorderOutlinedIcon style={{ color: 'lightgrey' }} fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                            </CardActions>
+                        </Card>
+
+                        /* <Dialog aria-labelledby="customized-dialog-title" open={open}>
+                                
+                            <DialogContent>
+            
+                                <Typography style={{ color: "gray", display: 'flex', justifyContent: 'center' }} >
+                                    {`Check your email for changing password`}
+                                </Typography>
+                            </DialogContent>
+            
+            
+                            <DialogActions>
+                                <Button style={{ width: '45%' }} variant="contained" size="large" color="primary" onClick={handleSubmit}>
+                                    Okay
+                      </Button>
+                            </DialogActions>
+            
+                        </Dialog> */
+                    )}
+            </div>
+            <div className={classes.rightCard}>
+                
+                <Card style={{margin: 0}}>
+                <Typography>Hello</Typography>
+                </Card>
+                </div>
+</div>
+            
         </div>
     );
 }
