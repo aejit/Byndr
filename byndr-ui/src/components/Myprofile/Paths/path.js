@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function EditProfile() {
+export default function Path() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -67,10 +67,10 @@ export default function EditProfile() {
                     <MyprofileDetails />
                 </Grid>
                 <Grid item xs={12} sm={9}>
-                    <Button variant="contained" color="primary" className={`${classes.m_p_left_25}`}>
+                    <Button variant="contained"  className={`${classes.m_p_left_25}`} component={Link} to="/myProfile/editProfile">
                         Spaces 0
                 </Button>
-                    <Button component={Link} to="/myProfile/myPath" variant="contained" className={`${classes.m_p_left_25}`}>Paths 0</Button>
+                    <Button variant="contained" color="primary" className={`${classes.m_p_left_25}`}>Paths 0</Button>
                     <Button variant="contained" className={`${classes.m_p_left_25}`}>Broadcasts 0</Button>
                     <Button variant="contained" className={`${classes.m_p_left_25}`}>Collaborations 0</Button>
                     <Button variant="contained" className={`${classes.m_p_left_25}`} component={Link} to="/myProfile/people">People 0</Button>

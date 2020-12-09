@@ -1,11 +1,14 @@
 import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import TitleBar from "../common/TitleBar/titleBar";
 import MyProfileTitleBar from "../common/TitleBar/myprofileTitleBar";
 import SideBar from "../common/sidebar";
 
 import EditProfile from "./EditProfile/EditProfile"
+import Path from "./Paths/path"
+import People from "./People/people"
+
+
 
 const useStyles = makeStyles((theme) => ({
   marginSmall: {
@@ -41,6 +44,8 @@ export default function Myprofile(props) {
         {props.content}
         <Router>
           <Route exact path="/myProfile/editProfile" component={EditProfile} />
+          <Route exact path="/myProfile/myPath" component={Path} />
+          <Route exact path="/myProfile/people" component={People} />
 
         </Router>
       </main>
