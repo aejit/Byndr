@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    
+
     b_rt: {
         borderRight: "1px solid lightgray",
     },
@@ -102,9 +102,10 @@ export default function EditProfile() {
                             style={{ paddingTop: 20 }}>
                             <Grid item sm={4}  >
                                 <NewCards 
-                                cardTitle="New Space. New Possibilities." 
-                                cardInputPlaceHolder="Enter Space Name"
-                                cardButton="+ Create New Space"
+                                 cardTitle="New Space. New Possibilities." 
+                                 cardInputPlaceHolder="Enter Space Name"
+                                 cardButton="+ Create New Space"
+                                
                                 />
                             </Grid>
 

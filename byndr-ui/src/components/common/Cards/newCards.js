@@ -1,26 +1,27 @@
-import React from "react";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 import {
-    Avatar,
-    Badge,
-    Button,
-    Grid,
-    makeStyles,
-    Typography,
-    TextField,
-    Card,
-    CardActions,
-    CardContent,
-    Switch,
+    Button, TextField, Switch,
     FormControlLabel
-} from "@material-ui/core";
+} from '@material-ui/core';
 
 
 
 const useStyles = makeStyles((theme) => ({
-    cardroot: {
+    root: {
         textAlign: "center",
         background: "#FFFFFF 0% 0% no-repeat padding-box",
         borderRradius: 15,
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
     },
     card_title: {
         padding: 20,
@@ -34,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
         border: "1px solid #0000001A",
         borderRadius: 10
     },
-
-
 }));
 
 export default function NewCards(props) {
@@ -45,47 +44,53 @@ export default function NewCards(props) {
     const toggleChecked = () => {
         setChecked((prev) => !prev);
     };
+    return (
+        <Card className={classes.root}>
+            <CardHeader
+                avatar={
+                    <Avatar
+                        className={`${classes.large} ${classes.v_mar}`}
+                        alt="Travis Howard"
+                        src="/static/images/avatar/2.jpg"
+                        style={{
+                            padding: "20px",
+                            marginLeft: "90px"
+                        }}
+                    />
 
+                }
+            />
 
-    return (<Card className={classes.cardroot} item xs={12} sm={3}>
-        <CardContent style={{ padding: 20 }}>
-            <Avatar
-                className={`${classes.large} ${classes.v_mar}`}
-                alt="Travis Howard"
-                style={{
-                    padding: "20px",
-                    marginLeft: "90px"
-                }}
-                src="/static/images/avatar/2.jpg"
-            />
-            <Typography className={classes.card_title} color="primary" gutterBottom>
-                {props.cardTitle}
-            </Typography>
-            <TextField
-                className={classes.card_inputFiled}
-                id="standard--flexible"
-                variant="outlined"
-                onChange={() => { }}
-                size="small"
-                fullWidth
-                placeholder={props.cardInputPlaceHolder}
-            />
-            <FormControlLabel
-                labelPlacement="start"
-                label="Save as Private"
-                control={<Switch checked={checked} onChange={toggleChecked} />}
+            <CardContent>
+                <Typography variant="body2" className={classes.card_title} component="p">
+                    {props.cardTitle}
+                </Typography>
+                <TextField
+                    className={classes.card_inputFiled}
+                    id="standard--flexible"
+                    variant="outlined"
+                    onChange={() => { }}
+                    size="small"
+                    fullWidth
+                    placeholder={props.cardInputPlaceHolder}
+                />
+                <FormControlLabel
+                    labelPlacement="start"
+                    label="Save as Private"
+                    control={<Switch checked={checked} onChange={toggleChecked} />}
 
-            />
-        </CardContent>
-        <CardActions style={{ marginLeft: 50 }}>
-            <Button
-                style={{
-                    textAlign: "center",
-                    font: "normal normal medium 16px/30px Poppins",
-                    borderRadius: 5,
-                }}
-                variant="contained"
-                color="primary">{props.cardButton}</Button>
-        </CardActions>
-    </Card>);
+                />
+            </CardContent>
+            <CardActions style={{ marginLeft: 50 }}>
+                <Button
+                    style={{
+                        textAlign: "center",
+                        font: "normal normal medium 16px/30px Poppins",
+                        borderRadius: 5,
+                    }}
+                    variant="contained"
+                    color="primary">{props.cardButton}</Button>
+            </CardActions>
+        </Card>
+    );
 }

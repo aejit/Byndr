@@ -1,12 +1,7 @@
 import {
     Button,
-    FormControl,
     Grid,
     makeStyles,
-    MenuItem,
-    Select,
-    Typography,
-    Toolbar
 } from "@material-ui/core";
 
 import React from "react";
@@ -79,7 +74,7 @@ export default function People() {
                         <Grid item xs={12} sm={12} className={`${classes.m_left_25} ${classes.m_top_25}`}>
                             <Button variant="contained" color="primary" className={`${classes.m_p_left_25}`}>Followers 766 </Button>
                             <Button variant="contained" className={`${classes.m_p_left_25}`}>Following 769</Button>
-                            <Button variant="contained" className={`${classes.m_p_left_25}`}>Follow Requests</Button>
+                            <Button variant="contained" className={`${classes.m_p_left_25}`} component={Link} to="/myProfile/people/request">Follow Requests</Button>
                         </Grid>
                         <Grid item xs={12} sm={9} container
                             direction="row"
