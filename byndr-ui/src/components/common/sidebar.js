@@ -369,7 +369,7 @@ export default function SideBar(props) {
                 button
                 key={"Settings"}
                 component={Link}
-                to="/profile/settings"
+                to="/myProfile/editProfile"
               >
                 <ListItemIcon>
                   <FontAwesomeIcon icon={faCog} size={"lg"} />

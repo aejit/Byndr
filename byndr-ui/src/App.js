@@ -11,6 +11,8 @@ import Passwordchangeconfirm from './components/SSO/passwordchangeconfirm';
 import HomeScreen from './components/Home/homescreen';
 import Shell from "./components/common/shell";
 
+import Myprofile from "./components/Myprofile/Myprofile";
+
 function App() {
   return (
     <div>
@@ -29,10 +31,19 @@ function App() {
         <Route exact path="/profile/notifications" component={Shell} />
         <Route exact path="/profile/privacy" component={Shell} />
         <Route exact path="/profile/security" component={Shell} />
+
+
+        <Route exact path="/myProfile" component={Myprofile} />
+        <Route exact path="/myProfile/editProfile" component={Myprofile} />
+        <Route exact path="/myProfile/myPath" component={Myprofile} />
+        <Route exact path="/myProfile/people" component={Myprofile} />
+        <Route exact path="/myProfile/people/request" component={Myprofile} />
+
+
       </Router>
     </div>
 
-    );
-  }
+  );
+}
 
-  export default App;
+export default App;
