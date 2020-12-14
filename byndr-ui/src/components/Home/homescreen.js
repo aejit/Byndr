@@ -25,6 +25,8 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 235,
@@ -104,6 +106,7 @@ const useStyles = makeStyles((theme) => ({
 // }))(MuiDialogActions);
 
 
+
 let dataDummy = [
     { 1: "1" },
     { 1: "2" },
@@ -119,6 +122,7 @@ let dataDummy = [
 
 export default function HomeScreen() {
 
+    
     const classes = useStyles();
 
     // const history = useHistory();
@@ -137,6 +141,10 @@ export default function HomeScreen() {
 
     // console.log(newArr.length)
 
+
+
+
+
     let [like, setLike] = React.useState(null);
     let [chat, setChat] = React.useState(null);
     let [star, setStar] = React.useState(null);
@@ -153,7 +161,9 @@ export default function HomeScreen() {
 
 
     return (
+
         <div >
+
             <Header></Header>
             <div style={{ marginTop: '0.15rem' }}>
                 <Navigationbar></Navigationbar>
@@ -330,7 +340,7 @@ export default function HomeScreen() {
                                                 <Typography style={{ marginLeft: "1.5em", fontSize: "12px", fontWeight: "100" }}>Followers</Typography>
                                             </div>
                                             <div>
-                                                <button style={{ border: "none", backgroundColor: 'aliceblue', color: "blue", fontSize: "0.75em", padding: "12px", marginTop: "5px", borderRadius: "3px" , cursor: "pointer"}}>Follow</button>
+                                                <button style={{ border: "none", backgroundColor: 'aliceblue', color: "blue", fontSize: "0.75em", padding: "12px", marginTop: "5px", borderRadius: "3px", cursor: "pointer" }}>Follow</button>
                                             </div>
                                         </div>
 
@@ -434,13 +444,13 @@ export default function HomeScreen() {
                                                 <Typography style={{ marginLeft: "0.7em", fontSize: "0.95em", fontWeight: 'bold' }}>Ratish R</Typography>
                                                 <Typography style={{ marginLeft: "1em", fontSize: "12px", fontWeight: "100" }}>24 Mutual</Typography>
                                             </div>
-                                            
+
                                             <div>
                                                 <Typography style={{ marginLeft: "1.7em", fontSize: "0.95em", fontWeight: 'bold' }}>202K</Typography>
                                                 <Typography style={{ marginLeft: "1.5em", fontSize: "12px", fontWeight: "100" }}>Followers</Typography>
                                             </div>
                                             <div>
-                                                <button style={{ border: "none", backgroundColor: 'blue', color: "white", fontSize: "0.75em", padding: "12px", marginTop: "5px", borderRadius: "3px", width: "7vw", cursor: "pointer"}}>Connect</button>
+                                                <button style={{ border: "none", backgroundColor: 'blue', color: "white", fontSize: "0.75em", padding: "12px", marginTop: "5px", borderRadius: "3px", width: "7vw", cursor: "pointer" }}>Connect</button>
                                             </div>
                                         </div>
 
@@ -452,7 +462,7 @@ export default function HomeScreen() {
                                                 <Typography style={{ marginLeft: "0.7em", fontSize: "0.95em", fontWeight: 'bold' }}>Ratish R</Typography>
                                                 <Typography style={{ marginLeft: "1em", fontSize: "12px", fontWeight: "100" }}>24 Mutual</Typography>
                                             </div>
-                                            
+
                                             <div>
                                                 <Typography style={{ marginLeft: "1.7em", fontSize: "0.95em", fontWeight: 'bold' }}>202K</Typography>
                                                 <Typography style={{ marginLeft: "1.5em", fontSize: "12px", fontWeight: "100" }}>Followers</Typography>
