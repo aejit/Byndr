@@ -10,8 +10,8 @@ import Checkemail from './components/SSO/checkemail';
 import Passwordchangeconfirm from './components/SSO/passwordchangeconfirm';
 import HomeScreen from './components/Home/homescreen';
 import Shell from "./components/common/shell";
-
 import Myprofile from "./components/Myprofile/Myprofile";
+import Participants from "./components/Connect/participants";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
         <Route exact path="/checkemail" component={Checkemail} />
         <Route exact path="/homescreen" component={HomeScreen} />
         <Route exact path="/confirmpasswordchange" component={Passwordchangeconfirm} />
+        <Route exact path="/connect/allparticipants" component={Participants} />
         <Route exact path="/home" component={Shell} />
 
         <Route exact path="/profile/settings" component={Shell} />
@@ -35,10 +36,15 @@ function App() {
 
         <Route exact path="/myProfile" component={Myprofile} />
         <Route exact path="/myProfile/editProfile" component={Myprofile} />
+        <Route exact path="/myProfile/myPath" component={Myprofile} />
+        <Route exact path="/myProfile/people" component={Myprofile} />
+        <Route exact path="/myProfile/people/request" component={Myprofile} />
+
+
       </Router>
     </div>
 
-    );
-  }
+  );
+}
 
-  export default App;
+export default App;

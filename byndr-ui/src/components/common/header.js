@@ -15,6 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { Button } from '@material-ui/core';
+import { useRouteMatch } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -84,6 +85,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header() {
+
+    let match = useRouteMatch();
+
+
     const classes = useStyles();
     // const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -165,6 +170,37 @@ export default function Header() {
         </Menu>
     );
 
+    const viewTitles = (
+
+        (() => {
+            if (match.path === "/homescreen") {
+                return (
+                    <div style={{ display: "flex" }}>
+                        <Typography className={classes.title} variant="body1" noWrap>Messages</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>Find People</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>Learning Groups</Typography>
+
+                    </div>
+                )
+            }
+            // else if (otherCase) {
+            //   return (
+            //     <div>otherCase</div>
+            //   )
+            // } 
+            else {
+                return (
+                    <div>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                            Home
+                            </Typography>
+                    </div>
+                )
+            }
+        })()
+
+    );
+
     return (
         <div className={classes.grow}>
             <AppBar position="static">
@@ -178,9 +214,14 @@ export default function Header() {
                         <MenuIcon />
                     </IconButton> */}
 
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Home
-          </Typography>
+                    {
+                        viewTitles
+
+                    }
+
+
+
+
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -199,23 +240,23 @@ export default function Header() {
                         <Button style={{ textTransform: 'none', color: 'lightgrey' }} >+ Invite People</Button>
                         <IconButton aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="secondary">
-                                <MailIcon style={{ color: 'lightgrey' }} 
-                                onMouseOver={(e)=>e.target.style.color='blue'} 
-                                onMouseOut={(e)=>e.target.style.color='lightgrey'} 
+                                <MailIcon style={{ color: 'lightgrey' }}
+                                    onMouseOver={(e) => e.target.style.color = 'blue'}
+                                    onMouseOut={(e) => e.target.style.color = 'lightgrey'}
                                 />
                             </Badge>
                         </IconButton>
 
                         <IconButton aria-label="show 17 new notifications" color="inherit" >
                             <Badge badgeContent={17} color="secondary">
-                                <NotificationsIcon 
-                                style={{ color: 'lightgrey' }}
-                                onMouseOver={(e)=>e.target.style.color='blue'} 
-                                onMouseOut={(e)=>e.target.style.color='lightgrey'} 
+                                <NotificationsIcon
+                                    style={{ color: 'lightgrey' }}
+                                    onMouseOver={(e) => e.target.style.color = 'blue'}
+                                    onMouseOut={(e) => e.target.style.color = 'lightgrey'}
                                 />
                             </Badge>
-            </IconButton>
-            {/* <IconButton
+                        </IconButton>
+                        {/* <IconButton
                             edge="end"
                             aria-label="account of current user"
                             aria-controls={menuId}
