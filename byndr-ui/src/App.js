@@ -10,10 +10,10 @@ import Checkemail from './components/SSO/checkemail';
 import Passwordchangeconfirm from './components/SSO/passwordchangeconfirm';
 import HomeScreen from './components/Home/homescreen';
 import Shell from "./components/common/shell";
+
 import Myprofile from "./components/Myprofile/Myprofile";
 import Participants from "./components/Connect/participants";
-import Sharedfiles from "./components/Connect/sharedfiles";
-import Sharedcontent from "./components/Connect/sharedcontent";
+import MessageConnect from "./components/Connect/messageConnect"
 
 function App() {
   return (
@@ -28,9 +28,8 @@ function App() {
         <Route exact path="/homescreen" component={HomeScreen} />
         <Route exact path="/confirmpasswordchange" component={Passwordchangeconfirm} />
         <Route exact path="/connect/allparticipants" component={Participants} />
-        <Route exact path="/connect/sharedfiles" component={Sharedfiles} />
-        <Route exact path="/connect/sharedcontent" component={Sharedcontent} />
-
+        <Route exact path="/connect/messages" component={MessageConnect} />
+        <Route exact path="/connect/messages/grpChat" component={MessageConnect} />
         <Route exact path="/home" component={Shell} />
 
         <Route exact path="/profile/settings" component={Shell} />
@@ -42,6 +41,7 @@ function App() {
         <Route exact path="/myProfile" component={Myprofile} />
         <Route exact path="/myProfile/editProfile" component={Myprofile} />
         <Route exact path="/myProfile/myPath" component={Myprofile} />
+        <Route exact path="/myProfile/spaces" component={Myprofile} />
         <Route exact path="/myProfile/people" component={Myprofile} />
         <Route exact path="/myProfile/people/request" component={Myprofile} />
 

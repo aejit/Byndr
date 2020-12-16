@@ -62,8 +62,8 @@ export default function FollowRequests() {
                     <MyprofileDetails />
                 </Grid>
                 <Grid item xs={12} sm={9}>
-                    <Button variant="contained" className={`${classes.m_p_left_25}`} component={Link} to="/myProfile/editProfile">
-                        Spaces 0
+                    <Button variant="contained" className={`${classes.m_p_left_25}`} component={Link} to="/myProfile/spaces">
+                        Spaces 75
                 </Button>
                     <Button variant="contained" className={`${classes.m_p_left_25}`} component={Link} to="/myProfile/myPath">Paths 0</Button>
                     <Button variant="contained" className={`${classes.m_p_left_25}`}>Broadcasts 0</Button>
