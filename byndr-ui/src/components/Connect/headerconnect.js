@@ -10,8 +10,6 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { useRouteMatch } from "react-router-dom";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import { Divider } from '@material-ui/core';
-
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -117,26 +115,11 @@ export default function Headerconnect() {
 
                 )
             }
-            else if (match.path === "/connect/sharedfiles") {
-              return (
-                <React.Fragment>
-
-                        <IconButton
-                            edge="start"
-                            className={classes.menuButton}
-                            color="inherit"
-                            aria-label="open drawer"
-                        >
-                            <KeyboardArrowLeftIcon />
-                        </IconButton>
-                        <Typography className={classes.title} variant="h6" noWrap>
-                           Shared Files
-                        </Typography>
-
-                        <div className={classes.grow} />
-                    </React.Fragment>
-              )
-            }
+            // else if (otherCase) {
+            //   return (
+            //     <div>otherCase</div>
+            //   )
+            // }
             else {
                 return (
                     <div>
@@ -152,14 +135,14 @@ export default function Headerconnect() {
 
     return (
         <div className={classes.grow}>
-            <AppBar position="static" elevation={0}>
+            <AppBar position="static">
                 <Toolbar style={{ backgroundColor: 'white', color: 'black' }}>
                     {
                         viewTitles
                     }
                 </Toolbar>
             </AppBar>
-            <Divider variant="fullWidth"  />
+
         </div>
     );
 }
