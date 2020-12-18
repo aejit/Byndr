@@ -12,8 +12,8 @@ import {
 import React from "react";
 
 import ChatList from './chatList';
-import NewGroupCards from '../../common/Cards/newGroupCards'
 import GrpHeadCard from '../../common/Cards/grpHeadCard'
+import ChatLayout from './chatLayout'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -66,9 +66,13 @@ export default function Messages() {
                     <ChatList />
                 </Grid>
                 <Grid item xs={12} sm={9}
-                   
+
                 >
                     <GrpHeadCard />
+                    <Grid>
+                        <ChatLayout />
+                    </Grid>
+
                 </Grid>
             </Grid>
         </div>
