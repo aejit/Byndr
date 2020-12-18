@@ -17,9 +17,13 @@ import PersonAddDisabledOutlinedIcon from '@material-ui/icons/PersonAddDisabledO
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import Popover from '@material-ui/core/Popover';
-import Badge from '@material-ui/core/Badge';
-import Chip from '@material-ui/core/Chip';
-import Icon from '@material-ui/core/Icon';
+import PhoneOutlinedIcon from '@material-ui/icons/PhoneOutlined';
+import VideoCallOutlinedIcon from '@material-ui/icons/VideoCallOutlined';
+import CloseIcon from '@material-ui/icons/Close';
+import InfoIcon from '@material-ui/icons/Info';
+
+
+
 import {
     faBookmark,
     faCertificate,
@@ -104,12 +108,17 @@ export default function GrpHeadCard() {
                     <Grid item xs={12}>
                         <Grid container justify="center" spacing={2}>
                             <Typography variant="body2" component="span" className={classes.lastUpdate}>
-                                <FontAwesomeIcon icon={faCertificate} color="primary" size="small" />
-                                <FontAwesomeIcon icon={faLayerGroup} color="primary" size="small" />
+                                <PhoneOutlinedIcon color="#bdbdbd" fontSize="14" />
+                                <VideoCallOutlinedIcon color="#bdbdbd" fontSize="14" />
+                                <InfoIcon color="#bdbdbd" fontSize="14" />
                             </Typography>
                             <IconButton aria-label="settings" onClick={handleClick}>
                                 <MoreVertIcon />
                             </IconButton>
+                            <Typography variant="body2" component="span" className={classes.lastUpdate}>
+                            <CloseIcon color="#bdbdbd" fontSize="14" style={{ paddingTop: "10%" }} />
+                            </Typography>
+                           
                         </Grid>
                     </Grid>
                     <Popover
