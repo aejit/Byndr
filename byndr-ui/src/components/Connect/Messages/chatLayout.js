@@ -131,7 +131,7 @@ const ChatLayout = () => {
                     <Grid item xs={3}>{obj.direction === 'right' ? <Avatar
                         alt="Howard"
                         src="/static/images/avatar/2.jpg"
-                    /> : <> <ReplyOutlinedIcon color="primary" fontSize="14" /><ShareOutlinedIcon color="primary" fontSize="14" /><FileCopyOutlinedIcon color="primary" fontSize="14" /></>}</Grid>
+                    /> : <> <ReplyOutlinedIcon color="primary" fontSize="small" /><ShareOutlinedIcon color="primary" fontSize="small" /><FileCopyOutlinedIcon color="primary" fontSize="small" /></>}</Grid>
                 </Grid>
 
 

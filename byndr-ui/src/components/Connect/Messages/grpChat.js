@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Messages() {
+export default function GrpChat() {
     const classes = useStyles();
     return (
         <div className={classes.root}>

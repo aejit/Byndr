@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -108,15 +109,15 @@ export default function GrpHeadCard() {
                     <Grid item xs={12}>
                         <Grid container justify="center" spacing={2}>
                             <Typography variant="body2" component="span" className={classes.lastUpdate}>
-                                <PhoneOutlinedIcon color="#bdbdbd" fontSize="14" />
-                                <VideoCallOutlinedIcon color="#bdbdbd" fontSize="14" />
-                                <InfoIcon color="#bdbdbd" fontSize="14" />
+                                <PhoneOutlinedIcon color="inherit" fontSize="small" />
+                                <VideoCallOutlinedIcon color="inherit" fontSize="small" />
+                                <InfoIcon color="inherit" fontSize="small" />
                             </Typography>
                             <IconButton aria-label="settings" onClick={handleClick}>
                                 <MoreVertIcon />
                             </IconButton>
                             <Typography variant="body2" component="span" className={classes.lastUpdate}>
-                            <CloseIcon color="#bdbdbd" fontSize="14" style={{ paddingTop: "10%" }} />
+                            <CloseIcon color="inherit" fontSize="small" style={{ paddingTop: "10%" }} />
                             </Typography>
                            
                         </Grid>
@@ -136,13 +137,13 @@ export default function GrpHeadCard() {
                         }}
                     >
                         <List component="nav"  >
-                            <ListItem button>
+                            <ListItem button component={Link} to="/connect/messages/grpChatInfo">
                                 <ListItemIcon>
                                     <ShareOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Share Profile" />
                             </ListItem>
-                            <ListItem button>
+                            <ListItem button  component={Link} to="/connect/messages/grpChatVoice">
                                 <ListItemIcon>
                                     <AccountCircleOutlinedIcon />
                                 </ListItemIcon>
