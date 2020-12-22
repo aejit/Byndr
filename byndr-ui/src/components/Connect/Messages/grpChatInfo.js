@@ -128,7 +128,7 @@ export default function GrpChatInfo() {
                         direction="row"
                         justify="flex-start"
                         spacing={2}
-                        style={{ paddingTop: 40 }}
+                        // style={{ paddingTop: 40 }}
                     >
                         <Grid item xs={4}>
                             <Typography variant="body2" className={classes.cardFile} component="p">
@@ -155,7 +155,7 @@ export default function GrpChatInfo() {
                         direction="row"
                         justify="flex-start"
                         spacing={2}
-                        style={{ paddingTop: 40 }}
+                        // style={{ paddingTop: 40 }}
                     >
                         {[0, 1, 2].map((value) => {
                             return (
@@ -178,7 +178,7 @@ export default function GrpChatInfo() {
                         direction="row"
                         justify="flex-start"
                         spacing={2}
-                        style={{ paddingTop: 40 }}
+                        // style={{ paddingTop: 40 }}
                     >
                         <Grid item xs={6}>
                             <Typography variant="body2" className={classes.cardFile} component="p">

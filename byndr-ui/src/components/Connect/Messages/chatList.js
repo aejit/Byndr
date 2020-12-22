@@ -52,7 +52,7 @@ export default function ChatList() {
             direction="column"
             justify="flex-start"
             spacing={2}
-            style={{ paddingTop: 40 }}
+            // style={{ paddingTop: 40 }}
         >
             <Grid item xs={12} sm={8} style={{ paddingLeft: 100 }}>
                 <Button variant="outlined" color="primary">

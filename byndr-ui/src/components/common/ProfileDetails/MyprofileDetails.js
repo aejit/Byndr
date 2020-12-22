@@ -57,7 +57,7 @@ export default function MyprofileDetails() {
         justify="flex-start"
         alignItems="center"
         spacing={2}
-        style={{ paddingTop: 40 }}
+        // style={{ paddingTop: 40 }}
     >
         <Grid item>
             <Avatar
