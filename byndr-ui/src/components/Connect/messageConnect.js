@@ -6,7 +6,8 @@ import SideBar from "../common/sidebar";
 
 import Messages from "../Connect/Messages/messages"
 import GrpChat from "../Connect/Messages/grpChat"
-
+import GrpChatInfo from "../Connect/Messages/grpChatInfo"
+import GrpChatVoice from "../Connect/Messages/grpChatVoicecall"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,8 @@ export default function MessageConnect(props) {
         <Router>
           <Route exact path="/connect/messages" component={Messages} />
           <Route exact path="/connect/messages/grpChat" component={GrpChat} />
+          <Route exact path="/connect/messages/grpChatInfo" component={GrpChatInfo} />
+          <Route exact path="/connect/messages/grpChatVoice" component={GrpChatVoice} />
 
         </Router>
       </main>

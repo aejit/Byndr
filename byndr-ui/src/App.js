@@ -36,6 +36,8 @@ function App() {
         <Route exact path="/connect/sharedcontent" component={Sharedcontent} />
         <Route exact path="/connect/messages/grpChat" component={MessageConnect} />
         <Route exact path="/connect/videochat" component={Videoconfrence} />
+        <Route exact path="/connect/messages/grpChatInfo" component={MessageConnect} />
+        <Route exact path="/connect/messages/grpChatVoice" component={MessageConnect} />
         <Route exact path="/home" component={Shell} />
 
         <Route exact path="/profile/settings" component={Shell} />
