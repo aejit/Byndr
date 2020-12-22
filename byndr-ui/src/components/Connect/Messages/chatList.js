@@ -54,7 +54,7 @@ export default function ChatList() {
             spacing={2}
             // style={{ paddingTop: 40 }}
         >
-            <Grid item xs={12} sm={8} style={{ paddingLeft: 100 }}>
+            <Grid item xs={12} sm={8}>
                 <Button variant="outlined" color="primary">
                     Create Chat Group
                 </Button>

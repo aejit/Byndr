@@ -9,6 +9,7 @@ import Path from "./Paths/path"
 import Spaces from "./Spaces/spaces"
 import People from "./People/people"
 import FolllowRequest from "./People/FollowRequests/followRequests"
+import Header from '../common/header'
 
 
 
@@ -37,7 +38,8 @@ export default function Myprofile(props) {
   return (
     <div>
       <SideBar open={openDrawer} setOpenDrawer={handleDrawer} />
-      <MyProfileTitleBar open={openDrawer} setOpenDrawer={handleDrawer} />
+      <Header></Header>
+      {/* <MyProfileTitleBar open={openDrawer} setOpenDrawer={handleDrawer} /> */}
       <main
         className={classes.content}
         style={{ marginLeft: openDrawer === true ? 232 : 56 }}

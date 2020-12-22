@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 
 import MyprofileDetails from '../../common/ProfileDetails/MyprofileDetails';
 import NewCards from '../../common/Cards/newCards'
+import Header from '../../common/header'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -61,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
 export default function EditProfile() {
     const classes = useStyles();
     return (
+        <Header></Header> &&
         <div className={classes.root}>
             <Grid container spacing={4}>
                 <Grid item xs={12} sm={3} className={classes.b_rt}>
@@ -77,7 +79,7 @@ export default function EditProfile() {
 
                     <Grid item xs={12} sm={12} className={classes.b_rt}>
                         <Grid item xs={12} sm={12} className={`${classes.m_left_25} ${classes.m_top_25}`}>
-                            <Toolbar variant="dense">
+                            {/* <Toolbar variant="dense">
                                 <Typography className={`${classes.title} ${classes.countTotal}`}>244 Items</Typography>
                                 <Typography className={`${classes.m_left_25} ${classes.sortBy}`}>Sort By</Typography>
                                 <FormControl variant="outlined" className={classes.accountType}>
@@ -92,7 +94,7 @@ export default function EditProfile() {
 
                                     </Select>
                                 </FormControl>
-                            </Toolbar>
+                            </Toolbar> */}
                         </Grid>
                         <Grid item xs={12} sm={9} container
                             direction="row"

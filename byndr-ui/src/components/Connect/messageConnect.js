@@ -8,6 +8,7 @@ import Messages from "../Connect/Messages/messages"
 import GrpChat from "../Connect/Messages/grpChat"
 import GrpChatInfo from "../Connect/Messages/grpChatInfo"
 import GrpChatVoice from "../Connect/Messages/grpChatVoicecall"
+import Header from '../common/header'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +36,8 @@ export default function MessageConnect(props) {
   return (
     <div>
       <SideBar open={openDrawer} setOpenDrawer={handleDrawer} />
-      <MyProfileTitleBar open={openDrawer} setOpenDrawer={handleDrawer} />
+      <Header></Header>
+      {/* <MyProfileTitleBar open={openDrawer} setOpenDrawer={handleDrawer} /> */}
       <main
         className={classes.content}
         style={{ marginLeft: openDrawer === true ? 232 : 56 }}
