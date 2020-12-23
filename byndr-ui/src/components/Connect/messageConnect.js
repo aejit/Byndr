@@ -8,6 +8,8 @@ import Messages from "../Connect/Messages/messages"
 import GrpChat from "../Connect/Messages/grpChat"
 import GrpChatInfo from "../Connect/Messages/grpChatInfo"
 import GrpChatVoice from "../Connect/Messages/grpChatVoicecall"
+import GrpChatVideo from "../Connect/Messages/grpChatVideocall"
+import UserChatInfo from '../Connect/Messages/userChatInfo'
 import Header from '../common/header'
 
 
@@ -49,6 +51,8 @@ export default function MessageConnect(props) {
           <Route exact path="/connect/messages/grpChat" component={GrpChat} />
           <Route exact path="/connect/messages/grpChatInfo" component={GrpChatInfo} />
           <Route exact path="/connect/messages/grpChatVoice" component={GrpChatVoice} />
+          <Route exact path="/connect/messages/grpChatVideo" component={GrpChatVideo} />
+          <Route exact path="/connect/messages/userChat" component={UserChatInfo} />
 
         </Router>
       </main>

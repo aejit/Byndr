@@ -193,7 +193,8 @@ export default function Header() {
                     </div>
                 )
             }
-            else if (match.path === "/connect/messages/grpChat" || match.path === "/connect/messages/grpChatInfo" || match.path === "/connect/messages/grpChatVoice") {
+            else if (match.path === "/connect/messages/grpChat" || match.path === "/connect/messages/grpChatInfo"
+                || match.path === "/connect/messages/grpChatVoice" || match.path === "/connect/messages/grpChatVideo" || match.path === "/connect/messages/userChat") {
                 return (
                     <div style={{ display: "flex" }}>
                         <Typography className={classes.title} variant="body1" noWrap>Messages</Typography>

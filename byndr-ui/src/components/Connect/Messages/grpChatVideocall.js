@@ -86,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function GrpChatVoicecall() {
+export default function GrpChatVideocall() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -95,14 +95,14 @@ export default function GrpChatVoicecall() {
                     <ChatList />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <GrpHeadCard title='Design Group' />
+                <GrpHeadCard title='Design Group' />
                     <Grid>
                         <ChatLayout />
                     </Grid>
 
                 </Grid>
                 <Grid item xs={12} sm={3} className={classes.sidebar}>
-                    <ChatRightInfoCard title={'Voice Calls'} />
+                    <ChatRightInfoCard title={'Video Calls'} />
                     <Grid item xs={12} sm={12}>
                         <Button
                             style={{
@@ -111,17 +111,17 @@ export default function GrpChatVoicecall() {
                                 borderRadius: 5,
                             }}
                             variant="contained"
-                            color="primary">New Voice Call</Button>
+                            color="primary">New Video Call</Button>
                     </Grid>
                     <Grid>
                         {[0, 1, 2, 3].map((value) => {
                             return (
-                                <Grid key={value} style={{ padding: 10 }}>
-                                    <ChatCallCard
-                                        title={'DG Voice call 101'}
-                                        userName={'Vinay C'}
-                                        callTime={'24:52'}
-                                        particepent={'10 Participants'}
+                                <Grid  key={value} style={{padding:10}}>
+                                    <ChatCallCard 
+                                      title={'DG Video call 101'}
+                                      userName={'Vinay C'}
+                                      callTime={'24:52'}
+                                      particepent={'10 Participants'}
                                     />
                                 </Grid>
                             );

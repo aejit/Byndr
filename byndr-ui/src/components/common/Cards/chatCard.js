@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
@@ -165,7 +166,7 @@ export default function ChatCard() {
                                 </ListItemIcon>
                                 <ListItemText primary="Share Profile" />
                             </ListItem>
-                            <ListItem button>
+                            <ListItem button component={Link} to="/connect/messages/userChat">
                                 <ListItemIcon>
                                     <AccountCircleOutlinedIcon />
                                 </ListItemIcon>

@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Grid} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 
 
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ChatCallCard() {
+export default function ChatCallCard(props) {
     const classes = useStyles();
     return (
         <List dense className={classes.root}>
@@ -48,10 +48,10 @@ export default function ChatCallCard() {
                         <Grid container justify="flex-start" spacing={2}>
                             <Grid item xs={12}>
                                 <Typography variant="body2" className={classes.cardTtitle} component="p">
-                                    DG Video call 101
-                                 </Typography>
+                                    {props.title}
+                                </Typography>
                                 <Typography variant="body2" className={classes.cardSub} component="p">
-                                    Vinay C
+                                    {props.userName}
                                 </Typography>
                             </Grid>
 
@@ -63,10 +63,10 @@ export default function ChatCallCard() {
                         <Grid container justify="flex-start" spacing={2}>
                             <Grid item xs={12}>
                                 <Typography variant="body2" className={classes.cardTtitle} component="p">
-                                    24:52
-                                 </Typography>
+                                    {props.callTime}
+                                </Typography>
                                 <Typography variant="body2" className={classes.cardSubText} component="p">
-                                    10 Participants
+                                    {props.particepent}
                                 </Typography>
                             </Grid>
                         </Grid>
