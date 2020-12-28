@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function GrpHeadCard() {
+export default function GrpHeadCard(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -98,7 +98,7 @@ export default function GrpHeadCard() {
                         <Grid container justify="flex-start" spacing={2}>
                             <Grid item xs={12}>
                                 <Typography variant="body2" className={classes.cardTtitle} component="p">
-                                    Design Group
+                                    {props.title}
                                  </Typography>
                             </Grid>
 
@@ -117,9 +117,9 @@ export default function GrpHeadCard() {
                                 <MoreVertIcon />
                             </IconButton>
                             <Typography variant="body2" component="span" className={classes.lastUpdate}>
-                            <CloseIcon color="inherit" fontSize="small" style={{ paddingTop: "10%" }} />
+                                <CloseIcon color="inherit" fontSize="small" style={{ paddingTop: "10%" }} />
                             </Typography>
-                           
+
                         </Grid>
                     </Grid>
                     <Popover
@@ -143,13 +143,13 @@ export default function GrpHeadCard() {
                                 </ListItemIcon>
                                 <ListItemText primary="Share Profile" />
                             </ListItem>
-                            <ListItem button  component={Link} to="/connect/messages/grpChatVoice">
+                            <ListItem button component={Link} to="/connect/messages/grpChatVoice">
                                 <ListItemIcon>
                                     <AccountCircleOutlinedIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="View Profile" />
                             </ListItem>
-                            <ListItem button>
+                            <ListItem button component={Link} to="/connect/messages/grpChatVideo">
                                 <ListItemIcon>
                                     <PersonAddDisabledOutlinedIcon />
                                 </ListItemIcon>

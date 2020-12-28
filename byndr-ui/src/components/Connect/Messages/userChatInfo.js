@@ -1,6 +1,7 @@
 import {
     Grid,
     makeStyles,
+    Button
 } from "@material-ui/core";
 
 import React from "react";
@@ -9,8 +10,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Divider from "@material-ui/core/Divider";
 import ChatList from './chatList';
 import GrpHeadCard from '../../common/Cards/grpHeadCard'
-import ChatRightInfoCard from '../../common/Cards/chatRightInfoCard'
-import ChatSidebarCard from '../../common/Cards/chatSidebarCard'
 import ChatMessageCard from '../../common/Cards/chatMessageCard'
 
 import ChatLayout from './chatLayout'
@@ -84,11 +83,28 @@ const useStyles = makeStyles((theme) => ({
         font: "normal normal normal 16px / 30px Poppins",
         color: "#7F7F7F",
         opacity: 1
+    },
+    large: {
+        width: theme.spacing(12),
+        height: theme.spacing(12),
+    },
+    userTitle: {
+        textAlign: "left",
+        font: "normal normal medium 21px/31px Poppins",
+        color: "#000000",
+        opacity: 1
+    },
+    userSubTitle: {
+        textAlign: "left",
+        font: "normal normal normal 15px/23px Poppins",
+        color: "#7B7C7E",
+        opacity: 1,
+        paddingBottom: 40
     }
 
 }));
 
-export default function GrpChatInfo() {
+export default function UserChatInfo() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -97,38 +113,120 @@ export default function GrpChatInfo() {
                     <ChatList />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                <GrpHeadCard title='Design Group' />
+                    <GrpHeadCard title={'Vinay Chaganti'} />
                     <Grid>
                         <ChatLayout />
                     </Grid>
 
                 </Grid>
                 <Grid item xs={12} sm={3} className={classes.sidebar}>
-                    <ChatRightInfoCard title={'Group Info'}/>
-                    <Grid>
-                        <Typography variant="body2" className={classes.cardTtitle} component="p">
-                            Participants <span className={classes.cardSub}>24</span>
+                    <Grid item
+                        style={{ paddingLeft: "50%" }}
+                    >
+                        <Grid item>
+                            <Avatar
+                                className={`${classes.large}`}
+                                alt="Travis Howard"
+                                src="/static/images/avatar/2.jpg"
+                                varient="square"
+                            />
+                        </Grid>
+
+                        <Grid item>
+                            <Typography variant="h5" className={classes.userTitle}>
+                                Vinay Chaganti
                         </Typography>
-                    </Grid>
-                    <Grid>
-                        {[0, 1, 2, 3].map((value) => {
-                            return (
-                                <ChatSidebarCard key={value} />
-                            );
-                        })}
-                    </Grid>
-                    <Grid>
-                        <Typography variant="body2" className={classes.cardShowAll} component="p">
-                            + Show All Members
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h5" className={classes.userSubTitle}>
+                                Learner for Life
                         </Typography>
+                        </Grid>
                     </Grid>
+                    <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        spacing={2}
+                    >
+                        <Grid item xs={3} />
+                        <Grid item xs={5}>
+                            <Button variant="outlined" color="primary">
+                                View Profile
+                            </Button>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Button variant="outlined" color="primary">
+                                Unfollow
+                            </Button>
+
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        spacing={2}
+                    >
+                        <Grid item xs={4} />
+                        <Grid item xs={4}>
+                            <Typography variant="body2" className={classes.cardFile} component="p">
+                                Connections
+                        </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography variant="body2" className={classes.cardSub} component="p">
+                                101
+                        </Typography>
+
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        spacing={2}
+                    >
+                        <Grid item xs={2} />
+                        <Grid item xs={6}>
+                            <Typography variant="body2" className={classes.cardFile} component="p">
+                                Published Spaces
+                        </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography variant="body2" className={classes.cardSub} component="p">
+                                246
+                        </Typography>
+
+                        </Grid>
+                    </Grid>
+                    <Grid
+                        container
+                        direction="row"
+                        justify="center"
+                        spacing={2}
+                    >
+                        <Grid item xs={2} />
+                        <Grid item xs={6}>
+                            <Typography variant="body2" className={classes.cardFile} component="p">
+                                Published Paths
+                        </Typography>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Typography variant="body2" className={classes.cardSub} component="p">
+                                75
+                        </Typography>
+
+                        </Grid>
+                    </Grid>
+
                     <Divider />
                     <Grid
                         container
                         direction="row"
-                        justify="flex-start"
+                        justify="center"
                         spacing={2}
-                        // style={{ paddingTop: 40 }}
+                    //style={{ paddingTop: 40 }}
                     >
                         <Grid item xs={4}>
                             <Typography variant="body2" className={classes.cardFile} component="p">
@@ -155,7 +253,7 @@ export default function GrpChatInfo() {
                         direction="row"
                         justify="flex-start"
                         spacing={2}
-                        // style={{ paddingTop: 40 }}
+                    // style={{ paddingTop: 40 }}
                     >
                         {[0, 1, 2].map((value) => {
                             return (
@@ -178,7 +276,7 @@ export default function GrpChatInfo() {
                         direction="row"
                         justify="flex-start"
                         spacing={2}
-                        // style={{ paddingTop: 40 }}
+                    // style={{ paddingTop: 40 }}
                     >
                         <Grid item xs={6}>
                             <Typography variant="body2" className={classes.cardFile} component="p">

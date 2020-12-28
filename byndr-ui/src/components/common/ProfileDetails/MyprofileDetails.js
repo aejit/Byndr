@@ -19,6 +19,7 @@ import AccountBalanceTwoToneIcon from "@material-ui/icons/AccountBalanceTwoTone"
 import AllOutTwoToneIcon from "@material-ui/icons/AllOutTwoTone";
 import AspectRatioTwoToneIcon from "@material-ui/icons/AspectRatioTwoTone";
 import BrightnessAutoTwoToneIcon from "@material-ui/icons/BrightnessAutoTwoTone";
+import Header from '../header'
 
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -51,13 +52,14 @@ const useStyles = makeStyles((theme) => ({
 export default function MyprofileDetails() {
     const classes = useStyles();
     return (
+        <Header></Header> &&
         <Grid
         container
         direction="column"
         justify="flex-start"
         alignItems="center"
         spacing={2}
-        style={{ paddingTop: 40 }}
+        // style={{ paddingTop: 40 }}
     >
         <Grid item>
             <Avatar

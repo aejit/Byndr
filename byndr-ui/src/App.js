@@ -16,6 +16,7 @@ import MessageConnect from "./components/Connect/messageConnect";
 import Sharedfiles from "./components/Connect/sharedfiles";
 import Sharedcontent from "./components/Connect/sharedcontent";
 import Videoconfrence from './components/Connect/videoconfrence';
+import broadcastHome from "./components/Broadcast/broadcast-home";
 
 
 function App() {
@@ -38,6 +39,9 @@ function App() {
         <Route exact path="/connect/videochat" component={Videoconfrence} />
         <Route exact path="/connect/messages/grpChatInfo" component={MessageConnect} />
         <Route exact path="/connect/messages/grpChatVoice" component={MessageConnect} />
+        <Route exact path="/connect/messages/grpChatVideo" component={MessageConnect} />
+        <Route exact path="/connect/messages/userChat" component={MessageConnect} />
+        <Route exact path="/broadcast/explorebroadcast" component={broadcastHome} />
         <Route exact path="/home" component={Shell} />
 
         <Route exact path="/profile/settings" component={Shell} />

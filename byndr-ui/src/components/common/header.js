@@ -183,11 +183,38 @@ export default function Header() {
                     </div>
                 )
             }
-            // else if (otherCase) {
-            //   return (
-            //     <div>otherCase</div>
-            //   )
-            // } 
+            else if (match.path === "/connect/messages") {
+                return (
+                    <div style={{ display: "flex" }}>
+                        <Typography className={classes.title} variant="body1" noWrap>Messages</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>Find People</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>Learning Groups</Typography>
+
+                    </div>
+                )
+            }
+            else if (match.path === "/broadcast/explorebroadcast") {
+                return (
+                    <div style={{ display: "flex" }}>
+                        <Typography className={classes.title} variant="body1" noWrap>Explore Broadcast</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>My Broadcast</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>Playlists</Typography>
+
+
+                    </div>
+                )
+            }
+            else if (match.path === "/connect/messages/grpChat" || match.path === "/connect/messages/grpChatInfo"
+                || match.path === "/connect/messages/grpChatVoice" || match.path === "/connect/messages/grpChatVideo" || match.path === "/connect/messages/userChat") {
+                return (
+                    <div style={{ display: "flex" }}>
+                        <Typography className={classes.title} variant="body1" noWrap>Messages</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>Find People</Typography>
+                        <Typography className={classes.title} variant="body1" noWrap>Learning Groups</Typography>
+
+                    </div>
+                )
+            }
             else {
                 return (
                     <div>
