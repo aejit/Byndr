@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     bubble: {
         //border: "0.5px solid black",
         //borderRadius: "10px",
-        margin: "5px",
+        // margin: "5px",
         padding: "10px",
         display: "inline-block"
     },

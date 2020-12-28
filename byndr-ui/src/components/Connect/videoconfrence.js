@@ -126,7 +126,7 @@ const customStyles = {
 
 };
 
-const dataDummy = [
+let dataDummy = [
     { 1: "1", role: "Admin" },
     { 1: "2", role: "member" },
     { 1: "3", role: "member" },
@@ -138,12 +138,13 @@ const dataDummy = [
 ];
 
 let dataArraylength = dataDummy.length;
-console.log(dataArraylength);
+// console.log(dataArraylength);
 
 
 let newArr = [];
 while (dataDummy.length) newArr.push(dataDummy.splice(0, 2));
-console.log(newArr);
+// console.log(newArr);
+
 
 export default function Videoconfrence() {
 
@@ -163,6 +164,7 @@ export default function Videoconfrence() {
                     naturalSlideWidth={100}
                     naturalSlideHeight={40}
                     totalSlides={dataArraylength}
+                    infinite="true"
                 >
                     <Typography style={{ display: 'flex' }}>
                         <Typography fontSize="small" style={{ fontWeight: 600, width: "auto", color: 'white' }}> Suggested Topics </Typography>
@@ -173,31 +175,15 @@ export default function Videoconfrence() {
 
                     <Slider>
 
-                        {dataDummy.map((data) => {
-        
-                        <Slide> hello {data[1]}</Slide>
-                        // <div>{data[1]}</div>
-                            
+                        {newArr.map((data, index) => {
+
+                            console.log(index, "index is");
+                            return (
+                                <Slide index={index}> hello </Slide>
+                            )
+
                         })}
-                        {/* 
-                    {
-                    dataDummy.map((data, index) => {
-
-                        console.log(data, index); */}
-                        {/* // return ( */}
-                        {/* // <div style={{ color: "white" }}>hello</div> */}
-                        {/* <Slide >
-
-                            <div style={{color: 'white'}}> hello </div>
-
-                        </Slide> */}
-
-                        {/* // ); */}
-
-
-                        {/* 
-                        })
-                        }  */}
+        
                     </Slider>
 
 

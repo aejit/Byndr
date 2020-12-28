@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
         // maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
         border: "1px solid #E8E8E8",
-        borderRadius: 10
+        borderRadius: 10,
     },
     cardTtitle: {
         textAlign: "left",
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
         font: "normal normal normal 16px / 30px Poppins",
         color: "#7B7C7E",
         opacity: 1,
-        paddingTop: 10
+        // paddingTop: 10
     }
 }));
 
