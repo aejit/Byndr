@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
     m_top_25: {
         marginTop: 25,
     },
+    centerAlign:{
+        textAlign:"center"
+    }
 }));
 
 export default function ChatList() {
@@ -54,7 +57,7 @@ export default function ChatList() {
             spacing={2}
             // style={{ paddingTop: 40 }}
         >
-            <Grid item xs={12} sm={8}>
+            <Grid item className={classes.centerAlign}>
                 <Button variant="outlined" color="primary">
                     Create Chat Group
                 </Button>

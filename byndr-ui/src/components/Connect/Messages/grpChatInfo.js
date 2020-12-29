@@ -93,11 +93,8 @@ export default function GrpChatInfo() {
     return (
         <div className={classes.root}>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={3} className={classes.b_rt}>
-                    <ChatList />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                <GrpHeadCard title='Design Group' />
+                <Grid item xs={12} sm={9}>
+                    <GrpHeadCard title='Design Group' />
                     <Grid>
                         <ChatLayout />
                     </Grid>
