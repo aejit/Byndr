@@ -12,11 +12,13 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import BlockIcon from '@material-ui/icons/Block';
-import ReportOutlinedIcon from '@material-ui/icons/ReportOutlined';
-import PersonAddDisabledOutlinedIcon from '@material-ui/icons/PersonAddDisabledOutlined';
+import PinDropIcon from '@material-ui/icons/PinDrop';
 import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
+import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import Popover from '@material-ui/core/Popover';
 import PhoneOutlinedIcon from '@material-ui/icons/PhoneOutlined';
 import VideoCallOutlinedIcon from '@material-ui/icons/VideoCallOutlined';
@@ -45,8 +47,11 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         // maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
-        border: "1px solid #E8E8E8",
-        borderRadius: 10
+        borderBottom: "1px solid #E8E8E8",
+        marginTop: -8,
+        zIndex: 1,
+        paddingTop: 13,
+        float: "left"
     },
     cardTtitle: {
         textAlign: "left",
@@ -86,7 +91,7 @@ export default function GrpHeadCard(props) {
 
     return (
         <List dense className={classes.root}>
-            <ListItem>
+            <ListItem style={{ float: "left", width: "70%" }}>
                 <ListItemAvatar>
                     <Avatar
                         alt="Travis Howard"
@@ -99,19 +104,19 @@ export default function GrpHeadCard(props) {
                             <Grid item xs={12}>
                                 <Typography variant="body2" className={classes.cardTtitle} component="p">
                                     {props.title}
-                                 </Typography>
+                                </Typography>
                             </Grid>
 
                         </Grid>
                     </Grid>
                 </ListItemText>
-                <ListItemSecondaryAction>
+                <ListItemSecondaryAction style={{ float: "right", position: "relative", marginTop: 17, width: "25%" }}>
                     <Grid item xs={12}>
-                        <Grid container justify="center" spacing={2}>
+                        <Grid container spacing={2}>
                             <Typography variant="body2" component="span" className={classes.lastUpdate}>
-                                <PhoneOutlinedIcon color="inherit" fontSize="small" />
-                                <VideoCallOutlinedIcon color="inherit" fontSize="small" />
-                                <InfoIcon color="inherit" fontSize="small" />
+                                <PhoneOutlinedIcon color="inherit" fontSize="small" style={{ float: "left", fontSize: "1.6rem" }} />
+                                <VideoCallOutlinedIcon color="inherit" fontSize="small" style={{ fontSize: "2rem", float: "left", marginTop: -3, marginRight: 10, marginBottom: 0, marginLeft: 10 }} />
+                                <InfoIcon color="inherit" fontSize="small" style={{ fontSize: "1.6rem" }} />
                             </Typography>
                             <IconButton aria-label="settings" onClick={handleClick}>
                                 <MoreVertIcon />
@@ -137,35 +142,47 @@ export default function GrpHeadCard(props) {
                         }}
                     >
                         <List component="nav"  >
-                            <ListItem button component={Link} to="/connect/messages/grpChatInfo">
+                            <ListItem button>
                                 <ListItemIcon>
-                                    <ShareOutlinedIcon />
+                                    <PinDropIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Share Profile" />
+                                <ListItemText primary="Pin to Top" />
                             </ListItem>
-                            <ListItem button component={Link} to="/connect/messages/grpChatVoice">
+                            <ListItem button>
                                 <ListItemIcon>
                                     <AccountCircleOutlinedIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="View Profile" />
-                            </ListItem>
-                            <ListItem button component={Link} to="/connect/messages/grpChatVideo">
-                                <ListItemIcon>
-                                    <PersonAddDisabledOutlinedIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Disconnect" />
+                                <ListItemText primary="Rename" />
                             </ListItem>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <ReportOutlinedIcon />
+                                    <ExitToAppIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Report" />
+                                <ListItemText primary="Leave" />
                             </ListItem>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <BlockIcon />
+                                    <PersonAddIcon />
                                 </ListItemIcon>
-                                <ListItemText primary="Block" />
+                                <ListItemText primary="Add Participant" />
+                            </ListItem>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PersonAddDisabledIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Remove Participant" />
+                            </ListItem>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <VolumeMuteIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Mute Group" />
+                            </ListItem>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PhotoCameraIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Change Image" />
                             </ListItem>
                         </List>
                     </Popover>

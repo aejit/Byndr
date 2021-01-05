@@ -17,6 +17,9 @@ import ChatLayout from './chatLayout'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        background: "#F7F7F7",
+        position: "relative",
+        height: '100%'
     },
 
     b_rt: {
@@ -27,14 +30,16 @@ const useStyles = makeStyles((theme) => ({
     },
     countTotal: {
         textAlign: "left",
-        font: "normal normal medium 18px / 23px Poppins",
+        fontFamily: 'Poppins',
+        fontSize: 18,
         color: "#4A4A4A",
         opacity: 1
     },
     sortBy: {
         marginRight: 10,
         textAlign: "center",
-        font: "normal normal normal 16px/30px Poppins",
+        fontFamily: 'Poppins',
+        fontSize: 16,
         color: "#7B7B7B",
         opacity: 1
     },
@@ -53,6 +58,16 @@ const useStyles = makeStyles((theme) => ({
     },
     m_left_25: {
         marginLeft: 25
+    },
+    titleBlock: {
+        width: 'calc(100% - 10px)',
+        padding: '0 5px',
+        position: 'absolute',
+        background: '#fff',
+        zIndex: 1
+    },
+    gridChat: {
+        height: 'calc(100% - 72px)'
     }
 
 }));
@@ -61,18 +76,12 @@ export default function GrpChat() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={3} className={classes.b_rt}>
-                    <ChatList />
-                </Grid>
-                <Grid item xs={12} sm={9}
-
-                >
-                    <GrpHeadCard />
-                    <Grid>
+            <Grid container spacing={2} style={{ marginLeft: -17, paddingLeft: 17 }}>
+                <Grid item xs={12} style={{ padding: 0 }}>
+                    <div className={classes.titleBlock}><GrpHeadCard /></div>
+                    <Grid style={{ marginTop: 72, }} className={classes.gridChat}>
                         <ChatLayout />
                     </Grid>
-
                 </Grid>
             </Grid>
         </div>

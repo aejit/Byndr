@@ -16,6 +16,7 @@ import NewGroupCards from '../../common/Cards/newGroupCards'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        width: "99%",
     },
 
     b_rt: {
@@ -52,6 +53,11 @@ const useStyles = makeStyles((theme) => ({
     },
     m_left_25: {
         marginLeft: 25
+    },
+    alignBlockCenter:{
+        margin:'0 auto',
+        marginTop:'20%',
+        width:600
     }
 
 }));
@@ -61,19 +67,15 @@ export default function Messages() {
     return (
         <div className={classes.root}>
             <Grid container spacing={2}>
-                <Grid item xs={12} sm={3} className={classes.b_rt}>
-                    <ChatList />
-                </Grid>
-                <Grid item xs={6} sm={6}
+                <Grid item
                     container
                     alignItems="center"
-                    style={{ paddingLeft: "20%" }}
+                    className={classes.alignBlockCenter}
                 >
                     <NewGroupCards
                         cardTitle="Start Connecting With People"
                         cardDescription="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
                         cardButton="Send a Message"
-
                     />
                 </Grid>
             </Grid>

@@ -11,7 +11,7 @@ import GrpChatVoice from "../Connect/Messages/grpChatVoicecall"
 import GrpChatVideo from "../Connect/Messages/grpChatVideocall"
 import UserChatInfo from '../Connect/Messages/userChatInfo'
 import Header from '../common/header'
-
+import ChatList from '../Connect/Messages/chatList';
 
 const useStyles = makeStyles((theme) => ({
   marginSmall: {
@@ -22,11 +22,43 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3)
   },
-  // content_mTop: {
-  //   marginTop: 40,
-  // },
+  headerBlock: {
+    position: 'fixed',
+    top: 0,
+    zIndex: 999,
+    width: 'calc(100% - 64px)'
+  },
+  midContainer: {
+    marginTop: 70,
+    width: '100%',
+    float: 'right'
+  },
+  chatListblock: {
+    width: '100%',
+    float: 'left',
+    maxWidth:375,
+    height: '100%',
+    overflowY: 'auto',
+    // position: 'fixed',
+    background: '#fff',
+    zIndex: 999
+  },
+  chatListblockinr: {
+    marginTop: 10
+  },
+  contentRenderer: {
+    float: 'right',
+    width: 'calc(100% - 385px)',
+    height: '100vh',
+    padding: '0 5px'
+  },
+  contentRendererinr: {
+    paddingTop: 10,
+    background: "#fff",
+    height: '100%'
+  }
 }));
 
 export default function MessageConnect(props) {
@@ -38,23 +70,34 @@ export default function MessageConnect(props) {
   return (
     <div>
       <SideBar open={openDrawer} setOpenDrawer={handleDrawer} />
-      <Header></Header>
       {/* <MyProfileTitleBar open={openDrawer} setOpenDrawer={handleDrawer} /> */}
       <main
         className={classes.content}
-        style={{ marginLeft: openDrawer === true ? 232 : 56 }}
+        style={{ marginLeft: openDrawer === true ? 232 : 76 }}
       >
-        <div className={classes.content_mTop} />
-        {props.content}
-        <Router>
-          <Route exact path="/connect/messages" component={Messages} />
-          <Route exact path="/connect/messages/grpChat" component={GrpChat} />
-          <Route exact path="/connect/messages/grpChatInfo" component={GrpChatInfo} />
-          <Route exact path="/connect/messages/grpChatVoice" component={GrpChatVoice} />
-          <Route exact path="/connect/messages/grpChatVideo" component={GrpChatVideo} />
-          <Route exact path="/connect/messages/userChat" component={UserChatInfo} />
+        <div className={classes.headerBlock}>
+          <Header></Header>
+        </div>
+        <div className={classes.midContainer}>
+          <div className={classes.chatListblock}>
+            <div className={classes.chatListblockinr}>
+              <ChatList />
+            </div>
+          </div>
+          <div className={classes.contentRenderer}>
+            <div className={classes.contentRendererinr}>
+              <Router>
+                <Route exact path="/connect/messages" component={Messages} />
+                <Route exact path="/connect/messages/grpChat" component={GrpChat} />
+                <Route exact path="/connect/messages/grpChatInfo" component={GrpChatInfo} />
+                <Route exact path="/connect/messages/grpChatVoice" component={GrpChatVoice} />
+                <Route exact path="/connect/messages/grpChatVideo" component={GrpChatVideo} />
+                <Route exact path="/connect/messages/userChat" component={UserChatInfo} />
+              </Router>
+            </div>
+          </div>
+        </div>
 
-        </Router>
       </main>
     </div>
   );

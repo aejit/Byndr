@@ -10,11 +10,13 @@ import ChatList from './chatList';
 import GrpHeadCard from '../../common/Cards/grpHeadCard'
 import ChatRightInfoCard from '../../common/Cards/chatRightInfoCard'
 import ChatCallCard from '../../common/Cards/chatCallCard'
-
+import GrpChat from '../Messages/grpChat'
 import ChatLayout from './chatLayout'
+import CallIcon from '@material-ui/icons/Call';
+import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+        flexGrow: 1
     },
 
     b_rt: {
@@ -53,12 +55,13 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 25
     },
     sidebar: {
-        backgroundColor: "#fff"
+        backgroundColor: "#fff",
+        borderLeft:"1px solid #dfdfdf"
     },
     cardTtitle: {
         textAlign: "center",
         font: "normal normal normal 20px/30px Poppins",
-        color: "#7F7F7F",
+        color: "#7F7F7F"
     },
     cardSub: {
         textAlign: "center",
@@ -82,7 +85,19 @@ const useStyles = makeStyles((theme) => ({
         font: "normal normal normal 16px / 30px Poppins",
         color: "#7F7F7F",
         opacity: 1
-    }
+    },
+    cardCallTime:{
+        textAlign: "left",
+        font: "normal normal 400 16px/30px Poppins",
+        color: "#7F7F7F",
+        opacity: 1,
+    },
+    cardSubText: {
+        textAlign: "right",
+        font: "normal normal 400 20px/30px Poppins",
+        color: "#1956E3",
+        opacity: 1,
+    },
 
 }));
 
@@ -90,42 +105,56 @@ export default function GrpChatVideocall() {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} sm={3} className={classes.b_rt}>
-                    <ChatList />
+            <Grid container>
+                <Grid item xs={12} sm={8}>
+                    <GrpChat />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                <GrpHeadCard title='Design Group' />
-                    <Grid>
-                        <ChatLayout />
-                    </Grid>
-
-                </Grid>
-                <Grid item xs={12} sm={3} className={classes.sidebar}>
+                <Grid item xs={12} sm={4} className={classes.sidebar}>
                     <ChatRightInfoCard title={'Video Calls'} />
                     <Grid item xs={12} sm={12}>
                         <Button
-                            style={{
+                             style={{
                                 textAlign: "center",
-                                font: "normal normal medium 16px/30px Poppins",
+                                fontSize:20,
                                 borderRadius: 5,
+                                margin:10,
+                                width:"95%",
+                                background:"#1956E3",
+                                textTransform:"capitalize",
+                                fontWeight:600
                             }}
                             variant="contained"
-                            color="primary">New Video Call</Button>
+                            color="primary"><CallIcon color="inherit" fontSize="small" style={{ float: "left", fontSize: "1.6rem",marginRight:20}} /> New Video Call</Button>
                     </Grid>
                     <Grid>
-                        {[0, 1, 2, 3].map((value) => {
+                    <Grid item xs={12} style={{padding:10}}>
+                            <Grid container justify="flex-start">
+                                <Grid item xs={6}>
+                                    <Typography variant="body2" className={classes.cardCallTime} component="p">
+                                    Yesterday
+                                    </Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                    <Typography variant="body2" className={classes.cardSubText} component="p">
+                                        4
+                                    </Typography>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                        <Grid>{[0, 1, 2, 3].map((value) => {
                             return (
-                                <Grid  key={value} style={{padding:10}}>
-                                    <ChatCallCard 
-                                      title={'DG Video call 101'}
-                                      userName={'Vinay C'}
-                                      callTime={'24:52'}
-                                      particepent={'10 Participants'}
+                                <Grid key={value} style={{ padding: 10 }}>
+                                    <ChatCallCard
+                                        title={'DG Video call 101'}
+                                        userName={'Vinay C'}
+                                        callTime={'24:52'}
+                                        particepent={'10 Participants'}
                                     />
                                 </Grid>
                             );
                         })}
+                        </Grid>
                     </Grid>
 
 
