@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -11,36 +10,16 @@ import { Grid } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Avatar from '@material-ui/core/Avatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import PinDropIcon from '@material-ui/icons/PinDrop';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import PersonAddDisabledIcon from '@material-ui/icons/PersonAddDisabled';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
 import Popover from '@material-ui/core/Popover';
 import PhoneOutlinedIcon from '@material-ui/icons/PhoneOutlined';
 import VideoCallOutlinedIcon from '@material-ui/icons/VideoCallOutlined';
 import CloseIcon from '@material-ui/icons/Close';
 import InfoIcon from '@material-ui/icons/Info';
-
-
-
 import {
-    faBookmark,
-    faCertificate,
-    faCog,
-    faLayerGroup,
-    faNewspaper,
-    faPaperPlane,
-    faUserCircle,
-    faUsers,
-    faVideo,
-} from "@fortawesome/free-solid-svg-icons";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+    MoreInfoPopup,
+    CancelPopup,
+    GroupMoreInfoPopup
+} from "../popups";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,17 +56,35 @@ const useStyles = makeStyles((theme) => ({
 export default function GrpHeadCard(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [currentPop, setCurrentPop] = React.useState(null)
 
-    const handleClick = (event) => {
+    const handleClick = (event, currentOpenPop) => {
         setAnchorEl(event.currentTarget);
+        setCurrentPop(currentOpenPop)
     };
-
     const handleClose = () => {
         setAnchorEl(null);
     };
 
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
+
+    const popupBlock = <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+        }}
+        transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+        }}
+    >
+        {currentPop == 'more' ? props.headOptionstype && props.headOptionstype == "single" ? <MoreInfoPopup /> : <GroupMoreInfoPopup /> : <CancelPopup />}
+    </Popover>
 
     return (
         <List dense className={classes.root}>
@@ -110,7 +107,7 @@ export default function GrpHeadCard(props) {
                         </Grid>
                     </Grid>
                 </ListItemText>
-                <ListItemSecondaryAction style={{ float: "right", position: "relative", marginTop: 17, width: "25%" }}>
+                <ListItemSecondaryAction style={{ float: "right", position: "relative", marginTop: 17, width: "185px" }}>
                     <Grid item xs={12}>
                         <Grid container spacing={2}>
                             <Typography variant="body2" component="span" className={classes.lastUpdate}>
@@ -118,75 +115,15 @@ export default function GrpHeadCard(props) {
                                 <VideoCallOutlinedIcon color="inherit" fontSize="small" style={{ fontSize: "2rem", float: "left", marginTop: -3, marginRight: 10, marginBottom: 0, marginLeft: 10 }} />
                                 <InfoIcon color="inherit" fontSize="small" style={{ fontSize: "1.6rem" }} />
                             </Typography>
-                            <IconButton aria-label="settings" onClick={handleClick}>
+                            <IconButton aria-label="settings" onClick={(e) => handleClick(e, 'more')}>
                                 <MoreVertIcon />
                             </IconButton>
-                            <Typography variant="body2" component="span" className={classes.lastUpdate}>
-                                <CloseIcon color="inherit" fontSize="small" style={{ paddingTop: "10%" }} />
-                            </Typography>
-
+                            <IconButton aria-label="settings" onClick={(e) => handleClick(e, 'cancel')}>
+                                <CloseIcon />
+                            </IconButton>
                         </Grid>
                     </Grid>
-                    <Popover
-                        id={id}
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={handleClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-                        <List component="nav"  >
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PinDropIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Pin to Top" />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <AccountCircleOutlinedIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Rename" />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <ExitToAppIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Leave" />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PersonAddIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Add Participant" />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PersonAddDisabledIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Remove Participant" />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <VolumeMuteIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Mute Group" />
-                            </ListItem>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PhotoCameraIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Change Image" />
-                            </ListItem>
-                        </List>
-                    </Popover>
-
+                    {anchorEl ? popupBlock : null}
                 </ListItemSecondaryAction>
             </ListItem>
         </List>
