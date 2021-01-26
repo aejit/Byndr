@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import {  makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '1vw 0 1vw 0 ',
         WebkitFlexFlow: 'column',
         [theme.breakpoints.down('xs')]: {
-            marginTop: theme.spacing(3),
+            marginTop: theme.spacing(0),
             marginLeft: theme.spacing(10),
             width: 235,
         },
@@ -106,7 +106,7 @@ const Videolist = props => {
     const dataIncoming = props.data;
     const classes = useStyles();
 
-
+    const arraySize = props.size;
 
 
     const chunk = (array, size) => {
@@ -118,24 +118,26 @@ const Videolist = props => {
         }
         return chunkedArr;
     }
-    const groupArray = chunk(dataIncoming, 5);
+    const groupArray = chunk(dataIncoming, arraySize);
     let dataArraylength = groupArray.length;
 
     return (
-        <div style={{ marginLeft: '6vw', marginTop: '2vh', width: '90%' }}>
+        <div style={{ marginLeft: '6vw', marginTop: '0vh', width: '90%' }}>
 
 
             <CarouselProvider
                 naturalSlideWidth={100}
-                naturalSlideHeight={25}
+                naturalSlideHeight={23}
                 totalSlides={dataArraylength}
                 infinite="true"
             >
-                <Typography style={{ display: 'flex'}}>
-                    <Typography fontSize="small" style={{ fontWeight: 600, width: "auto", color: 'black' }}> {VideoCateogry} </Typography>
+                <Typography style={{ display: 'flex', justifyContent: 'space-between' }} component="div">
+                    <Typography fontSize="small" style={{ fontWeight: 600, width: "fit-content", color: 'black' }} component="p"> {VideoCateogry} </Typography>
 
-                    <ButtonBack style={{ marginLeft: "74vw", padding: 0, border: "none", background: "none", outline: "none" }} ><KeyboardArrowLeftIcon style={{ color: "black" }}> </KeyboardArrowLeftIcon></ButtonBack>
-                    <ButtonNext style={{ marginLeft: "1.5vw", padding: 0, border: "none", background: "none", outline: "none" }} ><KeyboardArrowRightIcon style={{ color: "black" }}> </KeyboardArrowRightIcon ></ButtonNext>
+                    <div>
+                        <ButtonBack style={{ marginLeft: "0", padding: 0, border: "none", background: "none", outline: "none" }} ><KeyboardArrowLeftIcon style={{ color: "black" }}> </KeyboardArrowLeftIcon></ButtonBack>
+                        <ButtonNext style={{ marginLeft: "0", padding: 0, border: "none", background: "none", outline: "none" }} ><KeyboardArrowRightIcon style={{ color: "black" }}> </KeyboardArrowRightIcon ></ButtonNext>
+                    </div>
                 </Typography>
 
                 <Slider >

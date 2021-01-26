@@ -19,7 +19,7 @@ const drawerWidth = 440;
 const useStyles = makeStyles((theme) => ({
 
     selectwrapper: {
-        position: 'relative',
+        // position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 0,
         width: 'auto',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1.5),
+            marginLeft: theme.spacing(4.5),
             width: 'auto',
         },
     },
@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // display: 'flex',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         color: 'lightgrey',
-        marginLeft: "2vw",
+        marginLeft: "0vw",
+        marginTop: '0.75vh',
         [theme.breakpoints.down('md')]: {
-            marginLeft: '1vw'
+            marginLeft: '0vw'
         },
     },
 
@@ -53,11 +54,13 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // display: 'flex',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         color: 'lightgrey',
-        marginLeft: "1vw",
+        marginLeft: "0vw",
+        marginTop: '0.75vh',
+
     },
 
     totalplaylist: {
@@ -65,18 +68,19 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // display: 'flex',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         color: 'lightgrey',
-        marginLeft: "28vw",
+        marginLeft: "50vw",
+        marginTop: '0.75vh',
         [theme.breakpoints.down('md')]: {
             display: 'none'
         },
     },
 
     Show: {
-        marginLeft: "2vw",
+        marginLeft: "0vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
@@ -84,23 +88,23 @@ const useStyles = makeStyles((theme) => ({
         width: '20ch',
         [theme.breakpoints.down('md')]: {
             width: '13ch',
-            marginLeft: '1vw'
+            marginLeft: '0vw'
         },
     },
     Sortby: {
-        marginLeft: "2vw",
+        marginLeft: "1vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
         transition: theme.transitions.create('width'),
         width: '20ch',
         [theme.breakpoints.down('md')]: {
-            width: '10ch',
+            width: '13ch',
             marginLeft: "1vw",
         },
     },
     createplaylist: {
-        marginLeft: "32vw",
+        marginLeft: "0vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
@@ -108,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
         width: '20ch',
         [theme.breakpoints.down('md')]: {
             width: '20ch',
-            marginLeft: "auto",
+            marginLeft: "0vw",
         },
     },
     Participants: {
@@ -236,21 +240,24 @@ export default function Playlist() {
     };
 
     return (
-        <div style={{ backgroundColor: "white", height: "100%" }}>
+        <div style={{ height: "100vh" }}>
             <Header />
             {/* <CssBaseline /> */}
 
             <main className={clsx(classes.content, {
                 [classes.contentShift]: open,
             })}>
-                <div style={{ display: "flex", marginTop: "2vh" }}>
-                    <div className={classes.selectwrapper} >
+                <div style={{ display: "flex", marginTop: "2vh", justifyContent: "space-between" }}>
 
-                        <div className={classes.selectShow}>
-                            Show
-                        </div>
+                    <div style={{ display: "flex" }}>
 
-                        <div style={{ display: "flex" }}>
+                        <div style={{ display: "flex" }} className={classes.selectwrapper}>
+
+
+                            <div className={classes.selectShow}>
+                                Show
+                            </div>
+
                             <div className={classes.Show} >
                                 <Select
                                     defaultValue={options[0]}
@@ -273,57 +280,61 @@ export default function Playlist() {
 
                                 />
                             </div>
-                            <div className={classes.selectwrapper} >
+                        </div>
 
-                    <div className={classes.selectSortby}>
-                        Sort By
-                    </div>
 
-                    <div className={classes.Sortby}>
-                        <Select
-                            defaultValue={options[0]}
-                            options={options}
-                            styles={customStyles}
-                            autosize={true}
-                            theme={theme => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                    ...theme.colors,
-                                    primary: 'lightgrey',
-                                    primary25: '#F8F8F8',
 
-                                },
-                            })}
-                            components={{
-                                IndicatorSeparator: () => null
-                            }}
+                        <div style={{ display: "flex"}} className={classes.selectwrapper}>
 
-                        />
-                    </div>
-                </div>
+                            <div className={classes.selectSortby}>
+                                Sort By
+                            </div>
+
+                            <div className={classes.Sortby}>
+                                <Select
+                                    defaultValue={options[0]}
+                                    options={options}
+                                    styles={customStyles}
+                                    autosize={true}
+                                    theme={theme => ({
+                                        ...theme,
+                                        borderRadius: 0,
+                                        colors: {
+                                            ...theme.colors,
+                                            primary: 'lightgrey',
+                                            primary25: '#F8F8F8',
+
+                                        },
+                                    })}
+                                    components={{
+                                        IndicatorSeparator: () => null
+                                    }}
+
+                                />
+                            </div>
                         </div>
                     </div>
 
-                    <div className={classes.selectwrapper} >
 
-                        <div className={clsx(classes.totalplaylist, {
-                            [classes.hide]: open,
-                        })} >
+
+                    <div className={clsx(classes.totalplaylist, {
+                                [classes.hide]: open,
+                            })} >
                             10 Playlists
                         </div>
 
 
-                        <div className={classes.createplaylist}>
+                        <div className={classes.createplaylist} >
                             <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleDrawerOpen}
-                                className={clsx(open && classes.hide)}>CREATE PLAYLIST</Button>
+                                className={clsx(open && classes.hide)}>
+                                    <span style={{textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden'}}> CREATE PLAYLIST</span>
+                                    </Button>
                         </div>
-                    </div>
 
                 </div>
 
 
-                <div style={{ display: "flex", flexFlow: "wrap" , marginLeft: '4vw'}} >
+                <div style={{ display: "flex", flexFlow: "wrap", marginLeft: '4vw' }} >
 
                     {
                         dataDummy.map((data) =>
