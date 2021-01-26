@@ -1,24 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Headerconnect from './headerconnect';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
 import Select from "react-select";
 import { fade, makeStyles } from '@material-ui/core/styles';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ChatBubbleOutlineSharpIcon from '@material-ui/icons/ChatBubbleOutlineSharp';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import ShareIcon from '@material-ui/icons/Share';
-import ChatBubbleSharpIcon from '@material-ui/icons/ChatBubbleSharp';
-import StarBorderOutlinedIcon from '@material-ui/icons/StarBorderOutlined';
-import StarIcon from '@material-ui/icons/Star';
-import IconButton from '@material-ui/core/IconButton';
-import { Divider } from '@material-ui/core';
-import CardActions from '@material-ui/core/CardActions';
+
 import Datacard from './datacard';
 
 const useStyles = makeStyles((theme) => ({
