@@ -5,7 +5,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 // import { Card, Divider, Typography } from '@material-ui/core';
 import Header from '../common/header';
 import { useHistory } from "react-router-dom";
-import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+// import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatBubbleOutlineSharpIcon from '@material-ui/icons/ChatBubbleOutlineSharp';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
@@ -16,6 +16,9 @@ import StarIcon from '@material-ui/icons/Star';
 import IconButton from '@material-ui/core/IconButton';
 import { Avatar, Divider, Typography } from '@material-ui/core';
 import Videolist from './videolist';
+import QierPlayer from 'qier-player';
+import PlaylistAddOutlinedIcon from '@material-ui/icons/PlaylistAddOutlined';
+import ErrorOutlineTwoToneIcon from '@material-ui/icons/ErrorOutlineTwoTone';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -183,11 +186,12 @@ const Videoplay = (props) => {
     let [like, setLike] = React.useState(null);
     let [chat, setChat] = React.useState(null);
     let [star, setStar] = React.useState(null);
+    let [playlist , setPlaylist] = React.useState(null);
+    let [error, setError] = React.useState(null);
 
     const history = useHistory();
-    const [likedCards, updatelikedCards] = React.useState([]);
     const classes = useStyles();
-    let nextVideo = "next";
+    let nextVideo = "More Broadcast By name";
 
     const handleLike = (prop) => {
         if (prop === 'like') {
@@ -199,87 +203,140 @@ const Videoplay = (props) => {
         else if (prop === 'star') {
             setStar(!star);
         }
+        else if(prop === 'playlist'){
+            setPlaylist(!playlist);
+        }
+        else if (prop === 'error'){
+            setError(!error);
+        }
 
     }
 
+    const videoOrigin = "http://www.w3schools.com/html/mov_bbb.mp4";
+    const width = '100%';
+    const height = '50vh';
+
     return (
-        <div style={{ backgroundColor: "white" }}>
-            <Header />
-            <div style={{ borderRight: '2px solid lightgrey', width: '70vw', height: '150vh' }}>
+        <div>
+            <div style={{ backgroundColor: "white" }}>
 
-                <div style={{ width: '90%', height: '50vh', border: '1px solid blue', marginLeft: '6vw', marginTop: '3vh' }}>hello</div>
+                <Header />
 
-                <div style={{ width: '100%', marginLeft: '6vw' }}>
-                    <div style={{ display: 'flex', marginTop: '3vh' , justifyContent: 'space-between', width: '80%'}}>
-                        <span>title-video</span>
-                        <div style={{ marginLeft: '0vw', display: "flex", justifyContent: 'space-between' }}>
+                <div style={{ borderRight: '2px solid lightgrey', width: '70vw' }}>
 
-                            <IconButton aria-label="add to favorites" size="small" onClick={(() => { handleLike('like'); })}>
-                                {
-                                    (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
-                                    />
-                                        : <FavoriteBorderIcon style={{ color: 'lightgrey' }} fontSize="small"
-                                        />)
-                                }
-
-                            </IconButton>
-
-                            <IconButton aria-label="start chat" size="small" onClick={() => { handleLike('chat'); }} style={{ marginLeft: "0.0em" }}>
-                                {
-                                    (chat ? <ChatBubbleSharpIcon style={{ color: 'blue' }} fontSize="small"
-                                    />
-                                        : <ChatBubbleOutlineSharpIcon fontSize="small"
-                                        />)
-                                }
-
-                            </IconButton>
-
-                            <IconButton aria-label="share" size="small" style={{ marginLeft: '0em' }}>
-                                <ShareIcon fontSize="small"
-                                    style={{ color: 'lightgrey' }}
-                                    onMouseOver={(e) => e.target.style.color = 'blue'}
-                                    onMouseOut={(e) => e.target.style.color = 'lightgrey'}
-                                />
-                            </IconButton>
-
-                            <IconButton aria-label="add to started" size="small" onClick={() => { handleLike('star'); }}>
-                                {
-                                    (star ? <StarIcon style={{ color: "gold" }} fontSize="small"
-                                    />
-                                        : <StarBorderOutlinedIcon style={{ color: 'lightgrey' }} fontSize="small"
-                                        />)
-                                }
-
-                            </IconButton>
-                        </div>
+                    <div style={{ width: '90%', height: '100%', border: '1px solid blue', marginLeft: '6vw', marginTop: '3vh' }}>
+                        <QierPlayer
+                            width={width}
+                            height={height}
+                            language="en"
+                            showVideoQuality={false}
+                            themeColor="#abc123"
+                            // src480p={video480p}
+                            // src720p={video720p}
+                            srcOrigin={videoOrigin}
+                        />
                     </div>
 
-                    <div style={{ display: 'flex', marginTop: '2vh', justifyContent: 'space-between' , width: '80%'}}>
-                        <div style={{display: "flex"}}>
-                        <Avatar></Avatar>
-                        <span style={{ marginLeft: '1.5vw', marginTop: '1vh' }}>name</span>
-                        <div style={{ width: '7vw', height: '3vh', border: '1px solid blue', cursor: 'pointer', marginLeft: '2vw', borderRadius: '5px', textAlign: 'center', marginTop: '1vh' }}>+ connect</div>
+                    <div style={{ width: '100%', marginLeft: '6vw' }}>
+
+                        <div style={{ display: 'flex', marginTop: '3vh', justifyContent: 'space-between', width: '90%' }}>
+
+                            <span>title-video</span>
+
+                            <div style={{ marginLeft: '0vw', display: "flex", justifyContent: 'space-between' }}>
+
+                                <IconButton aria-label="add to favorites" size="small" onClick={(() => { handleLike('like'); })} style={{margin: '0 1vw'}}>
+                                    {
+                                        (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
+                                        />
+                                            : <FavoriteBorderIcon style={{ color: 'lightgrey' }} fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                                <IconButton aria-label="start chat" size="small" onClick={() => { handleLike('chat'); }} style={{margin: '0 1vw'}}>
+                                    {
+                                        (chat ? <ChatBubbleSharpIcon style={{ color: 'blue' }} fontSize="small"
+                                        />
+                                            : <ChatBubbleOutlineSharpIcon fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                                <Typography component="span" style={{margin: '0 1vw', marginTop: '0.3vh', color: "lightgrey"}}>20</Typography>
+
+
+                                <IconButton aria-label="share" size="small" style={{margin: '0 1vw'}}>
+                                    <ShareIcon fontSize="small"
+                                        style={{ color: 'lightgrey' }}
+                                        onMouseOver={(e) => e.target.style.color = 'blue'}
+                                        onMouseOut={(e) => e.target.style.color = 'lightgrey'}
+                                    />
+                                </IconButton>
+
+                                <IconButton aria-label="add to started" size="small" onClick={() => { handleLike('star'); }} style={{margin: '0 1vw'}}>
+                                    {
+                                        (star ? <StarIcon style={{ color: "gold" }} fontSize="small"
+                                        />
+                                            : <StarBorderOutlinedIcon style={{ color: 'lightgrey' }} fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                                <IconButton aria-label="add to playlist" size="small" onClick={() => { handleLike('playlist'); }} style={{margin: '0 1vw'}}>
+                                    {
+                                        (playlist ? <PlaylistAddOutlinedIcon style={{ color: "blue" }} fontSize="small"
+                                        />
+                                            : <PlaylistAddOutlinedIcon style={{ color: 'lightgrey' }} fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                                <IconButton aria-label="add to error" size="small" onClick={() => { handleLike('error'); }} style={{margin: '0 1vw'}}>
+                                    {
+                                        (error ? <ErrorOutlineTwoToneIcon style={{ color: "red" }} fontSize="small"
+                                        />
+                                            : <ErrorOutlineTwoToneIcon style={{ color: 'lightgrey' }} fontSize="small"
+                                            />)
+                                    }
+
+                                </IconButton>
+
+                            </div>
+
                         </div>
-                        <div style={{ marginLeft: '40vw', marginTop: '1vh' }}>date</div>
+
+                        <div style={{ display: 'flex', marginTop: '2vh', justifyContent: 'space-between', width: '80%' }}>
+                            <div style={{ display: "flex" }}>
+                                <Avatar></Avatar>
+                                <span style={{ marginLeft: '1.5vw', marginTop: '1vh' }}>name</span>
+                                <div style={{ width: 'fit-content', height: 'fit-content', border: '1px solid blue', cursor: 'pointer', marginLeft: '2vw', borderRadius: '5px', textAlign: 'center', marginTop: '0vh', padding: '0.5em' }}>+connect</div>
+                            </div>
+                            <div style={{ marginTop: '1vh' }}>date</div>
+                        </div>
+
                     </div>
-                </div>
-                <Divider style={{ marginLeft: '0vw', width: '70vw', marginTop: '2vh' }} />
+                    <Divider style={{ marginLeft: '0vw', width: '70vw', marginTop: '2vh' }} />
 
-                <div style={{ marginLeft: '6vw', marginTop: '2vh', border: '1px solid blue', width: '90%', height: '10vh' }}>Description</div>
-
-                <div style={{marginTop: '2vh'}}>
-
-                    <Videolist
-                        data={dataDummy}
-                        name={nextVideo}
-                        size={3}
-                    >
-                    </Videolist>
+                    <div style={{ marginLeft: '6vw', marginTop: '2vh', border: '1px solid blue', width: '90%', height: '10vh' }}>Description</div>
 
                 </div>
+
             </div>
+            <div style={{ marginTop: '3vh', width: '70%' }}>
 
+                <Videolist
+                    data={dataDummy}
+                    name={nextVideo}
+                    size={3}
+                >
+                </Videolist>
 
+            </div>
         </div>
     );
 }

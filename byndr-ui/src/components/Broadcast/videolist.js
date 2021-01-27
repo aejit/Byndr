@@ -126,7 +126,7 @@ const Videolist = props => {
 
 
             <CarouselProvider
-                naturalSlideWidth={100}
+                naturalSlideWidth={75}
                 naturalSlideHeight={23}
                 totalSlides={dataArraylength}
                 infinite="true"

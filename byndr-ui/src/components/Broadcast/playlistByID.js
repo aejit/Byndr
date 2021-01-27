@@ -230,7 +230,7 @@ const PlaylistByID = (props) => {
 
     // console.log(match);
     let params = useParams();
-    console.log(params.id);
+    // console.log(params.id);
     const [likedCards, updatelikedCards] = React.useState([]);
     const classes = useStyles();
 
@@ -253,8 +253,8 @@ const PlaylistByID = (props) => {
             <main className={clsx(classes.content, {
                 [classes.contentShift]: open,
             })}>
-                <div style={{ display: "flex", marginTop: "2vh" }}>
-                    <div className={classes.selectwrapper} >
+                <div style={{ display: "flex", marginTop: "2vh", justifyContent: "space-between" }}>
+                    <div className={classes.selectwrapper} style={{display: 'flex'}}>
 
                         <div className={classes.selectShow}>
                             {params.id}
@@ -264,16 +264,14 @@ const PlaylistByID = (props) => {
                             <div className={classes.Show} >
                                 Created By
                             </div>
-                            {/* <div className={classes.selectwrapper} > */}
 
                             <div className={clsx(classes.selectSortby, { [classes.hide]: open, })}>
                                 last
                                 </div>
-                            {/* </div> */}
                         </div>
                     </div>
 
-                    <div className={classes.selectwrapper} >
+                    <div className={classes.selectwrapper} style={{display: 'flex'}}>
 
                         <div className={clsx(classes.totalplaylist, {
                             [classes.hide]: open,
