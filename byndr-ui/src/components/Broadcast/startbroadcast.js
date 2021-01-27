@@ -2,21 +2,33 @@ import React from 'react';
 import Select from "react-select";
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import Header from '../common/header';
-import { Button, Typography } from '@material-ui/core';
-// import AddIcon from '@material-ui/icons/Add';
+import { Divider, Typography } from '@material-ui/core';
 
 //drawer
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-// import IconButton from '@material-ui/core/IconButton';
 import PlaylistAlbum from './playlistAlbum';
 import { useHistory } from "react-router-dom";
+import VideocamIcon from '@material-ui/icons/Videocam';
+import TextField from '@material-ui/core/TextField';
+import VideoCallIcon from '@material-ui/icons/VideoCall';
+import ScheduleIcon from '@material-ui/icons/Schedule';
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { Button } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import AddIcon from '@material-ui/icons/Add';
 
 
-const drawerWidth = 440;
+
+const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
 
@@ -107,9 +119,9 @@ const useStyles = makeStyles((theme) => ({
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
         transition: theme.transitions.create('width'),
-        width: '20ch',
+        width: 'fit-content',
         [theme.breakpoints.down('md')]: {
-            width: '20ch',
+            width: 'fit-content',
             marginLeft: "auto",
         },
     },
@@ -157,10 +169,41 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        // marginTop: '5%'
     },
     hide: {
         display: 'none',
     },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-start',
+    },
+    drawerbody: {
+        padding: theme.spacing(2, 2),
+
+    },
+    drawerForm: {
+        margin: theme.spacing(2, 0),
+    },
+    textfield: {
+        margin: theme.spacing(1, 0),
+
+    },
+    selectPrivacy: {
+        marginLeft: "1vw",
+        padding: theme.spacing(0, 0, 0, 0),
+        // vertical padding + font size from searchIcon
+        // paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '16ch',
+        [theme.breakpoints.down('md')]: {
+            width: '13ch',
+        },
+    }
 }));
 
 const customStyles = {
@@ -229,15 +272,29 @@ export default function Startbroadcast() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(true);
     const history = useHistory();
+    const [createBroadcast, setCreateBroadcast] = React.useState(1);
 
+    const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-    // const handleDrawerOpen = () => {
-    //     setOpen(true);
-    // };
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+    };
 
-    // const handleDrawerClose = () => {
-    //     setOpen(false);
-    // };
+    const handleCreatebroadcast = () => {
+        setCreateBroadcast(1);
+    };
+
+    const handleSchdulebroadcast = () => {
+        setCreateBroadcast(0);
+    };
+
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div style={{ backgroundColor: "white", height: "100%" }}>
@@ -247,15 +304,19 @@ export default function Startbroadcast() {
             <main className={clsx(classes.content, {
                 [classes.contentShift]: open,
             })}>
-                <div style={{ display: "flex", marginTop: "2vh" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2vh" }}>
+
                     <div className={classes.selectwrapper} >
 
-                        <div className={classes.selectShow}>
-                            Show
-                        </div>
 
                         <div style={{ display: "flex" }}>
-                            <div className={classes.Show} >
+
+
+                            <div className={classes.selectSortby}>
+                                Sort By
+                                </div>
+
+                            <div className={classes.Sortby}>
                                 <Select
                                     defaultValue={options[0]}
                                     options={options}
@@ -277,62 +338,27 @@ export default function Startbroadcast() {
 
                                 />
                             </div>
-                            <div className={classes.selectwrapper} >
-
-                                <div className={classes.selectSortby}>
-                                    Sort By
-                    </div>
-
-                                <div className={classes.Sortby}>
-                                    <Select
-                                        defaultValue={options[0]}
-                                        options={options}
-                                        styles={customStyles}
-                                        autosize={true}
-                                        theme={theme => ({
-                                            ...theme,
-                                            borderRadius: 0,
-                                            colors: {
-                                                ...theme.colors,
-                                                primary: 'lightgrey',
-                                                primary25: '#F8F8F8',
-
-                                            },
-                                        })}
-                                        components={{
-                                            IndicatorSeparator: () => null
-                                        }}
-
-                                    />
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     <div className={classes.selectwrapper} >
 
-                        {/* <div className={clsx(classes.totalplaylist, {
-                            [classes.hide]: open,
-                        })} >
-                            10 Playlists
-                        </div> */}
+                        <div className={classes.createplaylist}>
+                            <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleDrawerOpen}
+                                className={clsx(open && classes.hide)}>Create Broadcast</Button>
+                        </div>
 
-
-                        {/* <div className={classes.createplaylist}>
-                            <Button variant="contained" color="primary" startIcon={<AddIcon />} 
-                                className={clsx(open && classes.hide)}>CREATE PLAYLIST</Button>
-                        </div> */}
                     </div>
 
                 </div>
 
                 <div>
                     <div>
-                        <div style={{ marginLeft: "4vw", marginTop: '3vh', width: '76%', backgroundColor: "gold", padding: "1em", borderRadius: '15px' }}>
-                            <Typography variant="h5">
+                        <div style={{ marginLeft: "4vw", marginTop: '3vh', width: '86%', backgroundColor: "gold", padding: "1em", borderRadius: '15px' }}>
+                            <Typography variant="h5" style={{ fontSize: '2.215vw', alignItems: "center" }}>
                                 Hey Name,
                         </Typography>
-                            <Typography variant="h5">
+                            <Typography variant="h5" style={{ fontSize: '2.215vw', alignItems: "center" }}>
                                 Let's Start a Broadcast!
                         </Typography>
                             <div style={{ display: "flex", flexFlow: "wrap" }}>
@@ -349,7 +375,7 @@ export default function Startbroadcast() {
                 </div>
 
 
-                <div style={{ display: "flex", flexFlow: "wrap", marginLeft: '4vw', marginTop: '2vh' }} >
+                <div style={{ display: "flex", flexFlow: "wrap", marginLeft: '6vw', marginTop: '2vh' }} >
 
                     {
                         dataDummy.map((data) =>
@@ -372,12 +398,198 @@ export default function Startbroadcast() {
                     paper: classes.drawerPaper,
                 }}
             >
-                <div className={classes.drawerHeader}>
-                    {/* <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton> */}
-                    <Typography style={{ marginTop: '5vh', textAlign: 'center' }}> Hello</Typography>
+                {/* <div style={{display:"flex", alignItems: 'flex-end'}}> */}
+                <div>
+                    <div>
+                        {createBroadcast ? (
+                            <div >
+                                <div className={classes.drawerHeader}>
+                                    <IconButton onClick={handleDrawerClose}>
+                                        {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                                    </IconButton>
+
+                                    <div style={{ display: "flex" }}>
+                                        <VideocamIcon fontSize="large" style={{ color: 'blue' }} />
+                                        <Typography style={{ marginLeft: '0.5vw', marginTop: '0.75vh', color: 'blue' }} component="p"> Live Broadcast</Typography>
+                                    </div>
+                                </div>
+                                <Divider />
+                                <div className={classes.drawerbody}>
+                                    <Typography variant="h5" style={{ color: "lightgrey" }}>Create New Broadcast </Typography>
+
+                                    <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                                        <TextField id="title" variant="outlined" placeholder="Broadcast Title" fullWidth className={classes.textfield} />
+                                        <TextField id="outlined-multiline-static" variant="outlined" placeholder="Description" fullWidth className={classes.textfield} multiline rows={6} />
+
+                                    </form>
+
+                                    <div style={{ display: "flex" }}>
+                                        <Typography component="p" style={{ marginTop: '0.75vh' }}>Select who gets to see</Typography>
+                                        <div className={classes.selectPrivacy}>
+                                            <Select
+                                                defaultValue={options[0]}
+                                                options={options}
+                                                styles={customStyles}
+                                                autosize={true}
+                                                theme={theme => ({
+                                                    ...theme,
+                                                    borderRadius: 0,
+                                                    colors: {
+                                                        ...theme.colors,
+                                                        primary: 'lightgrey',
+                                                        primary25: '#F8F8F8',
+
+                                                    },
+                                                })}
+                                                components={{
+                                                    IndicatorSeparator: () => null
+                                                }}
+
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                                        <TextField id="outlined-multiline-static" variant="outlined" placeholder="Add Tags" fullWidth className={classes.textfield} multiline rows={3} />
+
+                                    </form>
+
+                                </div>
+                            </div>
+
+                        ) : (
+                                <div >
+                                    <div className={classes.drawerHeader}>
+                                        <IconButton onClick={handleDrawerClose}>
+                                            {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                                        </IconButton>
+
+                                        <div style={{ display: "flex" }}>
+                                            <ScheduleIcon fontSize="large" style={{ color: 'blue' }} />
+                                            <Typography style={{ marginLeft: '0.5vw', marginTop: '0.75vh', color: 'blue' }} component="p"> Schedule Broadcast</Typography>
+                                        </div>
+                                    </div>
+                                    <Divider />
+                                    <div className={classes.drawerbody}>
+                                        <Typography variant="h5" style={{ color: "lightgrey" }}>Create New Broadcast </Typography>
+
+                                        <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                                            <TextField id="title" variant="outlined" placeholder="Broadcast Title" fullWidth className={classes.textfield} />
+                                            <TextField id="outlined-multiline-static" variant="outlined" placeholder="Description" fullWidth className={classes.textfield} multiline rows={6} />
+
+                                        </form>
+
+                                        <div style={{ display: "flex" }}>
+                                            <Typography component="p" style={{ marginTop: '0.75vh' }}>Select who gets to see</Typography>
+                                            <div className={classes.selectPrivacy}>
+                                                <Select
+                                                    defaultValue={options[0]}
+                                                    options={options}
+                                                    styles={customStyles}
+                                                    autosize={true}
+                                                    theme={theme => ({
+                                                        ...theme,
+                                                        borderRadius: 0,
+                                                        colors: {
+                                                            ...theme.colors,
+                                                            primary: 'lightgrey',
+                                                            primary25: '#F8F8F8',
+
+                                                        },
+                                                    })}
+                                                    components={{
+                                                        IndicatorSeparator: () => null
+                                                    }}
+
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                                            <TextField id="outlined-multiline-static" variant="outlined" placeholder="Add Tags" fullWidth className={classes.textfield} multiline rows={3} />
+
+                                        </form>
+
+                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                            <div style={{ display: "flex", justifyContent: "space-between" }} >
+                                                {/* <KeyboardDatePicker
+                                                    disableToolbar
+                                                    variant="inline"
+                                                    format="MM/dd/yyyy"
+                                                    margin="normal"
+                                                    id="date-picker-inline"
+                                                    label="Date picker inline"
+                                                    value={selectedDate}
+                                                    onChange={handleDateChange}
+                                                    KeyboardButtonProps={{
+                                                        'aria-label': 'change date',
+                                                    }}
+                                                /> */}
+                                                <KeyboardDatePicker
+                                                    margin="normal"
+                                                    id="date-picker-dialog"
+                                                    label="Date picker dialog"
+                                                    format="MM/dd/yyyy"
+                                                    value={selectedDate}
+                                                    onChange={handleDateChange}
+                                                    KeyboardButtonProps={{
+                                                        'aria-label': 'change date',
+                                                    }}
+                                                    style={{ margin: '0 1vw' }}
+                                                />
+                                                <KeyboardTimePicker
+                                                    margin="normal"
+                                                    id="time-picker"
+                                                    label="Time picker"
+                                                    value={selectedDate}
+                                                    onChange={handleDateChange}
+                                                    KeyboardButtonProps={{
+                                                        'aria-label': 'change time',
+                                                    }}
+                                                    style={{ margin: '0 1vw' }}
+
+                                                />
+                                            </div>
+                                        </MuiPickersUtilsProvider>
+
+                                    </div>
+                                </div>
+                            )}
+                    </div>
+
                 </div>
+
+                {createBroadcast ? (
+                    <div style={{ display: 'flex', position: 'relative', marginTop: 'auto' }} className={classes.drawerbody}>
+                        <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center", backgroundColor: 'blue' }} onClick={(() => { handleCreatebroadcast() })}>
+                            <VideoCallIcon style={{ marginRight: '0.5vw', color: 'white' }} />
+                            <Typography component="p" style={{ color: 'white' }}>Let's Go Live</Typography>
+                        </div>
+                        <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center" }} onClick={(() => { handleSchdulebroadcast() })}>
+                            <ScheduleIcon style={{ marginRight: '0.5vw' }} fontSize="small" />
+                            <Typography component="p">Schedule</Typography>
+                        </div>
+                    </div>
+                )
+                    :
+                    (
+                        <div style={{ display: 'flex', position: 'relative', marginTop: 'auto' }} className={classes.drawerbody}>
+                            <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center" }} onClick={(() => { handleCreatebroadcast() })}>
+                                <VideoCallIcon style={{ marginRight: '0.5vw' }} />
+                                <Typography component="p">Let's Go Live</Typography>
+                            </div>
+                            <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center", backgroundColor: 'blue' }} onClick={(() => { handleSchdulebroadcast() })}>
+                                <ScheduleIcon style={{ marginRight: '0.5vw', color: 'white' }} fontSize="small" />
+                                <Typography component="p" style={{ color: "white" }}>Schedule</Typography>
+                            </div>
+                        </div>
+                    )
+                }
+
             </Drawer>
 
         </div>

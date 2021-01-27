@@ -210,9 +210,10 @@ const Videoplay = (props) => {
                 <div style={{ width: '90%', height: '50vh', border: '1px solid blue', marginLeft: '6vw', marginTop: '3vh' }}>hello</div>
 
                 <div style={{ width: '100%', marginLeft: '6vw' }}>
-                    <div style={{ display: 'flex', marginTop: '3vh' }}>
+                    <div style={{ display: 'flex', marginTop: '3vh' , justifyContent: 'space-between', width: '80%'}}>
                         <span>title-video</span>
-                        <div style={{ marginLeft: '36vw' }}>
+                        <div style={{ marginLeft: '0vw', display: "flex", justifyContent: 'space-between' }}>
+
                             <IconButton aria-label="add to favorites" size="small" onClick={(() => { handleLike('like'); })}>
                                 {
                                     (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
@@ -223,7 +224,7 @@ const Videoplay = (props) => {
 
                             </IconButton>
 
-                            <IconButton aria-label="start chat" size="small" onClick={() => { handleLike('chat'); }} style={{ marginLeft: "1.0em" }}>
+                            <IconButton aria-label="start chat" size="small" onClick={() => { handleLike('chat'); }} style={{ marginLeft: "0.0em" }}>
                                 {
                                     (chat ? <ChatBubbleSharpIcon style={{ color: 'blue' }} fontSize="small"
                                     />
@@ -233,7 +234,7 @@ const Videoplay = (props) => {
 
                             </IconButton>
 
-                            <IconButton aria-label="share" size="small" style={{ marginLeft: '4em' }}>
+                            <IconButton aria-label="share" size="small" style={{ marginLeft: '0em' }}>
                                 <ShareIcon fontSize="small"
                                     style={{ color: 'lightgrey' }}
                                     onMouseOver={(e) => e.target.style.color = 'blue'}
@@ -252,10 +253,13 @@ const Videoplay = (props) => {
                             </IconButton>
                         </div>
                     </div>
-                    <div style={{ display: 'flex', marginTop: '2vh' }}>
+
+                    <div style={{ display: 'flex', marginTop: '2vh', justifyContent: 'space-between' , width: '80%'}}>
+                        <div style={{display: "flex"}}>
                         <Avatar></Avatar>
                         <span style={{ marginLeft: '1.5vw', marginTop: '1vh' }}>name</span>
                         <div style={{ width: '7vw', height: '3vh', border: '1px solid blue', cursor: 'pointer', marginLeft: '2vw', borderRadius: '5px', textAlign: 'center', marginTop: '1vh' }}>+ connect</div>
+                        </div>
                         <div style={{ marginLeft: '40vw', marginTop: '1vh' }}>date</div>
                     </div>
                 </div>
@@ -263,7 +267,7 @@ const Videoplay = (props) => {
 
                 <div style={{ marginLeft: '6vw', marginTop: '2vh', border: '1px solid blue', width: '90%', height: '10vh' }}>Description</div>
 
-                <div >
+                <div style={{marginTop: '2vh'}}>
 
                     <Videolist
                         data={dataDummy}
