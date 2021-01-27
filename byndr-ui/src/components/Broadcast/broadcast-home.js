@@ -165,7 +165,7 @@ export default function () {
 
     const history = useHistory();
     const classes = useStyles();
-    const liveVedio = "Live Right Now!"; 
+    const liveVedio = "Live Right Now!";
     const featureBroadcast = "Feature Broadcast";
     const upcomingBroadcast = "Upcoming Broadcast";
     const featurePlaylist = "Feature Playlists";
@@ -210,7 +210,7 @@ export default function () {
                 </div>
             </div>
 
-            <div>
+            <div style={{padding: '0 0 5% 0'}}>
                 <div style={{ marginLeft: "6vw", marginTop: '1vh', width: '86%', backgroundColor: "gold", padding: "1em", borderRadius: '15px' }}>
                     <Typography variant="h5">
                         Hey Name,
@@ -218,48 +218,56 @@ export default function () {
                     <Typography variant="h5">
                         Let's Start a Broadcast!
                         </Typography>
-                    <div style={{ display: "flex", flexFlow: "wrap" , marginTop: '3vh'}}>
-                        <div style={{ border: '1px solid black', borderRadius: '4px', padding: '0.25em', backgroundColor: 'white' , cursor: 'pointer'}} 
-                        onClick={() => {console.log('hello'); history.push('/broadcast/startbroadcast')}}>
+                    <div style={{ display: "flex", flexFlow: "wrap", marginTop: '3vh' }}>
+                        <div style={{ border: '1px solid black', borderRadius: '4px', padding: '0.25em', backgroundColor: 'white', cursor: 'pointer' }}
+                            onClick={() => { console.log('hello'); history.push('/broadcast/startbroadcast') }}>
                             New Broadcast
                         </div>
                         <div style={{ border: '1px solid black', borderRadius: '4px', padding: '0.25em', marginLeft: '0.5vw', cursor: 'pointer' }}
-                        onClick={() => {console.log('hello'); history.push('/broadcast/uploadvideo')}}>
+                            onClick={() => { console.log('hello'); history.push('/broadcast/uploadvideo') }}>
                             Upload Video</div>
                     </div>
                 </div>
             </div>
 
-            <div id="liveVideo">
-                <Videolist
-                    data={dataDummy}
-                    name={liveVedio}
-                    >
-                </Videolist>
-            </div>
+            <div style={{marginTop: '2vh'}}>
 
-            <div id="featureBroadcast">
-                <Videolist
-                    data={dataDummy}
-                    name={featureBroadcast}
+                <div id="liveVideo">
+                    <Videolist
+                        data={dataDummy}
+                        name={liveVedio}
+                        size={5}
                     >
-                </Videolist>
-            </div>
+                    </Videolist>
+                </div>
 
-            <div id="upcomingBroadcast">
-                <Videolist
-                    data={dataDummy}
-                    name={upcomingBroadcast}
+                <div id="featureBroadcast">
+                    <Videolist
+                        data={dataDummy}
+                        name={featureBroadcast}
+                        size={5}
                     >
-                </Videolist>
-            </div>
+                    </Videolist>
+                </div>
 
-            <div id="featurePlaylist">
-                <Videolist
-                    data={dataDummy}
-                    name={featurePlaylist}
+                <div id="upcomingBroadcast">
+                    <Videolist
+                        data={dataDummy}
+                        name={upcomingBroadcast}
+                        size={5}
                     >
-                </Videolist>
+                    </Videolist>
+                </div>
+
+                <div id="featurePlaylist">
+                    <Videolist
+                        data={dataDummy}
+                        name={featurePlaylist}
+                        size={5}
+                    >
+                    </Videolist>
+                </div>
+
             </div>
 
         </div>

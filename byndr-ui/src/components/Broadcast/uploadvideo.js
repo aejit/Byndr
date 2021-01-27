@@ -2,21 +2,26 @@ import React from 'react';
 import Select from "react-select";
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import Header from '../common/header';
-import { Button, Typography } from '@material-ui/core';
-// import AddIcon from '@material-ui/icons/Add';
+import { Typography, Divider } from '@material-ui/core';
 
 //drawer
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-// import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-// import IconButton from '@material-ui/core/IconButton';
 import PlaylistAlbum from './playlistAlbum';
 import { useHistory } from "react-router-dom";
+import PublishIcon from '@material-ui/icons/Publish';
+import TextField from '@material-ui/core/TextField';
+import AddIcon from '@material-ui/icons/Add';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import { Button } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
 
 
-const drawerWidth = 440;
+
+
+
+const drawerWidth = 380;
 
 const useStyles = makeStyles((theme) => ({
 
@@ -31,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 0,
         width: 'auto',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1.5),
+            marginLeft: theme.spacing(4.5),
             width: 'auto',
         },
     },
@@ -55,11 +60,9 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
         color: 'lightgrey',
-        marginLeft: "1vw",
+        marginLeft: "0vw",
+        marginTop: '0.75vh',
     },
 
     totalplaylist: {
@@ -90,19 +93,19 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     Sortby: {
-        marginLeft: "2vw",
+        marginLeft: "1vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
         transition: theme.transitions.create('width'),
         width: '20ch',
         [theme.breakpoints.down('md')]: {
-            width: '10ch',
+            width: '13ch',
             marginLeft: "1vw",
         },
     },
     createplaylist: {
-        marginLeft: "32vw",
+        marginLeft: "0vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
@@ -110,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
         width: '20ch',
         [theme.breakpoints.down('md')]: {
             width: '20ch',
-            marginLeft: "auto",
+            marginLeft: "0vw",
         },
     },
     Participants: {
@@ -157,10 +160,41 @@ const useStyles = makeStyles((theme) => ({
     },
     drawerPaper: {
         width: drawerWidth,
+        // marginTop: '5%'
     },
     hide: {
         display: 'none',
     },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-start',
+    },
+    drawerbody: {
+        padding: theme.spacing(2, 2),
+
+    },
+    drawerForm: {
+        margin: theme.spacing(2, 0),
+    },
+    textfield: {
+        margin: theme.spacing(1, 0),
+
+    },
+    selectPrivacy: {
+        marginLeft: "1vw",
+        padding: theme.spacing(0, 0, 0, 0),
+        // vertical padding + font size from searchIcon
+        // paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '16ch',
+        [theme.breakpoints.down('md')]: {
+            width: '13ch',
+        },
+    }
 }));
 
 const customStyles = {
@@ -231,13 +265,13 @@ export default function Uplloadvideo() {
     const history = useHistory();
 
 
-    // const handleDrawerOpen = () => {
-    //     setOpen(true);
-    // };
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
 
-    // const handleDrawerClose = () => {
-    //     setOpen(false);
-    // };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
 
     return (
         <div style={{ backgroundColor: "white", height: "100%" }}>
@@ -247,41 +281,15 @@ export default function Uplloadvideo() {
             <main className={clsx(classes.content, {
                 [classes.contentShift]: open,
             })}>
-                <div style={{ display: "flex", marginTop: "2vh" }}>
+                <div style={{ display: "flex", justifyContent: "space-between",marginTop: "2vh" }}>
+
                     <div className={classes.selectwrapper} >
 
-                        <div className={classes.selectShow}>
-                            Show
-                        </div>
-
                         <div style={{ display: "flex" }}>
-                            <div className={classes.Show} >
-                                <Select
-                                    defaultValue={options[0]}
-                                    options={options}
-                                    styles={customStyles}
-                                    autosize={true}
-                                    theme={theme => ({
-                                        ...theme,
-                                        borderRadius: 0,
-                                        colors: {
-                                            ...theme.colors,
-                                            primary: 'lightgrey',
-                                            primary25: '#F8F8F8',
-
-                                        },
-                                    })}
-                                    components={{
-                                        IndicatorSeparator: () => null
-                                    }}
-
-                                />
-                            </div>
-                            <div className={classes.selectwrapper} >
 
                                 <div className={classes.selectSortby}>
                                     Sort By
-                    </div>
+                                </div>
 
                                 <div className={classes.Sortby}>
                                     <Select
@@ -305,33 +313,25 @@ export default function Uplloadvideo() {
 
                                     />
                                 </div>
-                            </div>
                         </div>
                     </div>
 
                     <div className={classes.selectwrapper} >
 
-                        {/* <div className={clsx(classes.totalplaylist, {
-                            [classes.hide]: open,
-                        })} >
-                            10 Playlists
-                        </div> */}
-
-
-                        {/* <div className={classes.createplaylist}>
-                            <Button variant="contained" color="primary" startIcon={<AddIcon />} 
-                                className={clsx(open && classes.hide)}>CREATE PLAYLIST</Button>
-                        </div> */}
+                        <div className={classes.createplaylist}>
+                            <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleDrawerOpen}
+                                className={clsx(open && classes.hide)}>Upload Video</Button>
+                        </div>
                     </div>
 
                 </div>
 
                 <div>
-                    <div style={{ marginLeft: "4vw", marginTop: '3vh', width: '76%', backgroundColor: "gold", padding: "1em", borderRadius: '15px' }}>
-                        <Typography variant="h5">
+                    <div style={{ marginLeft: "4vw", marginTop: '3vh', width: '86%', backgroundColor: "gold", padding: "1em", borderRadius: '15px' }}>
+                        <Typography variant="h5" style={{ fontSize: '2.215vw', alignItems: "center" }}>
                             Hey Name,
                         </Typography>
-                        <Typography variant="h5">
+                        <Typography variant="h5" style={{ fontSize: '2.215vw', alignItems: "center" }}>
                             Let's Start a Broadcast!
                         </Typography>
                         <div style={{ display: "flex", flexFlow: "wrap" }}>
@@ -347,7 +347,7 @@ export default function Uplloadvideo() {
                 </div>
 
 
-                <div style={{ display: "flex", flexFlow: "wrap", marginLeft: '4vw', marginTop: '2vh' }} >
+                <div style={{ display: "flex", flexFlow: "wrap", marginLeft: '6vw', marginTop: '2vh' }} >
 
                     {
                         dataDummy.map((data) =>
@@ -371,12 +371,65 @@ export default function Uplloadvideo() {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    {/* <IconButton onClick={handleDrawerClose}>
+                    <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton> */}
-                    <Typography style={{ marginTop: '5vh', textAlign: 'center' }}> Hello</Typography>
+                    </IconButton>
+                    <div style={{ display: "flex" }}>
+                        <PublishIcon fontSize="large" style={{ color: 'blue' }} />
+                        <Typography style={{ marginLeft: '0.5vw', marginTop: '0.75vh', color: 'blue' }} component="p"> Upload Video</Typography>
+                    </div>
+                </div>
+                <Divider />
+                <div className={classes.drawerbody}>
+                    <Typography variant="h5" style={{ color: "lightgrey" }}>Create New Broadcast </Typography>
+
+                    <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                        <TextField id="title" variant="outlined" placeholder="Broadcast Title" fullWidth className={classes.textfield} />
+                        <TextField id="outlined-multiline-static" variant="outlined" placeholder="Description" fullWidth className={classes.textfield} multiline rows={6} />
+
+                    </form>
+
+                    <div style={{ display: "flex" }}>
+                        <Typography component="p" style={{ marginTop: '0.75vh' }}>Select who gets to see</Typography>
+                        <div className={classes.selectPrivacy}>
+                            <Select
+                                defaultValue={options[0]}
+                                options={options}
+                                styles={customStyles}
+                                autosize={true}
+                                theme={theme => ({
+                                    ...theme,
+                                    borderRadius: 0,
+                                    colors: {
+                                        ...theme.colors,
+                                        primary: 'lightgrey',
+                                        primary25: '#F8F8F8',
+
+                                    },
+                                })}
+                                components={{
+                                    IndicatorSeparator: () => null
+                                }}
+
+                            />
+                        </div>
+                    </div>
+
+                    <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                        <TextField id="outlined-multiline-static" variant="outlined" placeholder="Add Tags" fullWidth className={classes.textfield} multiline rows={3} />
+
+                    </form>
+
+                </div>
+
+                <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '90%', margin: '0 1em', justifyContent: "center", backgroundColor: 'blue' }} >
+                    <AddIcon style={{ marginRight: '0.5vw', color: 'white' }} />
+                    <Typography component="p" style={{ color: 'white' }}> Add Video</Typography>
                 </div>
             </Drawer>
+
 
         </div>
     );

@@ -117,6 +117,7 @@ const Datacard = props => {
     let [star, setStar] = React.useState(null);
 
     const name  = props.data[1];
+    // console.log(name, "nameis");
     const [isLiked, updateLike] = useState(false);
 
     const handleLike = (prop) => {
@@ -157,17 +158,20 @@ const Datacard = props => {
         <Card className={classes.root} key={name}>
             <Typography component="span">Card no: {name}</Typography>
             <CardActionArea>
-                <CardMedia
+                {/* <CardMedia
                     component="img"
                     alt="Contemplative Reptile"
-                    height="100"
+                    height='auto'
                     image="/static/images/cards/contemplative-reptile.jpg"
                     title="Contemplative Reptile"
                     style={{ margin: "0.5vw" }}
-                />
+                /> */}
+                <div style={{width: 'auto'}}>
+                    <img alt="some image" style={{margin : "0.5vw"}}></img>
+                </div>
                 <CardContent style={{ display: 'flex', padding: 0, margin: "0.75vw" }}>
 
-                    <Typography variant="body2" color="textSecondary" component="p" style={{ padding: 0, }}>
+                    <Typography variant="body2" color="textSecondary" component="p" style={{ padding: 0, textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden'}}>
                         Lizards are a widespread group of squamate reptiles, with over 6,000 species,
                     </Typography>
 
@@ -177,20 +181,21 @@ const Datacard = props => {
 
                 </CardContent>
 
-                <CardContent style={{ display: 'flex', padding: "5px 0px 1px 0px ", margin: "0px 0.5vw" }}>
-                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0 }}> By</Typography>
-                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "1.5em" }}> Time</Typography>
-                    <VisibilityOutlinedIcon fontSize="small" style={{ padding: 0, marginLeft: "1.5em" }} />
-                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: 0, marginLeft: "1.5em" }}> Views</Typography>
-                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: "0px 2px", marginLeft: "1.5em" }}> icon</Typography>
+                <CardContent style={{ display: 'flex', margin: "0px", padding: '0.5vw', display: "flex", justifyContent: 'space-between' }}>
+                    <Typography component="span" color="primary" style={{ fontSize: 'small'}}> By</Typography>
+                    <Typography component="span" color="primary" style={{ fontSize: 'small' , textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden'}}> Time</Typography>
+                    <VisibilityOutlinedIcon fontSize="small"  />
+                    <Typography component="span" color="primary" style={{ fontSize: 'small' ,textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden'}}> Views</Typography>
+                    <Typography component="span" color="primary" style={{ fontSize: 'small', padding: "0px 2px",textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden' }}> icon</Typography>
                 </CardContent>
 
                 <Divider style={{ margin: "3px 0px" }}></Divider>
 
-
-
             </CardActionArea>
-            <CardActions style={{ padding: 0, margin: "0px 0.25vw" }}>
+
+            <CardActions style={{ padding: 0, margin: "0px", display: 'flex', justifyContent: 'space-between' }}>
+
+
                 <IconButton aria-label="add to favorites" size="small" onClick={(() => {  handleLike('like'); })}>
                     {
                         (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
@@ -201,7 +206,7 @@ const Datacard = props => {
 
                 </IconButton>
 
-                <IconButton aria-label="start chat" size="small" onClick={() => {  handleLike('chat'); }} style={{ marginLeft: "1.0em" }}>
+                <IconButton aria-label="start chat" size="small" onClick={() => {  handleLike('chat'); }} >
                     {
                         (chat ? <ChatBubbleSharpIcon style={{ color: 'blue' }} fontSize="small"
                         />
@@ -211,7 +216,7 @@ const Datacard = props => {
 
                 </IconButton>
 
-                <IconButton aria-label="share" size="small" style={{ marginLeft: '4em' }}>
+                <IconButton aria-label="share" size="small" >
                     <ShareIcon fontSize="small"
                         style={{ color: 'lightgrey' }}
                         onMouseOver={(e) => e.target.style.color = 'blue'}

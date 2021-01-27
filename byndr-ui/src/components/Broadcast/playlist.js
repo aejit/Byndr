@@ -2,7 +2,7 @@ import React from 'react';
 import Select from "react-select";
 import { fade, makeStyles, useTheme } from '@material-ui/core/styles';
 import Header from '../common/header';
-import { Button } from '@material-ui/core';
+import { Button, Divider, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 
 //drawer
@@ -14,12 +14,15 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import IconButton from '@material-ui/core/IconButton';
 import PlaylistAlbum from './playlistAlbum';
 
+import TextField from '@material-ui/core/TextField';
+import ShopTwoOutlinedIcon from '@material-ui/icons/ShopTwoOutlined';
+
 const drawerWidth = 440;
 
 const useStyles = makeStyles((theme) => ({
 
     selectwrapper: {
-        position: 'relative',
+        // position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
@@ -29,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: 0,
         width: 'auto',
         [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(1.5),
+            marginLeft: theme.spacing(4.5),
             width: 'auto',
         },
     },
@@ -38,13 +41,14 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // display: 'flex',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         color: 'lightgrey',
-        marginLeft: "2vw",
+        marginLeft: "0vw",
+        marginTop: '0.75vh',
         [theme.breakpoints.down('md')]: {
-            marginLeft: '1vw'
+            marginLeft: '0vw'
         },
     },
 
@@ -53,11 +57,13 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // display: 'flex',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         color: 'lightgrey',
-        marginLeft: "1vw",
+        marginLeft: "0vw",
+        marginTop: '0.75vh',
+
     },
 
     totalplaylist: {
@@ -65,18 +71,19 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         position: 'absolute',
         pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // display: 'flex',
+        // alignItems: 'center',
+        // justifyContent: 'center',
         color: 'lightgrey',
-        marginLeft: "28vw",
+        marginLeft: "50vw",
+        marginTop: '0.75vh',
         [theme.breakpoints.down('md')]: {
             display: 'none'
         },
     },
 
     Show: {
-        marginLeft: "2vw",
+        marginLeft: "0vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
@@ -84,23 +91,23 @@ const useStyles = makeStyles((theme) => ({
         width: '20ch',
         [theme.breakpoints.down('md')]: {
             width: '13ch',
-            marginLeft: '1vw'
+            marginLeft: '0vw'
         },
     },
     Sortby: {
-        marginLeft: "2vw",
+        marginLeft: "1vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
         transition: theme.transitions.create('width'),
         width: '20ch',
         [theme.breakpoints.down('md')]: {
-            width: '10ch',
+            width: '13ch',
             marginLeft: "1vw",
         },
     },
     createplaylist: {
-        marginLeft: "32vw",
+        marginLeft: "0vw",
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
@@ -108,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
         width: '20ch',
         [theme.breakpoints.down('md')]: {
             width: '20ch',
-            marginLeft: "auto",
+            marginLeft: "0vw",
         },
     },
     Participants: {
@@ -159,6 +166,36 @@ const useStyles = makeStyles((theme) => ({
     hide: {
         display: 'none',
     },
+    drawerHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        padding: theme.spacing(0, 1),
+        // necessary for content to be below app bar
+        ...theme.mixins.toolbar,
+        justifyContent: 'flex-start',
+    },
+    drawerbody: {
+        padding: theme.spacing(2, 2),
+
+    },
+    drawerForm: {
+        margin: theme.spacing(2, 0),
+    },
+    textfield: {
+        margin: theme.spacing(1, 0),
+
+    },
+    selectPrivacy: {
+        marginLeft: "1vw",
+        padding: theme.spacing(0, 0, 0, 0),
+        // vertical padding + font size from searchIcon
+        // paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
+        transition: theme.transitions.create('width'),
+        width: '16ch',
+        [theme.breakpoints.down('md')]: {
+            width: '13ch',
+        },
+    }
 }));
 
 const customStyles = {
@@ -236,21 +273,24 @@ export default function Playlist() {
     };
 
     return (
-        <div style={{ backgroundColor: "white", height: "100%" }}>
+        <div style={{ height: "100vh" }}>
             <Header />
             {/* <CssBaseline /> */}
 
             <main className={clsx(classes.content, {
                 [classes.contentShift]: open,
             })}>
-                <div style={{ display: "flex", marginTop: "2vh" }}>
-                    <div className={classes.selectwrapper} >
+                <div style={{ display: "flex", marginTop: "2vh", justifyContent: "space-between" }}>
 
-                        <div className={classes.selectShow}>
-                            Show
-                        </div>
+                    <div style={{ display: "flex" }}>
 
-                        <div style={{ display: "flex" }}>
+                        <div style={{ display: "flex" }} className={classes.selectwrapper}>
+
+
+                            <div className={classes.selectShow}>
+                                Show
+                            </div>
+
                             <div className={classes.Show} >
                                 <Select
                                     defaultValue={options[0]}
@@ -273,57 +313,61 @@ export default function Playlist() {
 
                                 />
                             </div>
-                            <div className={classes.selectwrapper} >
+                        </div>
 
-                    <div className={classes.selectSortby}>
-                        Sort By
+
+
+                        <div style={{ display: "flex" }} className={classes.selectwrapper}>
+
+                            <div className={classes.selectSortby}>
+                                Sort By
+                            </div>
+
+                            <div className={classes.Sortby}>
+                                <Select
+                                    defaultValue={options[0]}
+                                    options={options}
+                                    styles={customStyles}
+                                    autosize={true}
+                                    theme={theme => ({
+                                        ...theme,
+                                        borderRadius: 0,
+                                        colors: {
+                                            ...theme.colors,
+                                            primary: 'lightgrey',
+                                            primary25: '#F8F8F8',
+
+                                        },
+                                    })}
+                                    components={{
+                                        IndicatorSeparator: () => null
+                                    }}
+
+                                />
+                            </div>
+                        </div>
                     </div>
 
-                    <div className={classes.Sortby}>
-                        <Select
-                            defaultValue={options[0]}
-                            options={options}
-                            styles={customStyles}
-                            autosize={true}
-                            theme={theme => ({
-                                ...theme,
-                                borderRadius: 0,
-                                colors: {
-                                    ...theme.colors,
-                                    primary: 'lightgrey',
-                                    primary25: '#F8F8F8',
 
-                                },
-                            })}
-                            components={{
-                                IndicatorSeparator: () => null
-                            }}
 
-                        />
+                    <div className={clsx(classes.totalplaylist, {
+                        [classes.hide]: open,
+                    })} >
+                        10 Playlists
+                        </div>
+
+
+                    <div className={classes.createplaylist} >
+                        <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleDrawerOpen}
+                            className={clsx(open && classes.hide)}>
+                            <span style={{ textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden' }}> CREATE PLAYLIST</span>
+                        </Button>
                     </div>
+
                 </div>
-                        </div>
-                    </div>
-
-                    <div className={classes.selectwrapper} >
-
-                        <div className={clsx(classes.totalplaylist, {
-                            [classes.hide]: open,
-                        })} >
-                            10 Playlists
-                        </div>
 
 
-                        <div className={classes.createplaylist}>
-                            <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleDrawerOpen}
-                                className={clsx(open && classes.hide)}>CREATE PLAYLIST</Button>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div style={{ display: "flex", flexFlow: "wrap" , marginLeft: '4vw'}} >
+                <div style={{ display: "flex", flexFlow: "wrap", marginLeft: '4vw' }} >
 
                     {
                         dataDummy.map((data) =>
@@ -350,7 +394,81 @@ export default function Playlist() {
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
+                    <div style={{ display: "flex" }}>
+                        <ShopTwoOutlinedIcon fontSize="large" style={{ color: 'blue' }} />
+                        <Typography style={{ marginLeft: '0.5vw', marginTop: '0.75vh', color: 'blue' }} component="p"> Create Playlist</Typography>
+                    </div>
                 </div>
+                <Divider />
+                <div className={classes.drawerbody}>
+                    <Typography variant="h5" style={{ color: "lightgrey" }}>Create Playlist </Typography>
+
+                    <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                        <TextField id="title" variant="outlined" placeholder="Playlist Name" fullWidth className={classes.textfield} />
+                        {/* <TextField id="outlined-multiline-static" variant="outlined" placeholder="Description" fullWidth className={classes.textfield} multiline rows={6} /> */}
+
+                    </form>
+
+                    <div style={{ display: "flex" }}>
+                        <Typography component="p" style={{ marginTop: '0.75vh' }}>Select who gets to see</Typography>
+                        <div className={classes.selectPrivacy}>
+                            <Select
+                                defaultValue={options[0]}
+                                options={options}
+                                styles={customStyles}
+                                autosize={true}
+                                theme={theme => ({
+                                    ...theme,
+                                    borderRadius: 0,
+                                    colors: {
+                                        ...theme.colors,
+                                        primary: 'lightgrey',
+                                        primary25: '#F8F8F8',
+
+                                    },
+                                })}
+                                components={{
+                                    IndicatorSeparator: () => null
+                                }}
+
+                            />
+                        </div>
+                    </div>
+
+                    <form className={classes.drawerForm} noValidate autoComplete="off">
+
+                        <TextField id="outlined-multiline-static" variant="outlined" placeholder="Add Tags" fullWidth className={classes.textfield} multiline rows={3} />
+
+                    </form>
+
+                    <div style={{ padding: '2em', backgroundColor: "lightgrey" }}>
+                        <Typography component='p' variant="h6" style={{ color: 'black', textAlign: "center" }}>Recommended Dimension</Typography>
+                        <Typography component="p" variant="h5" style={{ color: 'black', textAlign: "center" }}>1920 X 1080</Typography>
+                        <Typography component="p" style={{ color: 'black', textAlign: "center", marginTop: '3vh' }} >File size limit 2MB</Typography>
+                    </div>
+
+                </div>
+
+                <div style={{ display: 'flex' }} className={classes.drawerbody}>
+                    <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center" }} >
+                        <Typography component="p" style={{ color: 'blue' }}>Upload Image</Typography>
+                    </div>
+                    <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center" }} >
+                        <Typography component="p">Use Default</Typography>
+                    </div>
+                </div>
+
+                <div style={{ display: 'flex', position: 'relative', marginTop: 'auto' }} className={classes.drawerbody}>
+                    <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center" }} >
+                        <Typography component="p" style={{ color: 'blue' }}>+ Create</Typography>
+                    </div>
+                    <div style={{ display: 'flex', border: '1px solid blue', borderRadius: '4px', padding: '0.15em', cursor: "pointer", width: '50%', margin: '0 0.3em', justifyContent: "center" }} >
+                        <Typography component="p">Cancel</Typography>
+                    </div>
+                </div>
+
+
             </Drawer>
 
         </div>

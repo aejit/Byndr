@@ -246,23 +246,23 @@ export default function Mybroadcast() {
 
 
             <div>
-                <div style={{ marginLeft: "6vw", marginTop: '2vh', width: '63vw', backgroundColor: "gold", padding: "1em", borderRadius: '15px', display: 'flex' }}>
+                <div style={{ marginLeft: "6vw", marginTop: '2vh', width: '63vw', backgroundColor: "gold", padding: "1em", borderRadius: '15px', display: 'flex' , justifyContent: 'space-between'}}>
 
-                    <Typography variant="h4">
+                    <Typography variant="h4" style={{fontSize: '2.215vw', alignItems: "center"}}>
                         Let's Start a Broadcast!
                     </Typography>
-                    <div style={{ display: "flex", flexFlow: "wrap", marginLeft: '16vw' }}>
-                        <div style={{ border: '1px solid black', borderRadius: '4px', padding: '0.15em', backgroundColor: 'white', cursor: 'pointer', width: '10vw', textAlign: 'center' }}
-                        onClick={() => {console.log('hello'); history.push('/broadcast/startbroadcast')}}
+                    <div style={{ display: "flex", flexFlow: "nowrap", height: 'fit-content'}}>
+                        <div style={{ border: '1px solid black', borderRadius: '4px', padding: '0.15em', backgroundColor: 'white', cursor: 'pointer', width: 'auto', textAlign: 'center' }}
+                            onClick={() => { console.log('hello'); history.push('/broadcast/startbroadcast') }}
                         >
 
-                            <Typography style={{ marginTop: '.75vh' }}>New Broadcast</Typography>
+                            <Typography style={{ marginTop: '.75vh', width: 'auto',textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden' }}>New Broadcast</Typography>
 
                         </div>
-                        <div style={{ border: '1px solid black', borderRadius: '4px', padding: '0.25em', marginLeft: '0.5vw', cursor: 'pointer', width: '10vw', textAlign: 'center' }}
-                        onClick={() => {console.log('hello'); history.push('/broadcast/uploadvideo')}}
+                        <div style={{ border: '1px solid black', borderRadius: '4px', padding: '0.25em', marginLeft: '0.5vw', cursor: 'pointer', width: 'auto', textAlign: 'center' }}
+                            onClick={() => { console.log('hello'); history.push('/broadcast/uploadvideo') }}
                         >
-                            <Typography style={{ marginTop: '.75vh' }}> Upload Video</Typography>
+                            <Typography style={{ marginTop: '.55vh', width: 'auto' , textOverflow: "ellipsis", whiteSpace: 'nowrap', overflow: 'hidden'}}> Upload Video</Typography>
                         </div>
                     </div>
                 </div>
@@ -301,36 +301,36 @@ export default function Mybroadcast() {
                 <div style={{ width: '27%', marginTop: '-10vh' }}>
                     <Typography variant="h6"> Your Broadcast in Numbers</Typography>
                     <Card style={{ marginRight: '1vw', marginTop: '2vh' }}>
-                        <div style={{padding: '2vw 2vh'}}>
+                        <div style={{ padding: '2vw 2vh' }}>
                             <Typography variant="h2" style={{ textAlign: "center" }}>
                                 24
                             </Typography>
                             <Typography style={{ textAlign: 'center' }}> Live Broadcasts</Typography>
                         </div>
                         <Divider />
-                        <div style={{ padding: '2vh 3vw'}}>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Views</span> <span >104568</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Likes</span> <span >100</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Comments</span><span>10</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Faviourets</span><span>1089</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Shared</span><span>10000</span></Typography>
+                        <div style={{ padding: '2vh 3vw' }}>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Views</span> <span >104568</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Likes</span> <span >100</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Comments</span><span>10</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Faviourets</span><span>1089</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Shared</span><span>10000</span></Typography>
 
                         </div>
                     </Card>
-                    <Card style={{ marginRight: '1vw' , marginTop: '1vh'}}>
-                        <div style={{padding: '2vw 2vh'}}>
+                    <Card style={{ marginRight: '1vw', marginTop: '1vh' }}>
+                        <div style={{ padding: '2vw 2vh' }}>
                             <Typography variant="h2" style={{ textAlign: "center" }}>
                                 24
                             </Typography>
                             <Typography style={{ textAlign: 'center' }}> Live Broadcasts</Typography>
                         </div>
                         <Divider />
-                        <div style={{ padding: '2vh 3vw'}}>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Views</span> <span >104568</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Likes</span> <span >100</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Comments</span><span>10</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Faviourets</span><span>1089</span></Typography>
-                            <Typography style={{display: 'flex', justifyContent: 'space-between'}}> <span style={{textAlign: 'left', marginLeft: '1vw'}}>Shared</span><span>10000</span></Typography>
+                        <div style={{ padding: '2vh 3vw' }}>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Views</span> <span >104568</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Likes</span> <span >100</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Comments</span><span>10</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Faviourets</span><span>1089</span></Typography>
+                            <Typography style={{ display: 'flex', justifyContent: 'space-between' }}> <span style={{ textAlign: 'left', marginLeft: '1vw' }}>Shared</span><span>10000</span></Typography>
 
                         </div>
                     </Card>

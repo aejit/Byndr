@@ -22,6 +22,7 @@ import Playlist from "./components/Broadcast/playlist";
 import PlaylistByID from "./components/Broadcast/playlistByID";
 import Startbroadcast from "./components/Broadcast/startbroadcast";
 import Uplloadvideo from "./components/Broadcast/uploadvideo";
+import Videoplay from "./components/Broadcast/videoplay";
 
 
 
@@ -71,6 +72,7 @@ function App() {
         <Route path="/broadcast/startbroadcast" component={Startbroadcast} />
         <Route path="/broadcast/uploadvideo" component={Uplloadvideo} />
 
+        <Route path="/broadcast/videoplay" component={Videoplay} />
       </Router>
     </div>
 

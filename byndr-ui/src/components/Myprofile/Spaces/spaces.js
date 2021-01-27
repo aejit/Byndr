@@ -9,8 +9,8 @@ import { Link } from "react-router-dom";
 
 
 import MyprofileDetails from '../../common/ProfileDetails/MyprofileDetails';
-import Datacard from '../../common/Cards/datacard'
-import DataDetailCard from '../../common/Cards/dataDetailCard'
+import Datacard from '../../common/Cards/dataCard';
+import DataDetailCard from '../../common/Cards/dataDetailCard';
 import cardBGImg from "../../../img/cardbg.png";
 import cardBGblue from "../../../img/cardBGblue.png";
 import cardDetailBG from "../../../img/detailCardBG.png"
