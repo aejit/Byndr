@@ -1,7 +1,6 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Link } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import MyProfileTitleBar from "../common/TitleBar/myprofileTitleBar";
 import SideBar from "../common/sidebar";
 
 import Messages from "../Connect/Messages/messages"
@@ -47,7 +46,10 @@ const useStyles = makeStyles((theme) => ({
     overflowY: 'auto',
     // position: 'fixed',
     background: '#fff',
-    zIndex: 999
+    zIndex: 999,
+    [theme.breakpoints.between(700,1030)]: {
+      maxWidth: '32%'
+   }
   },
   chatListblockinr: {
     marginTop: 10
@@ -56,7 +58,10 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
     width: 'calc(100% - 385px)',
     height: '100%',
-    padding: '0 5px'
+    padding: '0 5px',
+    [theme.breakpoints.between(700,1030)]: {
+      width: 'calc(100% - 34%)'
+   }
   },
   contentRendererinr: {
     paddingTop: 10,
@@ -65,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MessageConnect(props) {
+export default function MessageConnect() {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const handleDrawer = (value) => {
     setOpenDrawer(value);

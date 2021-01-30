@@ -2,7 +2,6 @@ import React from 'react';
 import Headerconnect from './headerconnect';
 import Select from "react-select";
 import { fade, makeStyles } from '@material-ui/core/styles';
-
 import Datacard from './datacard';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,8 +18,12 @@ const useStyles = makeStyles((theme) => ({
         width: 'auto',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(1.5),
-            width: 'auto',
+            width: 'auto !important',
         },
+        [theme.breakpoints.down('md')]: {
+            width: 'auto !important',
+            marginBottom:10
+        }
     },
     selectShow: {
         padding: theme.spacing(0, 2),
@@ -49,15 +52,15 @@ const useStyles = makeStyles((theme) => ({
 
     Participants: {
         marginLeft: "2vw",
-        float:"left",
-        marginRight:10,
+        float: "left",
+        marginRight: 10,
         padding: theme.spacing(0, 0, 0, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(7)}px)`,
         transition: theme.transitions.create('width'),
         width: '20ch',
         [theme.breakpoints.down('md')]: {
-            width: '13ch',
+            width: '100px',
         },
     },
     Sortby: {
@@ -156,11 +159,11 @@ export default function Sharedcontent() {
 
 
     return (
-        <div style={{ backgroundColor: "#F7F7F7", height: "100%",marginTop:"-12px"}}>
+        <div style={{ backgroundColor: "#F7F7F7", height: "100%", marginTop: "-12px" }}>
             <Headerconnect />
-            <div style={{ display: "block",width:"100%", float:"left",background:"#fff", padding:"10px 0px",borderTop:"1px solid #dfdfdf"}}>
-                <div className={classes.selectwrapper} style={{width:"65%",float:"left"}}>
-                    <div style={{ display: "block"}}>
+            <div style={{ display: "block", width: "100%", float: "left", background: "#fff", padding: "10px 0px", borderTop: "1px solid #dfdfdf" }}>
+                <div className={classes.selectwrapper} style={{ width: "65%", float: "left" }}>
+                    <div style={{ display: "block" }}>
                         <div className={classes.selectShow}>
                             Show
                       </div>
@@ -211,7 +214,7 @@ export default function Sharedcontent() {
                     </div>
                 </div>
 
-                <div className={classes.selectwrapper} style={{width:"30%",float:"left"}}>
+                <div className={classes.selectwrapper} style={{ width: "30%", float: "left" }}>
 
                     <div className={classes.selectSortby}>
                         Sort
@@ -248,7 +251,7 @@ export default function Sharedcontent() {
 
                 {
                     dataDummy.map((data) =>
-        
+
                         <Datacard
                             data={data}
                             updatelikedCards={updatelikedCards}

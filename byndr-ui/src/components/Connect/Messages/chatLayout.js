@@ -43,7 +43,13 @@ const useStyles = makeStyles(theme => ({
         opacity: 1,
         right: 0,
         width: "90%",
-        marginLeft: "10%"
+        marginLeft: "10%",
+        [theme.breakpoints.down('1030')]: {
+            marginLeft: '9%',
+        },
+        [theme.breakpoints.down('780')]: {
+            marginLeft: '5%',
+        },
     },
     messageTiemcls: {
         right: 0,
@@ -63,7 +69,6 @@ const useStyles = makeStyles(theme => ({
         padding: 10
     },
     inputChat: {
-        paddingTop: "15%",
         width: 'calc(100% - 22px)',
         float: "left",
         paddingTop: 0,
