@@ -13,10 +13,6 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import BlockIcon from '@material-ui/icons/Block';
-import ReportOutlinedIcon from '@material-ui/icons/ReportOutlined';
-import PersonAddDisabledOutlinedIcon from '@material-ui/icons/PersonAddDisabledOutlined';
-import AccountCircleOutlinedIcon from '@material-ui/icons/AccountCircleOutlined';
-import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import Popover from '@material-ui/core/Popover';
 import Badge from '@material-ui/core/Badge';
 import Chip from '@material-ui/core/Chip';
@@ -65,26 +61,38 @@ const useStyles = makeStyles((theme) => ({
         // maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
         borderBottom: "1px solid #E8E8E8",
-        padding:"20px 9px",
+        padding: "20px 8px",
         '&:hover': {
-            backgroundColor:"#F7F7F7",
+            backgroundColor: "#F7F7F7",
         },
+        [theme.breakpoints.down(1030)]: {
+            padding: "20px 7px",
+         },
+         [theme.breakpoints.down(785)]: {
+            padding: "3px 5px",
+       }
     },
-    
+
     cardTtitle: {
         textAlign: "left",
         fontFamily: 'Poppins',
         color: "#000000",
         opacity: 1,
-        fontSize:20,
-        fontWeight:500,
+        fontSize: 20,
+        fontWeight: 500,
+        [theme.breakpoints.down(1030)]: {
+            fontSize: 16,
+         }
     },
     cardSubText: {
         textAlign: "left",
         fontFamily: 'Poppins',
         color: "#7D7D7D",
         opacity: 1,
-        fontSize:16
+        fontSize: 16,
+        [theme.breakpoints.down(1030)]: {
+            fontSize: 14,
+         }
     },
     lastUpdate: {
         textAlign: "left",
@@ -92,7 +100,20 @@ const useStyles = makeStyles((theme) => ({
         color: "#7B7C7E",
         opacity: 1,
         paddingTop: 10,
-        fontSize:16
+        fontSize: 16,
+        [theme.breakpoints.down(1030)]: {
+            fontSize: 14,
+         },
+         [theme.breakpoints.down(785)]: {
+             display:"none"
+        }
+    },
+    updateTime:{
+        [theme.breakpoints.down(1030)]: {
+            float: "right",
+            marginTop: "4px",
+            marginBottom: "5px",
+         }
     }
 }));
 
@@ -151,7 +172,7 @@ export default function ChatCard() {
                                 Yesterday
                                 <br />
                                 <Icon className="fa fa-plus-circle" color="primary" />
-                                <Chip label="2m" color="primary" size="small" />
+                                <Chip label="2m" color="primary" size="small"  className={classes.updateTime}/>
                             </Typography>
                             <IconButton aria-label="settings" onClick={handleClick}>
                                 <MoreVertIcon />
@@ -173,7 +194,7 @@ export default function ChatCard() {
                         }}
                         style={{
                             left: -60,
-                            top:-20
+                            top: -20
                         }}
                     >
                         <List component="nav"  >
@@ -191,7 +212,7 @@ export default function ChatCard() {
                             </ListItem>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <VolumeMuteIcon/>
+                                    <VolumeMuteIcon />
                                 </ListItemIcon>
                                 <ListItemText primary="Mute" />
                             </ListItem>

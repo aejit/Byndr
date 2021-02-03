@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
+        
     },
     search: {
         position: 'relative',
@@ -73,6 +74,7 @@ const useStyles = makeStyles((theme) => ({
             display: 'none',
         },
     },
+    
 }));
 
 export default function MyProfileTitleBar() {
@@ -84,9 +86,9 @@ export default function MyProfileTitleBar() {
         setAnchorEl(event.currentTarget);
     };
 
-  
 
-  
+
+
 
 
     const menuId = 'primary-search-account-menu';

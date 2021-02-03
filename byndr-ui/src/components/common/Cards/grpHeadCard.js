@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
         font: "normal normal 600 20px/30px Poppins",
         color: "#000000",
         opacity: 1,
+        [theme.breakpoints.down('1030')]: {
+            fontSize:"15px"
+        }
     },
     cardSubText: {
         textAlign: "left",
@@ -50,6 +53,16 @@ const useStyles = makeStyles((theme) => ({
         color: "#7B7C7E",
         opacity: 1,
         paddingTop: 10
+    },
+    cardTitleBlock:{
+        width: "70%",
+        [theme.breakpoints.down('1030')]: {
+            width: '48%',
+            paddingRight:"12px"
+        },
+    },
+    cardRightBlock:{
+        width: "185px"
     }
 }));
 
@@ -88,7 +101,7 @@ export default function GrpHeadCard(props) {
 
     return (
         <List dense className={classes.root}>
-            <ListItem style={{ float: "left", width: "70%" }}>
+            <ListItem className={classes.cardTitleBlock} style={{ float: "left"}}>
                 <ListItemAvatar>
                     <Avatar
                         alt="Travis Howard"
@@ -107,7 +120,7 @@ export default function GrpHeadCard(props) {
                         </Grid>
                     </Grid>
                 </ListItemText>
-                <ListItemSecondaryAction style={{ float: "right", position: "relative", marginTop: 17, width: "185px" }}>
+                <ListItemSecondaryAction className={classes.cardRightBlock} style={{ float: "right", position: "relative", marginTop: 17,  }}>
                     <Grid item xs={12}>
                         <Grid container spacing={2}>
                             <Typography variant="body2" component="span" className={classes.lastUpdate}>
