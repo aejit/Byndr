@@ -22,6 +22,7 @@ import ErrorOutlineTwoToneIcon from '@material-ui/icons/ErrorOutlineTwoTone';
 import {
     useParams
 } from "react-router-dom";
+import SideBar from '../common/sidebar';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -189,7 +190,7 @@ const Videoplay = (props) => {
     let [like, setLike] = React.useState(null);
     let [chat, setChat] = React.useState(null);
     let [star, setStar] = React.useState(null);
-    let [playlist , setPlaylist] = React.useState(null);
+    let [playlist, setPlaylist] = React.useState(null);
     let [error, setError] = React.useState(null);
 
     const history = useHistory();
@@ -209,10 +210,10 @@ const Videoplay = (props) => {
         else if (prop === 'star') {
             setStar(!star);
         }
-        else if(prop === 'playlist'){
+        else if (prop === 'playlist') {
             setPlaylist(!playlist);
         }
-        else if (prop === 'error'){
+        else if (prop === 'error') {
             setError(!error);
         }
 
@@ -228,7 +229,12 @@ const Videoplay = (props) => {
         <div>
             <div style={{ backgroundColor: "white" }}>
 
-                <Header />
+                <div style={{ marginLeft: '3vw' }}>
+
+                    <Header />
+
+                </div>
+                <SideBar />
 
                 <div style={{ borderRight: '2px solid lightgrey', width: '70vw' }}>
 
@@ -253,7 +259,7 @@ const Videoplay = (props) => {
 
                             <div style={{ marginLeft: '0vw', display: "flex", justifyContent: 'space-between' }}>
 
-                                <IconButton aria-label="add to favorites" size="small" onClick={(() => { handleLike('like'); })} style={{margin: '0 1vw'}}>
+                                <IconButton aria-label="add to favorites" size="small" onClick={(() => { handleLike('like'); })} style={{ margin: '0 1vw' }}>
                                     {
                                         (like ? <FavoriteIcon style={{ color: 'red' }} fontSize="small"
                                         />
@@ -263,7 +269,7 @@ const Videoplay = (props) => {
 
                                 </IconButton>
 
-                                <IconButton aria-label="start chat" size="small" onClick={() => { handleLike('chat'); }} style={{margin: '0 1vw'}}>
+                                <IconButton aria-label="start chat" size="small" onClick={() => { handleLike('chat'); }} style={{ margin: '0 1vw' }}>
                                     {
                                         (chat ? <ChatBubbleSharpIcon style={{ color: 'blue' }} fontSize="small"
                                         />
@@ -273,10 +279,10 @@ const Videoplay = (props) => {
 
                                 </IconButton>
 
-                                <Typography component="span" style={{margin: '0 1vw', marginTop: '0.3vh', color: "lightgrey"}}>20</Typography>
+                                <Typography component="span" style={{ margin: '0 1vw', marginTop: '0.3vh', color: "lightgrey" }}>20</Typography>
 
 
-                                <IconButton aria-label="share" size="small" style={{margin: '0 1vw'}}>
+                                <IconButton aria-label="share" size="small" style={{ margin: '0 1vw' }}>
                                     <ShareIcon fontSize="small"
                                         style={{ color: 'lightgrey' }}
                                         onMouseOver={(e) => e.target.style.color = 'blue'}
@@ -284,7 +290,7 @@ const Videoplay = (props) => {
                                     />
                                 </IconButton>
 
-                                <IconButton aria-label="add to started" size="small" onClick={() => { handleLike('star'); }} style={{margin: '0 1vw'}}>
+                                <IconButton aria-label="add to started" size="small" onClick={() => { handleLike('star'); }} style={{ margin: '0 1vw' }}>
                                     {
                                         (star ? <StarIcon style={{ color: "gold" }} fontSize="small"
                                         />
@@ -294,7 +300,7 @@ const Videoplay = (props) => {
 
                                 </IconButton>
 
-                                <IconButton aria-label="add to playlist" size="small" onClick={() => { handleLike('playlist'); }} style={{margin: '0 1vw'}}>
+                                <IconButton aria-label="add to playlist" size="small" onClick={() => { handleLike('playlist'); }} style={{ margin: '0 1vw' }}>
                                     {
                                         (playlist ? <PlaylistAddOutlinedIcon style={{ color: "blue" }} fontSize="small"
                                         />
@@ -304,7 +310,7 @@ const Videoplay = (props) => {
 
                                 </IconButton>
 
-                                <IconButton aria-label="add to error" size="small" onClick={() => { handleLike('error'); }} style={{margin: '0 1vw'}}>
+                                <IconButton aria-label="add to error" size="small" onClick={() => { handleLike('error'); }} style={{ margin: '0 1vw' }}>
                                     {
                                         (error ? <ErrorOutlineTwoToneIcon style={{ color: "red" }} fontSize="small"
                                         />
@@ -330,8 +336,8 @@ const Videoplay = (props) => {
                     </div>
                     <Divider style={{ marginLeft: '0vw', width: '70vw', marginTop: '2vh' }} />
 
-                    <div style={{ marginLeft: '6vw', marginTop: '2vh', border: '1px solid blue', width: '90%', height: '10vh' }}>Description 
-                                <Typography component="p" style={{margin: '2px'}}>{params.vid}</Typography></div>
+                    <div style={{ marginLeft: '6vw', marginTop: '2vh', border: '1px solid blue', width: '90%', height: '10vh' }}>Description
+                                <Typography component="p" style={{ margin: '2px' }}>{params.vid}</Typography></div>
 
                 </div>
 

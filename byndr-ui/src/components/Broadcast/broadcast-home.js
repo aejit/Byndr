@@ -5,6 +5,7 @@ import Select from "react-select";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import Videolist from './videolist';
 import { useHistory } from "react-router-dom";
+import Sidebar from '../common/sidebar';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -176,8 +177,15 @@ export default function () {
     return (
 
         <div >
-            <Header />
-            <div className={classes.selectwrapper} >
+            <div style={{ marginLeft: '3vw' }}>
+
+                <Header />
+
+            </div>
+
+            <Sidebar></Sidebar>
+
+            <div className={classes.selectwrapper} style={{ marginTop: '2vh' }}>
 
                 <div className={classes.NumOfItems}> 244 Items</div>
 
@@ -212,7 +220,7 @@ export default function () {
                 </div>
             </div>
 
-            <div style={{padding: '0 0 5% 0'}}>
+            <div style={{ padding: '0 0 5% 0' }} style={{ marginTop: '2vh' }}>
                 <div style={{ marginLeft: "6vw", marginTop: '1vh', width: '86%', backgroundColor: "gold", padding: "1em", borderRadius: '15px' }}>
                     <Typography variant="h5">
                         Hey Name,
@@ -232,7 +240,7 @@ export default function () {
                 </div>
             </div>
 
-            <div style={{marginTop: '2vh'}}>
+            <div style={{ marginTop: '2vh' }}>
 
                 <div id="liveVideo">
                     <Videolist
